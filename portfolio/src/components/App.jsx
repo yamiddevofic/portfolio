@@ -6,7 +6,9 @@ import BoxSx from './Box';
 function App() {
   return (
     <>
-      <ResponsiveAppBar />
+      <div>
+        <ResponsiveAppBar />
+      </div>
       <div className="pt-block">
         {Array.from({ length: 28 }).map((_, index) => (
           <BoxSx key={index} /> // Agregué un key único para cada BoxSx

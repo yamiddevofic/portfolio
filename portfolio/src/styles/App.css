@@ -1,21 +1,24 @@
 #root {
   max-width: auto;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
   background-color: #212121;
-  height: 80vh;
-  overflow: auto;
+  height: 100vh;
+  overflow: hidden;
 }
 .css-hip9hq-MuiPaper-root-MuiAppBar-root{
   background: #1e1e1e !important;
+  position: fixed !important;
+  width: 98% !important;
 }
 .MuiToolbar-root{
   display: flex !important;
   flex-direction: center !important;
   align-items: center !important;
   justify-content: space-between !important;
+
 }
 .pt-icon{
   color: white;
@@ -25,6 +28,9 @@
   width: 100%;
   gap: 2%;
   flex-wrap: wrap;
+  margin-top: 5%;
+  align-items: center;
+  justify-content: center;
 }
 .pt-box{
   margin: 2%;
