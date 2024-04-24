@@ -1,0 +1,37 @@
+#root {
+  max-width: auto;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  background-color: #212121;
+  height: 80vh;
+  overflow: auto;
+}
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+  background: #1e1e1e !important;
+}
+.MuiToolbar-root{
+  display: flex !important;
+  flex-direction: center !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.pt-icon{
+  color: white;
+}
+.pt-block{
+  display: flex;
+  width: 100%;
+  gap: 2%;
+  flex-wrap: wrap;
+}
+.pt-box{
+  margin: 2%;
+  color: #333;
+  place-content: center;
+}
+.pt-boxContainer{
+  display: flex;
+  justify-content: space-between;
+}
