@@ -2,17 +2,97 @@ import React from 'react'; // Agregué punto y coma
 import '../styles/App.css';
 import ResponsiveAppBar from './AppBar';
 import BoxSx from './Box';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import XIcon from '@mui/icons-material/X';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function App() {
+  const boxs= [
+    {
+        id:'avatar',
+        clase: 'pt-box avatar',
+        image: 'url(/profile-3.jpg)',
+        texto: '',
+        ancho: 150,
+        alto: 150,
+        circle: '50%',
+    },
+    {
+        id:'datos',
+        clase: 'pt-box',
+        image: '#1e1e1e',
+        texto:
+        <div className='pt-boxContent'>
+          <h3>Datos Personales:</h3>
+          <div>
+            <p><strong>Nombres: </strong></p>
+            <div><p>Yamid Horacio</p></div>
+            <p><strong>Apellidos: </strong></p>
+            <div><p>Rodríguez</p></div>
+            <p><strong>Edad: </strong></p>
+            <div><p>21 años</p></div>
+          </div>
+        </div>
+        ,
+        ancho: '80%',
+        alto: 'auto',
+        circle: 1,
+    },
+    {   
+        id:'contacto',
+        clase: 'pt-box',
+        image: '#1e1e1e',
+        texto:
+        <div className='pt-boxContent'>
+          <h3>Contacto:</h3>
+          <div>
+            <p><strong>Correo: </strong></p>
+            <div><p>yhrodriguez1@hotmail.com</p></div>
+            <p><strong>Celular: </strong></p>
+            <div><p>3133229392</p></div>
+          </div>
+        </div>,
+        ancho: '80%',
+        alto: 'auto',
+        circle: 1,
+    },
+]
   return (
     <>
-      <div>
-        <ResponsiveAppBar />
+      <div className="pt-blockDos">
+        <div>
+          <ResponsiveAppBar />
+          <div className='pt-blockTres'>
+            <div id="descripcion">
+              <BoxSx  clase={'pt-box pt-boxDos'} image={'#1e1e1e'} ancho='95%' alto='30%' circle='10px'></BoxSx>
+            </div>
+            <div id="experiencia">
+              <BoxSx clase={'pt-box pt-boxDos'} image={'#1e1e1e'} ancho='95%' alto='30%' circle='10px'></BoxSx>
+            </div>
+            <div id="habilidades">
+              <BoxSx clase={'pt-box pt-boxDos'} image={'#1e1e1e'} ancho='95%' alto='30%' circle='10px'></BoxSx>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="pt-block">
-        {Array.from({ length: 28 }).map((_, index) => (
-          <BoxSx key={index} /> // Agregué un key único para cada BoxSx
-        ))}
+        {   
+          boxs.map(({id,clase,image,texto,ancho,alto,circle})=>(
+                  <React.Fragment>
+                      <BoxSx id={id} clase={clase} image={image} texto={texto} ancho={ancho} alto={alto} circle={circle}>
+                      </BoxSx>
+                  </React.Fragment>
+              ))}
+          <BoxSx id="redes" clase={'pt-box redes'} image={'none'} texto={
+            <div>
+              <FacebookIcon id='facebook' fontSize='large'></FacebookIcon>
+              <GitHubIcon id='github' fontSize='large'></GitHubIcon>
+              <XIcon  id='x' fontSize='large'></XIcon>
+              <LinkedInIcon id='linkedin' fontSize='large'></LinkedInIcon>
+            </div>
+          } ancho={'80%'} alto={'auto'} circle={'10px'}>
+          </BoxSx>
       </div>
     </>
   );
