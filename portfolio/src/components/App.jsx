@@ -25,14 +25,12 @@ function App() {
         texto:
         <div className='pt-boxContent'>
           <h3>Datos Personales:</h3>
-          <div>
-            <p><strong>Nombres: </strong></p>
-            <div><p>Yamid Horacio</p></div>
-            <p><strong>Apellidos: </strong></p>
-            <div><p>Rodríguez</p></div>
-            <p><strong>Edad: </strong></p>
-            <div><p>21 años</p></div>
-          </div>
+          <p><strong>Nombres: </strong></p>
+          <p>Yamid Horacio</p>
+          <p><strong>Apellidos: </strong></p>
+          <p>Rodríguez</p>
+          <p><strong>Edad: </strong></p>
+          <p>21 años</p>
         </div>
         ,
         ancho: '80%',
@@ -46,12 +44,10 @@ function App() {
         texto:
         <div className='pt-boxContent'>
           <h3>Contacto:</h3>
-          <div>
-            <p><strong>Correo: </strong></p>
-            <div><p>yhrodriguez1@hotmail.com</p></div>
-            <p><strong>Celular: </strong></p>
-            <div><p>3133229392</p></div>
-          </div>
+          <p><strong>Correo: </strong></p>
+          <p>yhrodriguez1@hotmail.com</p>
+          <p><strong>Celular: </strong></p>
+          <p>3133229392</p>
         </div>,
         ancho: '80%',
         alto: 'auto',
@@ -77,22 +73,31 @@ function App() {
         </div>
       </div>
       <div className="pt-block">
-        {   
-          boxs.map(({id,clase,image,texto,ancho,alto,circle})=>(
-                  <React.Fragment>
-                      <BoxSx id={id} clase={clase} image={image} texto={texto} ancho={ancho} alto={alto} circle={circle}>
-                      </BoxSx>
-                  </React.Fragment>
-              ))}
-          <BoxSx id="redes" clase={'pt-box redes'} image={'none'} texto={
+        <div className="pt-blockContent">
+          {   
+            boxs.map(({id,clase,image,texto,ancho,alto,circle})=>(
+                    <React.Fragment>
+                        <BoxSx id={id} clase={clase} image={image} texto={texto} ancho={ancho} alto={alto} circle={circle}>
+                        </BoxSx>
+                    </React.Fragment>
+                ))
+          }
+          <BoxSx id="redes" clase={'pt-box redes'} 
+          image={'none'} 
+          texto=
+          {
             <div>
               <FacebookIcon id='facebook' fontSize='large'></FacebookIcon>
               <GitHubIcon id='github' fontSize='large'></GitHubIcon>
               <XIcon  id='x' fontSize='large'></XIcon>
               <LinkedInIcon id='linkedin' fontSize='large'></LinkedInIcon>
             </div>
-          } ancho={'80%'} alto={'auto'} circle={'10px'}>
+          } 
+          ancho={'80%'} 
+          alto={'auto'} 
+          circle={'10px'}>
           </BoxSx>
+        </div>
       </div>
     </>
   );
