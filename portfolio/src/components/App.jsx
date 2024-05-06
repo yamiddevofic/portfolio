@@ -3,7 +3,6 @@ import '../styles/App.css';
 import NavScrollExample from './Navbar';
 import SimpleContainer from './Container';
 import BasicGrid from './Grid';
-
 function App() {
 
   return (
