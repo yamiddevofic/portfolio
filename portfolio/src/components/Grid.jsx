@@ -20,10 +20,28 @@ export default function BasicGrid() {
     '/images/home2.PNG',
     // Agrega más URLs de imágenes según necesites
   ];
+  function timeOfDay(){
+    var date = new Date();
+    const hora = date.getHours();
+    var mensaje;
+    if (hora>0 && hora<5){
+        mensaje="Feliz madrugada";
+    }
+    else if(hora>4 && hora<12){
+        mensaje="Buenos días";
+    }
+    if (hora>11 && hora<=17){
+        mensaje = "Buenas tardes";
+    }else if(hora>17){
+        mensaje = "Buenas noches";
+    }
+    return mensaje;
+  }
   return (
     <Box sx={{ flexGrow: 1, padding:'2% 2%;' }}>
       <Grid container spacing={3}>
-        <Grid className="items" item xs={8} sx={{backgroundColor: 'none'}}>
+        <Grid className="items" item xs={8} sx={{backgroundColor: 'none', width:'100%',justifyContent:'center'}}>
+            <h1 style={{color: "white"}}>{timeOfDay()}</h1>
         </Grid>
         <Grid item xs={4}>
           <Item className="items sobreMi" id="sobreMi"><h4>Sobre mí</h4></Item>
@@ -74,7 +92,7 @@ export default function BasicGrid() {
             {
                <div>
                     <h4>Mis proyectos</h4>
-                    <Carousel images={images} />
+                    <Carousel sx={{width:'50%'}} images={images} />
                </div>
             }
           </Item>

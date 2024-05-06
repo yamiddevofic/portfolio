@@ -22,27 +22,51 @@ function CollapsibleExample() {
       contador ++;
       if (contador>1){
       if (!lightMode) {
-        item.style.background = '#202020';
+        item.style.background = '#111';
         item.style.color = '#fff';
+        item.style.transition="background-color 1s";
       } else {
         item.style.background = 'white';
-        item.style.color = '#242424'
+        item.style.color = '#4d4d4d';
+        item.style.transition="background-color 1s";
       }
       }
   });
-    root.style.background = !lightMode ? '#111' : '#bdbdbd';
-    container.style.background = !lightMode ? '#111' : '#bdbdbd';
+    root.style.background = !lightMode ? '#04122E' : timeOfDay();
+    root.style.transition="background-color 1s";
+    container.style.transition="background-color 1s";
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" className={lightMode ? 'navbar-dark' : 'bg-body-tertiary navegador'}>
+    <Navbar className="nave" collapseOnSelect expand="lg" className={lightMode ? 'navbar-dark' : 'navbar-dark'} >
       <Container>
         <Navbar.Brand href="#home">MY PORTFOLIO</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#sobreMi">Sobre Mi</Nav.Link>
-            <Nav.Link href="#datos">Datos Personales</Nav.Link>
+            <Nav.Link href="#datos" onClick={()=>{
+              const datos = document.getElementById('datos');
+              var cont = 0
+              const intervalo = setInterval(
+                () => {
+                  cont ++;
+                  console.log(cont);
+                  if (cont>1){
+                    datos.style.background = "#ffe100";
+                    datos.style.color = "#202020";
+                    datos.style.transition="background-color 2s";
+                  }
+                  if (cont>3){
+                    datos.style.background = "white";
+                    datos.style.color= "#202020";
+                    datos.style.transition="background-color 2s";
+                    clearInterval(intervalo);
+                    console.log("¡Intervalo cerrado!")
+                  }
+                },500
+              )
+            }}>Datos Personales</Nav.Link>
             <NavDropdown title="Hoja de vida" id="collapsible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -58,7 +82,8 @@ function CollapsibleExample() {
           <Nav>
             <Nav.Link href="#deets">More deets</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              <LightModeRoundedIcon onClick={cambiarModo} />
+              <p style={{display:'inline-block'}}>Modo claro/oscuro </p>
+              <LightModeRoundedIcon sx={{marginLeft: '5px',display:'inline-block'}} onClick={cambiarModo} />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

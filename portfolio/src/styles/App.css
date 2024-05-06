@@ -8,10 +8,15 @@
   overflow: auto;
 }
 
-.items > *:not(:first-child) {
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+.items >*:not(:first-child) {
+  box-shadow: 0 0 50px rgba(0,0,0,0.6);
 }
 
 .amor{
+  color: #ff9c39;
+  color: #4acefe;
   color: #202020;
+  color: #e27509;
+  color: #e27509;
+  color: #e27509;
 }
