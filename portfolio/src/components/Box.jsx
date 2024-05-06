@@ -30,15 +30,15 @@ export default function BoxSx({ id, clase, image, texto, ancho, alto, circle }) 
           fontSize: {
             xs: theme.typography.body2.fontSize, // Tamaño de fuente para pantallas extra pequeñas
             sm: theme.typography.body1.fontSize, // Tamaño de fuente para pantallas pequeñas
-            md: theme.typography.h6.fontSize, // Tamaño de fuente para pantallas medianas
-            lg: theme.typography.h6.fontSize, // Tamaño de fuente para pantallas grandes
-            xl: theme.typography.body1.fontSize, // Tamaño de fuente para pantallas extra grandes
+            md: theme.typography.body1.fontSize, // Tamaño de fuente para pantallas medianas
+            lg: theme.typography.body2.fontSize, // Tamaño de fuente para pantallas grandes
+            xl: theme.typography.body2.fontSize, // Tamaño de fuente para pantallas extra grandes
           },
           textAlign: {
             xs: 'center', // Alineación de texto para pantallas extra pequeñas
             sm: 'left', // Alineación de texto para pantallas pequeñas
             md: 'center', // Alineación de texto para pantallas medianas
-            lg: 'left', // Alineación de texto para pantallas grandes
+            lg: 'center', // Alineación de texto para pantallas grandes
             xl: 'center', // Alineación de texto para pantallas extra grandes
           },
         }}

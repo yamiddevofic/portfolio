@@ -50,7 +50,7 @@ export default function ButtonUsage() {
         const blocks = document.querySelectorAll('.pt-block'); // Selección de todos los elementos con clase pt-block
         const blockDos = document.querySelectorAll('.pt-blockDos'); // Selección de todos los elementos con clase pt-blockDos
         const boxs = document.querySelectorAll('.pt-box'); // Selección de todos los elementos con clase pt-box
-        const boxsDos = document.querySelectorAll('.pt-box.pt-boxDos.MuiBox-root.css-1o0uzfp'); // Selección de todos los elementos con clase pt-box
+        const boxsDos = document.querySelectorAll('.pt-box.pt-boxDos'); // Selección de todos los elementos con clase pt-box
         const boxContent= document.querySelectorAll('.pt-boxContent')
         const header = document.querySelector('header');
         const icon = document.querySelector('.css-78trlr-MuiButtonBase-root-MuiIconButton-root');
