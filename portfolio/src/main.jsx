@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './components/App.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './styles/index.css'
 import '@fontsource/roboto/300.css';
