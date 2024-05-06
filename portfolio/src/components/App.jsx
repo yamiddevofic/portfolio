@@ -61,7 +61,7 @@ function App() {
           <ResponsiveAppBar />
           <div className='pt-blockTres'>
             <div id="descripcion">
-              <BoxSx  clase={'pt-box pt-boxDos'} image={'#1e1e1e'} ancho='95%' alto='30%' circle='10px'></BoxSx>
+              <BoxSx clase={'pt-box pt-boxDos'} image={'#1e1e1e'} texto={<p>Soy una persona honesta y comprometida, con habilidades destacadas en aprendizaje rápido y trabajo en equipo. En el colegio, participé en pedagogía ambiental, en la banda de marchas y destaqué en los resultados de las pruebas ICFES. En el SENA, aprendí los fundamentos del desarrollo de software y fortalecí mis habilidades en trabajo en equipo y gestión de proyectos, construyendo una aplicación web para tiendas de barrio de Chitagá. Ahora, espero adquirir experiencia trabajando en una empresa como programador y fortalecer mi comunicación en inglés para de esta manera ofrecer mis productos y servicios como desarrollador a nivel internacional</p>} ancho='95%' alto='30%' circle='10px'></BoxSx>
             </div>
             <div id="experiencia">
               <BoxSx clase={'pt-box pt-boxDos'} image={'#1e1e1e'} ancho='95%' alto='30%' circle='10px'></BoxSx>
