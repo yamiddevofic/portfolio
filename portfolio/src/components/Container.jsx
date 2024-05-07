@@ -7,8 +7,8 @@ export default function SimpleContainer({content}) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="xl">
-        <Box sx={{ height: '100vh' }} id="container">
+      <Container maxWidth="lg">
+        <Box sx={{ height: '100vh', width:'100%', display:'flex',justifyContent:'center'}} id="container">
         {content}
         </Box>
       </Container>

@@ -19,17 +19,17 @@ function CollapsibleExample() {
       if (!lightMode) {
         item.style.background = '#111';
         item.style.color = '#fff';
-        item.style.transition="background-color 1.5s";
+        item.style.transition="background-color .7s";
       } else {
         item.style.background = 'white';
         item.style.color = '#4d4d4d';
-        item.style.transition="background-color 1.5s";
+        item.style.transition="background-color .7s";
       }
       }
   });
     root.style.background = !lightMode ? '#010101' : timeOfDay();
     root.style.transition="background-color 1s";
-    container.style.transition="background-color 1s";
+    container.style.transition="background-color .7s";
   };
 
   return (
@@ -51,12 +51,12 @@ function CollapsibleExample() {
                 if (cont > 1) {
                   sobreMi.style.background = "#ffe100";
                   sobreMi.style.color = "#202020";
-                  sobreMi.style.transition = "background-color 1s";
+                  sobreMi.style.transition = "background-color .7s";
                 }
                 if (cont > 3) {
                   sobreMi.style.background = "white";
                   sobreMi.style.color = "#202020";
-                  sobreMi.style.transition = "background-color 1s";
+                  sobreMi.style.transition = "background-color .7s";
                   clearInterval(intervalo);
                   console.log("¡Intervalo cerrado!");
                 }

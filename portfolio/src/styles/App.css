@@ -8,8 +8,9 @@
   overflow: auto;
 }
 
-.items >*:not(:first-child) {
+.items >*:not(::part) {
   box-shadow: 0 0 50px rgba(0,0,0,0.6);
+  padding: 4%;
 }
 
 .amor{

@@ -3,20 +3,20 @@ function timeOfDay(){
     const hora = date.getHours();
     var color;
     //madrugada
-    if (hora>0 && hora<5){
-        color="#333";
+    if (hora>=0 && hora<5){
+        color="#0E1626";
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="#4acefe";
+        color="#80C7F2";
     }
     //tarde
     if (hora>11 && hora<=17){
-        color = "#ff9c39";
+        color = "#F29F05";
     }
     //noche
     else if(hora>17){
-        color = "#04122E";
+        color = "#102040";
     }
     return color;
   }
