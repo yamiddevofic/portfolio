@@ -1,5 +1,4 @@
-import React, { useState } from 'react'; // Importa useState desde React
-
+import React, { useState } from 'react'; 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,13 +6,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 
 function CollapsibleExample() {
-  const [lightMode, setLightMode] = useState(false); // Define el estado lightMode
-
-  // Función para cambiar el modo de luz
+  const [lightMode, setLightMode] = useState(false);
   const cambiarModo = () => {
-    setLightMode(!lightMode); // Cambia el estado lightMode
-    // Aquí puedes añadir lógica adicional según el estado
-    // Por ejemplo, cambiar los estilos del navbar y los elementos
+    setLightMode(!lightMode);
     const root = document.getElementById('root');
     const container = document.getElementById('container');
     const items = document.querySelectorAll('.items');

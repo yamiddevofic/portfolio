@@ -11,9 +11,8 @@ function Reloj() {
       let hora = date.getHours();
       const minutos = date.getMinutes();
       const segundos = date.getSeconds();
-      const ampm = hora >= 12 ? 'PM' : 'AM'; // Establece AM o PM según la hora
-
-      // Convierte la hora a formato de 12 horas
+      const ampm = hora >= 12 ? 'PM' : 'AM'; 
+      
       let horaDoce = hora % 12 || 12;
 
       const hour = `${horaDoce < 10 ? '0' + horaDoce : horaDoce}:${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos} ${ampm}`;
