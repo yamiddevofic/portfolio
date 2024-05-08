@@ -110,20 +110,20 @@ export default function BasicGrid() {
      <Grid container sx={{display:'flex',marginBottom:'4%'}} >
      <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
           <Item className="items" id="contactos" sx={{width:'100%', height:'100%', justifyContent:'center',alignItems:'center'}}>
-            <div style={{ display: 'flex', flexDirection: 'column',width: '100%', justifyContent: 'space-between', padding: '2%' }}>
+            <div style={{ display: 'flex',width: '100%', justifyContent: 'space-evenly', padding: '2%' }}>
               <h3>📩 Contacto:</h3>
               <div style={{ padding: '0%' }}>
-                <GitHubIcon sx={{ color: 'purple' }} fontSize="large"></GitHubIcon><div><p style={{ fontSize: 'calc(1vw + 6px)' }}>/yamid-dev</p></div>
+                <GitHubIcon sx={{ color: 'purple',cursor: 'pointer'}} fontSize="large"></GitHubIcon>
               </div>
               <div style={{ padding: '0%' }}>
-                <LinkedInIcon sx={{ color: 'blue' }} fontSize="large"></LinkedInIcon><div><p style={{ fontSize: 'calc(1vw + 6px)' }}>/yamiddev</p></div>
+                <LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon>
               </div>
               <div style={{ padding: '0%' }}>
-                <WhatsAppIcon sx={{ color: 'green' }} fontSize="large"></WhatsAppIcon> <div><p style={{ fontSize: 'calc(1vw + 6px)' }}>+573118344425</p></div>
+                <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large"></WhatsAppIcon>
               </div>
               <div>
-                <GoogleIcon fontSize='large' sx={{ color: 'red' }}></ GoogleIcon>
-                <div><p style={{ fontSize: 'calc(1vw + 6px)' }}>horaciohabbos@gmail.com</p></div>
+                <GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
+                
               </div>
             </div>
           </Item>
