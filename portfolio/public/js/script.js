@@ -4,7 +4,7 @@ function timeOfDay(){
     var color;
     //madrugada
     if (hora>=0 && hora<5){
-        color="#0E1626";
+        color="#020126";
     }
     //mañana
     else if(hora>4 && hora<12){
