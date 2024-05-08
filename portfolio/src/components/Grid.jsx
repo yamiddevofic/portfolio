@@ -61,23 +61,29 @@ export default function BasicGrid() {
             </div>
           </Item>
         </Grid>
-            <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
-                    <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',gridTemplateColumns:'1fr 1fr',padding:'5%'}}>
-                    <div style={{padding:'0%'}}>
+        
+        <Grid item xs={12} sm={12} md={12}>{/* Ajusta xs, sm y md según lo que necesites */}
+                <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',padding:'5%'}}>
+                <div style={{padding:'0%'}}>
+                    <div>
+                        <h4>Hobbies</h4>
                         <div>
-                            <h4>Hobbies</h4>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>📚 Lectura de psicología o filosofía</p>
-                            </div>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>👩‍👩‍👧‍👦 Estar con personas cercanas</p>
-                            </div>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>📸 El arte de la fotografía</p>
-                            </div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>📚 Lectura de psicología o filosofía</p>
+                        </div>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>👩‍👩‍👧‍👦 Estar con personas cercanas</p>
+                        </div>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>📸 El arte de la fotografía</p>
                         </div>
                     </div>
-                    <div style={{padding:'0%'}}>
+                </div>
+                </Item>
+            </Grid>
+        
+            <Grid item xs={12}>
+            <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',padding:'5%'}}>
+            <div style={{padding:'0%'}}>
                             <h4>Habilidades</h4>
                             <div>
                             <p style={{ fontSize: 'calc(1vw + 6px)' }}>💻 Programación</p>
@@ -92,14 +98,14 @@ export default function BasicGrid() {
                             <p style={{ fontSize: 'calc(1vw + 6px)' }}>🎨 Creatividad</p>
                             </div>
                         </div>
-                    </Item>
-                </Grid>
+                </Item>
+            </Grid>
             </Grid>
       <Grid container sx={{marginBottom:'4%'}}>
         <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
-            <Item className="items" id="proyectos" sx={{padding:'2.5%',marginTop:'4%'}}>
+            <Item className="items" id="proyectos" sx={{padding:'',marginTop:'4%'}}>
                 <div>
-                <h3>💼 Mis proyectos</h3>
+
                 <Carousel sx={{ width: '30%' }} images={images} />
                 </div>
             </Item>
