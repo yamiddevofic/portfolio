@@ -82,7 +82,7 @@ export default function BasicGrid() {
             </Item>
         </Grid>
         
-        <Grid item xs={12} sm={12} md={12}>{/* Ajusta xs, sm y md según lo que necesites */}
+        <Grid item xs={12} sm={12} md={6}>{/* Ajusta xs, sm y md según lo que necesites */}
                 <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',padding:'5%'}}>
                 <div style={{padding:'0%'}}>
                     <div>
@@ -101,7 +101,7 @@ export default function BasicGrid() {
                 </Item>
             </Grid>
         
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={12} md={6}>
             <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',padding:'5%'}}>
             <div style={{padding:'0%'}}>
                             <h4>Habilidades</h4>
