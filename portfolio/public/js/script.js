@@ -8,7 +8,7 @@ function timeOfDay(){
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="#F2E205";
+        color="#3192ce";
     }
     //tarde
     if (hora>11 && hora<=17){

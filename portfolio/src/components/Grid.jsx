@@ -119,17 +119,17 @@ export default function BasicGrid() {
             <div style={{ display: 'flex',width: '100%', justifyContent: 'space-evenly', padding: '2%' }}>
               <h3>📩 Contacto:</h3>
               <div style={{ padding: '0%' }}>
-                <GitHubIcon sx={{ color: 'purple',cursor: 'pointer'}} fontSize="large"></GitHubIcon>
+                <a href="https://github.com/yamid-dev/" target="_blank"><GitHubIcon sx={{ color: 'purple',cursor: 'pointer'}} fontSize="large"></GitHubIcon></a>
               </div>
               <div style={{ padding: '0%' }}>
-                <LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon>
+              <a href="https://www.linkedin.com/in/yamiddev/" target="_blank"><LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon></a>
               </div>
               <div style={{ padding: '0%' }}>
-                <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large"></WhatsAppIcon>
+                <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon>
               </div>
               <div>
-                <GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
-                
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=horaciohabbos@gmail.com" target="_blank"><GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
+                </a>
               </div>
             </div>
           </Item>
