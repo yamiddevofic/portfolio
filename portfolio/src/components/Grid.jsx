@@ -33,7 +33,7 @@ export default function BasicGrid() {
           <Reloj />
         </Grid>
         <Grid item xs={12} sm={12} md={4}> {/* Ajusta xs, sm y md según lo que necesites */}
-          <Grid container spacing={3}>
+          <Grid container spacing={3} sx={{marginBottom:'8%'}}>
             <Grid item xs={12}>
               <Item sx={{paddin:'2%'}} className="items sobreMi" id="sobreMi">
                 <h4>Sobre mí 🙋‍♂️</h4>
@@ -60,6 +60,26 @@ export default function BasicGrid() {
               </div>
             </div>
           </Item>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
+            <Item className="items" id="contactos" sx={{width:'100%', height:'100%', justifyContent:'center',alignItems:'center'}}>
+                <div style={{ display: 'flex',width: '100%', justifyContent: 'space-evenly', padding: '2%' }}>
+                <h3>📩 Contacto:</h3>
+                <div style={{ padding: '0%' }}>
+                    <a href="https://github.com/yamid-dev/" target="_blank"><GitHubIcon sx={{ color: 'purple',cursor: 'pointer'}} fontSize="large"></GitHubIcon></a>
+                </div>
+                <div style={{ padding: '0%' }}>
+                <a href="https://www.linkedin.com/in/yamiddev/" target="_blank"><LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon></a>
+                </div>
+                <div style={{ padding: '0%' }}>
+                    <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon>
+                </div>
+                <div>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=horaciohabbos@gmail.com" target="_blank"><GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
+                    </a>
+                </div>
+                </div>
+            </Item>
         </Grid>
         
         <Grid item xs={12} sm={12} md={12}>{/* Ajusta xs, sm y md según lo que necesites */}
@@ -111,30 +131,6 @@ export default function BasicGrid() {
             </Item>
         </Grid>
       </Grid>
-      
-
-     <Grid container sx={{display:'flex',marginBottom:'4%'}} >
-     <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
-          <Item className="items" id="contactos" sx={{width:'100%', height:'100%', justifyContent:'center',alignItems:'center'}}>
-            <div style={{ display: 'flex',width: '100%', justifyContent: 'space-evenly', padding: '2%' }}>
-              <h3>📩 Contacto:</h3>
-              <div style={{ padding: '0%' }}>
-                <a href="https://github.com/yamid-dev/" target="_blank"><GitHubIcon sx={{ color: 'purple',cursor: 'pointer'}} fontSize="large"></GitHubIcon></a>
-              </div>
-              <div style={{ padding: '0%' }}>
-              <a href="https://www.linkedin.com/in/yamiddev/" target="_blank"><LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon></a>
-              </div>
-              <div style={{ padding: '0%' }}>
-                <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon>
-              </div>
-              <div>
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=horaciohabbos@gmail.com" target="_blank"><GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
-                </a>
-              </div>
-            </div>
-          </Item>
-        </Grid>
-     </Grid>
 </Box>
   );
 }
