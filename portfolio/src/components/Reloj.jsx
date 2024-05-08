@@ -36,11 +36,15 @@ function Reloj() {
   }, []); // El segundo argumento [] asegura que el efecto se ejecute solo una vez, al montar el componente
 
   return (
-    <div style={{ width: '100%', color: 'white', display: 'flex', justifyContent: 'start',flexDirection:'column' }}>
-      <h2>{message}</h2>
-      <div>
-        <AccessTimeFilledIcon style={{ marginRight: '5px', display:'inline-block'}} />
-        <div style={{display:'inline-block'}}><h5>{time}</h5></div>
+    <div>
+      <div style={{ width: '100%', color: 'white', display: 'flex', justifyContent:'center',textAlign:'center'}}>
+        <div>
+          <h2>{message}</h2>
+          <div>
+            <AccessTimeFilledIcon style={{ marginRight: '5px', display:'inline-block'}} />
+            <div style={{display:'inline-block'}}><h5>{time}</h5></div>
+          </div>
+        </div>
       </div>
     </div>
   );

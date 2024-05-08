@@ -8,11 +8,11 @@ function timeOfDay(){
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="#80C7F2";
+        color="#F2E205";
     }
     //tarde
     if (hora>11 && hora<=17){
-        color = "#F29F05";
+        color = "#F27405";
     }
     //noche
     else if(hora>17){
@@ -26,3 +26,4 @@ const container = document.getElementById('container');
 
 root.style.background=timeOfDay();
 container.style.background=timeOfDay();
+
