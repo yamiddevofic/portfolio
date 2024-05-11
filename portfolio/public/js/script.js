@@ -16,7 +16,7 @@ function timeOfDay(){
     }
     //noche
     else if(hora>17){
-        color = "linear-gradient(to top,#fceabb,#2c015e,#140149)"
+        color = "linear-gradient(to top,#f3f3f3,#2c015e,#2c015e,#140149)"
     }
     return color;
   }
