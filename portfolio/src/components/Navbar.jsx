@@ -51,7 +51,7 @@ function CollapsibleExample() {
           <Nav>
             <Nav.Link eventKey={2} href="#oscuro">
               <div style={{display:'flex'}}>
-                <div style={{display:'inline-block'}}><p>Modo claro/oscuro </p></div>
+                <div style={{display:'inline-block'}} onClick={cambiarModo}><p>Modo claro/oscuro </p></div>
                 <div style={{display:'inline-block'}} className="icon"><LightModeRoundedIcon onClick={cambiarModo} /></div>
               </div>
             </Nav.Link>
