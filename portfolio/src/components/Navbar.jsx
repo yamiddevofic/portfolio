@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
+import DescargarPDF from './DescargarPDF'
 
 function CollapsibleExample() {
   const [lightMode, setLightMode] = useState(false);
@@ -42,14 +43,8 @@ function CollapsibleExample() {
           
       
             <NavDropdown title="Hoja de vida" id="collapsible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
+              <NavDropdown.Item href="#descargarPDF">
+                <DescargarPDF></DescargarPDF>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
