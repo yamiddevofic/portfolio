@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react'
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -9,6 +10,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import GoogleIcon from '@mui/icons-material/Google';
+import EssayForm from './FormName'
+import Usuarios from './Usuarios'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,13 +22,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function BasicGrid() {
+  
   const images = [
     '/images/login.webp',
     '/images/home.webp',
     '/images/home2.webp',
     // Agrega más URLs de imágenes según necesites
   ];
-  
+  const [lightMode, setLightMode] = useState(false);
   return (
     <Box id="caja" sx={{ background:'none', flexGrow: 1, padding: '2% 2%', display:'flex', flexDirection:'column',justifyContent:'center',gap:'2%',alignItems:'center'}}>
       <Grid container  spacing={4}>
@@ -72,7 +76,8 @@ export default function BasicGrid() {
                 <a href="https://www.linkedin.com/in/yamiddev/" target="_blank"><LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon></a>
                 </div>
                 <div style={{ padding: '0%' }}>
-                    <WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon>
+                    <a href="https://wa.me/+573202808299?text=Hola%2C%20estoy%20interesado%20en%20tu%20servicio.
+" target="_blank"><WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon></a>
                 </div>
                 <div>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=horaciohabbos@gmail.com" target="_blank"><GoogleIcon fontSize='large' sx={{ color: 'red',cursor: 'pointer'}}></ GoogleIcon>
@@ -104,33 +109,48 @@ export default function BasicGrid() {
             <Grid item xs={12} sm={12} md={6}>
             <Item className="items habilidades" id="habilidades" sx={{height:'100%',display:'grid',padding:'5%'}}>
             <div style={{padding:'0%'}}>
-                            <h4>Habilidades</h4>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>💻 Programación</p>
-                            </div>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>✏️ Escritura</p>
-                            </div>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>🧠 Aprendizaje continuo</p>
-                            </div>
-                            <div>
-                            <p style={{ fontSize: 'calc(1vw + 6px)' }}>🎨 Creatividad</p>
-                            </div>
+                        <h4>Habilidades</h4>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>💻 Programación</p>
                         </div>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>✏️ Escritura</p>
+                        </div>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>🧠 Aprendizaje continuo</p>
+                        </div>
+                        <div>
+                        <p style={{ fontSize: 'calc(1vw + 6px)' }}>🎨 Creatividad</p>
+                        </div>
+                    </div>
+            </Item>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
+                <Item className="items" id="proyectos">
+                    <div>
+                        <Carousel sx={{ width: '20%' }} images={images} />
+                    </div>
                 </Item>
             </Grid>
             </Grid>
-      <Grid container sx={{marginBottom:'4%'}}>
-        <Grid item xs={12} sm={12} md={12}> {/* Ajusta xs, sm y md según lo que necesites */}
-            <Item className="items" id="proyectos" sx={{padding:'',marginTop:'4%'}}>
-                <div>
-
-                <Carousel sx={{ width: '30%' }} images={images} />
-                </div>
-            </Item>
-        </Grid>
-      </Grid>
+            <Grid item xs={12} sm={12} md={12} sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'4%'}}>
+                <Item className="items" id="formulario" sx={{
+                    width:'60%',
+                    '@media (max-width: 768px)': {
+                        width: '100%',
+                    }
+                    }}>
+                    <EssayForm></EssayForm>
+                </Item>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'4%'}}>
+                <Item className="items" id="productos" sx={{width:'60%',
+                    '@media (max-width: 768px)': {
+                        width: '100%',
+                    }}}>
+                    <Usuarios></Usuarios>
+                </Item>
+            </Grid>
 </Box>
   );
 }

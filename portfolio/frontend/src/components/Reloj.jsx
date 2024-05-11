@@ -46,7 +46,7 @@ function Reloj() {
   return (
     <div>
       <div style={{ width: '100%', color: 'white', display: 'flex', justifyContent:'space-evenly',textAlign:'center'}}>
-        <div style={{padding:'2%'}}>
+        <div style={{padding:'2%'}} id="reloj">
           <h2>{message}</h2>
           <div>
             <AccessTimeFilledIcon style={{ marginRight: '5px', display:'inline-block'}} />

@@ -11,3 +11,10 @@ body{
 h4{
   padding: 2%;
 }
+
+ul li{
+  list-style: none;
+}
+table, th, tr,td{
+  border: 1px solid black
+}

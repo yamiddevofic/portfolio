@@ -12,22 +12,22 @@ function CollapsibleExample() {
     const root = document.getElementById('root');
     const container = document.getElementById('container');
     const items = document.querySelectorAll('.items');
-    var contador = 0;
+    var contador;
+    contador = 0;
     items.forEach(item => {
       contador ++;
-      if (contador>1){
       if (!lightMode) {
-        item.style.background = '#111';
+        item.style.background = '#121212';
         item.style.color = '#fff';
         item.style.transition="background-color .7s";
       } else {
         item.style.background = 'white';
-        item.style.color = '#4d4d4d';
+        item.style.color = '#444';
         item.style.transition="background-color .7s";
       }
-      }
+      
   });
-    root.style.background = !lightMode ? '#010101' : timeOfDay();
+    root.style.background = !lightMode ?  '#191919' : timeOfDay();
     root.style.transition="background-color 1s";
     container.style.transition="background-color .7s";
   };

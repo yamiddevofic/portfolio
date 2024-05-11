@@ -8,11 +8,11 @@ function timeOfDay(){
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="#3192ce";
+        color="linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)";
     }
     //tarde
     if (hora>11 && hora<=17){
-        color = "#F27405";
+        color = "linear-gradient(to right, #f83600 0%, #f9d423 100%)";
     }
     //noche
     else if(hora>17){
@@ -23,7 +23,7 @@ function timeOfDay(){
 
 const root = document.getElementById('root');
 const container = document.getElementById('container');
-
-root.style.background=timeOfDay();
-container.style.background=timeOfDay();
-
+const reloj = document.getElementById('reloj');
+root.style.backgroundImage=timeOfDay();
+container.style.backgroundImage=timeOfDay();
+reloj.style.color = timeOfDay();

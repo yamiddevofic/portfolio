@@ -8,14 +8,14 @@
   overflow: auto;
 }
 
-.items >*:not(::part) {
+.items {
   box-shadow: 0 0 50px rgba(0,0,0,0.6);
   padding: 4%;
 }
 
 .amor{
   color: #ff9c39;
-  color: #3192ce;
+  color: #4acefe;
   color: #202020;
   color: #e27509;
   color: #e27509;
