@@ -75,7 +75,7 @@ export default function BasicGrid() {
                 <a href="https://www.linkedin.com/in/yamiddev/" target="_blank"><LinkedInIcon sx={{ color: 'blue',cursor: 'pointer'}} fontSize="large"></LinkedInIcon></a>
                 </div>
                 <div style={{ padding: '0%' }}>
-                    <a href="https://wa.me/+573202808299?text=Hola%2C%20estoy%20interesado%20en%20tu%20servicio.
+                    <a href="https://wa.me/+573118344425?text=Hola%2C%20estoy%20interesado%20en%20tu%20servicio.
 " target="_blank"><WhatsAppIcon sx={{ color: 'green',cursor: 'pointer'}} fontSize="large" target="_blank"></WhatsAppIcon></a>
                 </div>
                 <div>
