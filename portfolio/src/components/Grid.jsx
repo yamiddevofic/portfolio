@@ -10,8 +10,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import GoogleIcon from '@mui/icons-material/Google';
-import EssayForm from './FormName'
-import Usuarios from './Usuarios'
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -132,24 +131,6 @@ export default function BasicGrid() {
                     </div>
                 </Item>
             </Grid>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'4%'}}>
-                <Item className="items" id="formulario" sx={{
-                    width:'60%',
-                    '@media (max-width: 768px)': {
-                        width: '100%',
-                    }
-                    }}>
-                    <EssayForm></EssayForm>
-                </Item>
-            </Grid>
-            <Grid item xs={12} sm={12} md={12} sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'4%'}}>
-                <Item className="items" id="productos" sx={{width:'60%',
-                    '@media (max-width: 768px)': {
-                        width: '100%',
-                    }}}>
-                    <Usuarios></Usuarios>
-                </Item>
             </Grid>
 </Box>
   );

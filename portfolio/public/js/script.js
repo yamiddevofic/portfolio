@@ -4,11 +4,11 @@ function timeOfDay(){
     var color;
     //madrugada
     if (hora>=0 && hora<5){
-        color="#020126";
+        color="linear-gradient(to bottom, #485563, #29323c)";
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)";
+        color="linear-gradient(to top, #1e9600, #fff200, #ff0000)";
     }
     //tarde
     if (hora>11 && hora<=17){
@@ -16,7 +16,7 @@ function timeOfDay(){
     }
     //noche
     else if(hora>17){
-        color = "#102040";
+        color = "linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%)"
     }
     return color;
   }
