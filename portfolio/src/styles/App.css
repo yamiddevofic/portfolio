@@ -9,7 +9,7 @@
 }
 
 .items {
-  box-shadow: 0 0 50px rgba(0,0,0,0.6);
+  box-shadow: 50px 50px 50px 50px rgba(0,0,0,0.6);
   padding: 4%;
 }
 
