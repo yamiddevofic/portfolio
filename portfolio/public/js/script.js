@@ -20,7 +20,6 @@ function timeOfDay(){
     }
     return color;
   }
-
 const root = document.getElementById('root');
 const container = document.getElementById('container');
 const reloj = document.getElementById('reloj');
