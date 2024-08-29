@@ -8,7 +8,7 @@ function timeOfDay(){
     }
     //mañana
     else if(hora>4 && hora<12){
-        color="linear-gradient(to bottom, #87CEFA, #B0E0E6)";
+        color="linear-gradient(to bottom, #FFD700, #FF8C00, #00BFFF, #1E90FF)";
     }
     //tarde
     if (hora>11 && hora<=17){
