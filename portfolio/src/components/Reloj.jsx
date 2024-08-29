@@ -28,13 +28,13 @@ function Reloj() {
 
       let newMessage;
       if (hora >= 0 && hora < 5) {
-        newMessage = "Feliz madrugada";
+        newMessage = "Feliz madrugada :)";
       } else if (hora >= 5 && hora < 12) {
-        newMessage = "Buenos días";
+        newMessage = "Buenos días :)";
       } else if (hora >= 12 && hora < 18) {
-        newMessage = "Buenas tardes";
+        newMessage = "Buenas tardes :)";
       } else {
-        newMessage = "Buenas noches";
+        newMessage = "Buenas noches :)";
       }
       setMessage(newMessage);
     }, 1000);
