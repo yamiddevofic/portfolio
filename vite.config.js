@@ -17,4 +17,9 @@ export default defineConfig({
       generateScopedName: '[name]__[local]___[hash:base64:5]', // Genera nombres únicos
     },
   },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:3001'
+    }
+  }
 })
