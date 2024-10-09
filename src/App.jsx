@@ -76,14 +76,14 @@ const InfoCard = ({ icon: Icon, title, description }) => {
 
 // Datos
 const techStack = [
+  { icon: SiOpenai, title: "Inteligencia Artificial", description: "🤖 Optimización con IA" },
   { icon: FaJs, title: "JavaScript (ES6+)", description: "⚡ Desarrollo moderno y eficiente" },
   { icon: FaReact, title: "ReactJS", description: "⚛️ Interfaces de usuario dinámicas" },
   { icon: FaNodeJs, title: "Node.js", description: "🌐 Backend escalable" },
   { icon: FaHtml5, title: "HTML5", description: "💻 Estructura web semántica" },
   { icon: FaCss3, title: "CSS3", description: "🎨 Estilos avanzados" },
   { icon: FaGitAlt, title: "Git & GitHub", description: "🔗 Control de versiones" },
-  { icon: FaDatabase, title: "MySQL", description: "💾 Bases de datos relacionales" },
-  { icon: SiOpenai, title: "Inteligencia Artificial", description: "🤖 Optimización con IA" }
+  { icon: FaDatabase, title: "MySQL", description: "💾 Bases de datos relacionales" }
 ];
 
 const socialLinks = [
