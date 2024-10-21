@@ -74,7 +74,7 @@ const App = () => {
         style={{
           backgroundImage: `url(${
             isDarkMode
-              ? 'https://i.pinimg.com/1200x/69/fa/24/69fa248eb1e71e127806302fc92e4932.jpg'
+              ? 'https://i.pinimg.com/1200x/56/e3/6f/56e36f8d87251b51bc9ce540f740ba89.jpg'
               : 'https://i.pinimg.com/564x/de/cb/1f/decb1fd5ecb570719e058d4666b485c8.jpg'
           })`,
         }}
@@ -82,7 +82,7 @@ const App = () => {
         <div className="text-center text-deep-blue dark:text-yellow-200 max-w-lg">
           <h1 className="text-7xl font-bold mb-4 text-emerald-green dark:text-yellow-400">Yamid Rodriguez</h1>
           <p className="text-xl text-light-black dark:text-gray-300 mb-6">
-            Web Designer / UI Developer
+            Full Stack Developer Aspiring 
           </p>
         </div>
       </section>
