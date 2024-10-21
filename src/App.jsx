@@ -72,8 +72,8 @@ const App = () => {
         </div>
         <nav className="hidden md:flex items-center space-x-12">
           <a href="#" className="text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">Inicio</a>
-          <a href="#" className="text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">Mis Servicios</a>
-          <a href="#" className="text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">Conecta Conmigo</a>
+          <a href="#" className="text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">Innovación Digital</a>
+          <a href="#" className="text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">Colaboración Conmigo</a>
         </nav>
         <div className="flex items-center space-x-6">
           <button onClick={toggleDarkMode} className="relative w-12 h-12 md:w-14 md:h-14 rounded-full border-2 border-[#1E3A8A] dark:border-[#F6C453] flex items-center justify-center transition-colors duration-300">
@@ -94,22 +94,22 @@ const App = () => {
       {isMenuOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-[#1E3A8A] dark:bg-[#0A0E17] flex flex-col items-center justify-center space-y-8 md:space-y-12 z-20">
           <a href="#" className="text-[#F6C453] dark:text-[#A3E635] text-2xl md:text-3xl hover:text-[#345B79] dark:hover:text-[#A3E635]/80 transition font-raleway" onClick={toggleMenu}>Inicio</a>
-          <a href="#" className="text-[#F6C453] dark:text-[#A3E635] text-2xl md:text-3xl hover:text-[#345B79] dark:hover:text-[#A3E635]/80 transition font-raleway" onClick={toggleMenu}>Mis Servicios</a>
-          <a href="#" className="text-[#F6C453] dark:text-[#A3E635] text-2xl md:text-3xl hover:text-[#345B79] dark:hover:text-[#A3E635]/80 transition font-raleway" onClick={toggleMenu}>Conecta Conmigo</a>
+          <a href="#" className="text-[#F6C453] dark:text-[#A3E635] text-2xl md:text-3xl hover:text-[#345B79] dark:hover:text-[#A3E635]/80 transition font-raleway" onClick={toggleMenu}>Innovación Digital</a>
+          <a href="#" className="text-[#F6C453] dark:text-[#A3E635] text-2xl md:text-3xl hover:text-[#345B79] dark:hover:text-[#A3E635]/80 transition font-raleway" onClick={toggleMenu}>Colaboración Conmigo</a>
         </div>
       )}
 
       {/* Sección Hero Minimalista */}
       <section
-        className="flex items-center justify-center min-h-screen md:min-h-screen bg-cover bg-center px-6 md:px-8 pt-0 pb-0"
+        className="flex items-center justify-center min-h-screen bg-cover bg-center px-6 md:px-8 pt-0 pb-0"
         style={{
           backgroundImage: `url(${isDarkMode ? '/background-dark.png' : '/background-light.png'})`,
         }}
       >
-        <div className="text-center max-w-xl md:max-w-2xl bg-[#F0F4F8]/90 dark:bg-[#1E293B]/80 p-8 md:p-12 rounded-lg shadow-lg">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#1E3A8A] dark:text-[#F6C453] font-raleway leading-tight">Descubre el poder de la innovación</h1>
+        <div className="text-center mt-10 max-w-xl md:max-w-2xl bg-[#F0F4F8]/90 dark:bg-[#1E293B]/80 p-8 md:p-12 rounded-lg shadow-lg">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#1E3A8A] dark:text-[#F6C453] font-raleway leading-tight">Impulsa tu visión con tecnología y creatividad</h1>
           <p className="text-lg md:text-2xl text-[#345B79] dark:text-[#D1D5DB] mb-6 md:mb-8 font-libre-baskerville">
-            Soy Yamid Rodriguez, un apasionado desarrollador full stack comprometido en transformar ideas en experiencias digitales memorables.
+            Soy Yamid Rodriguez, un apasionado desarrollador full stack que une innovación y sabiduría para crear experiencias digitales únicas y significativas.
           </p>
         </div>
       </section>
@@ -117,26 +117,26 @@ const App = () => {
       {/* Sección de Servicios en Layout Asimétrico */}
       <section className="py-16 px-8 md:py-20 md:px-20 lg:px-32 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-20">
         <div className="flex-1">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] dark:text-[#F6C453] mb-10 text-center md:text-left font-raleway">Mis Servicios</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] dark:text-[#F6C453] mb-10 text-center md:text-left font-raleway">Lo que ofrezco para tu transformación</h2>
           <div className="flex flex-col gap-8 md:gap-10">
             <div className="flex items-center">
               <div className="bg-[#345B79] dark:bg-[#A3E635] w-12 h-1 mr-4 md:w-16 md:mr-6"></div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Tarot Transformador</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Lecturas de Tarot Clarividentes</h3>
             </div>
             <div className="flex items-center">
               <div className="bg-[#345B79] dark:bg-[#A3E635] w-12 h-1 mr-4 md:w-16 md:mr-6"></div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Programación a tu Ritmo</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Desarrollo Web Personalizado</h3>
             </div>
             <div className="flex items-center">
               <div className="bg-[#345B79] dark:bg-[#A3E635] w-12 h-1 mr-4 md:w-16 md:mr-6"></div>
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Fotografía Creativa y Emotiva</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] font-raleway">Fotografía Creativa y Expresiva</h3>
             </div>
           </div>
         </div>
         <div className="flex-1 flex justify-center mt-10 md:mt-0">
           <div className="bg-[#E4F1F6] dark:bg-[#1E293B] p-10 md:p-14 rounded-lg shadow-lg max-w-sm">
             <p className="text-base md:text-lg text-[#345B79] dark:text-[#F6C453] font-libre-baskerville">
-              Cada servicio está diseñado para empoderarte: desde descubrir tu mundo interior, hasta capturar momentos que realmente importan. Exploración, aprendizaje y creatividad al alcance de tu mano.
+              Mi misión es ayudarte a conectar con tu esencia y plasmar tus sueños en experiencias digitales cautivadoras. Creatividad, intuición y conocimiento a tu servicio.
             </p>
           </div>
         </div>
@@ -145,11 +145,11 @@ const App = () => {
       {/* Sección de Contacto Minimalista */}
       <section className="relative py-20 px-8 md:py-28 md:px-20 lg:px-32">
         <div className="absolute inset-0 -z-10 bg-[#1E3A8A] dark:bg-[#A3E635] opacity-10"></div>
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-12 md:mb-16 font-raleway">Ponte en Contacto</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-12 md:mb-16 font-raleway">Hablemos y creemos juntos</h2>
         <div className="flex justify-center">
           <form className="w-full max-w-lg md:max-w-2xl bg-[#F0F4F8]/90 dark:bg-[#1E293B]/80 p-10 md:p-12 rounded-md shadow-md">
             <label htmlFor="name" className="block font-medium mb-4 md:mb-6 text-[#1E3A8A] dark:text-[#F6C453] font-raleway text-lg">
-              Nombre Completo
+              Tu Nombre
             </label>
             <input
               type="text"
@@ -166,7 +166,7 @@ const App = () => {
               name="message"
               rows="4"
               className="w-full p-4 md:p-5 mb-6 md:mb-8 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2C7A7B] dark:focus:ring-[#A3E635] bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 font-libre-baskerville"
-              placeholder="Escribe tu mensaje aquí"
+              placeholder="Cuéntame sobre tus ideas o preguntas"
             ></textarea>
             <button
               type="submit"
@@ -182,4 +182,3 @@ const App = () => {
 };
 
 export default App;
-
