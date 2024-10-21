@@ -101,7 +101,7 @@ const App = () => {
 
       {/* Sección Hero Minimalista */}
       <section
-        className="flex items-center justify-center min-h-[80vh] md:min-h-[90vh] bg-cover bg-center px-6 md:px-8 pt-24 pb-8 md:pt-32 md:pb-12"
+        className="flex items-center justify-center min-h-screen md:min-h-screen bg-cover bg-center px-6 md:px-8 pt-0 pb-0"
         style={{
           backgroundImage: `url(${isDarkMode ? '/background-dark.png' : '/background-light.png'})`,
         }}
