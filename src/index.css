@@ -1,9 +1,53 @@
+/* TailwindCSS Styling: index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Custom Styles for Yamid's Brand */
+:root {
+  --deep-blue: #1E3A8A;
+  --mustard-yellow: #F6C453;
+  --emerald-green: #2C7A7B;
+  --light-gray: #D1D5DB;
+  --lime-green: #A3E635;
+}
+
+/* Body and general settings */
+body {
+  @apply bg-gray-100 text-gray-900 font-sans;
+}
+
+h1, h2 {
+  @apply font-bold;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+/* Utility classes for buttons */
+button.bg-yellow-400 {
+  background-color: var(--mustard-yellow);
+}
+
+button.bg-yellow-400:hover {
+  background-color: darken(var(--mustard-yellow), 5%);
+}
+
+/* Header and Logo */
+header img {
+  @apply rounded-lg;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .header-title {
+    @apply text-5xl;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    @apply grid grid-cols-2 gap-10;
+  }
 }
