@@ -97,7 +97,7 @@ const App = () => {
       <section
         className="flex items-center justify-center min-h-screen bg-cover bg-center"
         style={{
-          backgroundImage: `url(${isDarkMode ? '/background-dark.webp' : '/background-light.webp'})`,
+          backgroundImage: `url(${isDarkMode ? '/background-dark.png' : '/background-light.png'})`,
         }}
       >
         <div className="text-center max-w-lg bg-[#F1F5F9]/90 dark:bg-[#1E293B]/80 p-10 rounded-lg shadow-lg">
