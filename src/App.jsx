@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Aquí aplicarás TailwindCSS
-import { FaBars, FaTimes } from 'react-icons/fa'; // Iconos para el menú
+import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa'; // Iconos para el menú y el modo oscuro
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,11 +33,19 @@ const App = () => {
       <header className="fixed top-0 left-0 w-full flex items-center justify-between p-6 bg-transparent z-10">
         <div className="flex items-center space-x-2">
           <div className="p-2 rounded-full">
-            <img
-              src="/yamid-rodriguez.png"
-              className="w-12 h-12 object-contain lg:w-20 lg:h-20 sm:w-16 sm:h-16"
-              alt="Logo Yamid Rodriguez"
-            />
+            {isDarkMode ? (
+              <img
+                src="/Yamid-rodriguez-light.png"
+                className="w-20 h-20 object-contain lg:w-20 lg:h-20 sm:w-16 sm:h-16"
+                alt="Logo Yamid Rodriguez"
+              />
+            ) : (
+              <img
+                src="/Yamid-rodriguez-dark.png"
+                className="w-20 h-20 object-contain lg:w-20 lg:h-20 sm:w-16 sm:h-16"
+                alt="Logo Yamid Rodriguez"
+              />
+            )}
           </div>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
@@ -47,7 +55,7 @@ const App = () => {
         </nav>
         <div className="flex items-center space-x-4">
           <button onClick={toggleDarkMode} className="text-deep-blue dark:text-yellow-200 text-2xl font-raleway">
-            {isDarkMode ? '☀️' : '🌙'}
+            {isDarkMode ? <FaSun className="text-yellow-500" /> : <FaMoon className="text-deep-blue" />}
           </button>
           <div className="md:hidden w-1/6" onClick={toggleMenu}>
             {isMenuOpen ? (
@@ -70,18 +78,18 @@ const App = () => {
 
       {/* Sección Hero Minimalista */}
       <section
-        className="flex items-center justify-center h-screen bg-cover bg-center"
+        className="flex items-center justify-center min-h-screen bg-cover bg-center"
         style={{
           backgroundImage: `url(${
             isDarkMode
-              ? 'https://i.pinimg.com/1200x/fd/61/13/fd6113357135c7bfd65a69ec17a067e2.jpg'
+              ? 'https://i.pinimg.com/1200x/29/56/51/295651e0ebc2d447aa9752a9a2fd9aa7.jpg'
               : 'https://i.pinimg.com/564x/de/cb/1f/decb1fd5ecb570719e058d4666b485c8.jpg'
           })`,
         }}
       >
         <div className="text-center text-deep-blue dark:text-yellow-200 max-w-lg">
-          <h1 className="text-7xl font-bold mb-4 text-emerald-green dark:text-yellow-400 font-raleway">Yamid Rodriguez</h1>
-          <p className="text-xl text-light-black dark:text-gray-300 mb-6 font-libre-baskerville">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-emerald-green dark:text-yellow-400 font-raleway">Yamid Rodriguez</h1>
+          <p className="text-lg md:text-xl text-light-black dark:text-gray-300 mb-6 font-libre-baskerville">
             Full Stack Developer Aspiring
           </p>
         </div>
