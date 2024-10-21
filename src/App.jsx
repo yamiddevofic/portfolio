@@ -1,57 +1,88 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css'; // Aquí aplicarás TailwindCSS
 import { FaBars, FaTimes } from 'react-icons/fa'; // Iconos para el menú
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('isDarkMode');
+    return savedMode !== null ? JSON.parse(savedMode) : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  
+  useEffect(() => {
+    // Aplicar o eliminar la clase 'dark' al html en lugar del body
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+  }, [isDarkMode]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="font-raleway bg-gray-50 min-h-screen">
+    <div className="font-raleway bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
       {/* Encabezado de la Aplicación */}
       <header className="fixed top-0 left-0 w-full flex items-center justify-between p-6 bg-transparent z-10">
         <div className="flex items-center space-x-2">
           <div className="p-2 rounded-full">
-          <img 
-            src="/yamid-rodriguez.png" 
-            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain" 
-            alt="Logo Yamid Rodriguez"
-          />
-
+            <img
+              src="/yamid-rodriguez.png"
+              className="w-12 h-12 object-contain lg:w-20 lg:h-20 sm:w-16 sm:h-16"
+              alt="Logo Yamid Rodriguez"
+            />
           </div>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="#" className="text-deep-blue hover:text-yellow-mustard transition">Inicio</a>
-          <a href="#" className="text-deep-blue hover:text-yellow-mustard transition">Servicios</a>
-          <a href="#" className="text-deep-blue hover:text-yellow-mustard transition">Contacto</a>
+          <a href="#" className="text-deep-blue dark:text-yellow-200 hover:text-yellow-mustard dark:hover:text-yellow-500 transition">Inicio</a>
+          <a href="#" className="text-deep-blue dark:text-yellow-200 hover:text-yellow-mustard dark:hover:text-yellow-500 transition">Servicios</a>
+          <a href="#" className="text-deep-blue dark:text-yellow-200 hover:text-yellow-mustard dark:hover:text-yellow-500 transition">Contacto</a>
         </nav>
-        <div className="md:hidden w-1/6" onClick={toggleMenu}>
-          {isMenuOpen ? (
-            <FaTimes className="text-deep-blue text-3xl" />
-          ) : (
-            <FaBars className="text-deep-blue text-3xl" />
-          )}
+        <div className="flex items-center space-x-4">
+          <button onClick={toggleDarkMode} className="text-deep-blue dark:text-yellow-200 text-2xl">
+            {isDarkMode ? '☀️' : '🌙'}
+          </button>
+          <div className="md:hidden w-1/6" onClick={toggleMenu}>
+            {isMenuOpen ? (
+              <FaTimes className="text-deep-blue dark:text-yellow-200 text-3xl" />
+            ) : (
+              <FaBars className="text-deep-blue dark:text-yellow-200 text-3xl" />
+            )}
+          </div>
         </div>
       </header>
 
       {/* Menú Responsive */}
       {isMenuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-white flex flex-col items-center justify-center space-y-6 z-20">
-          <a href="#" className="text-deep-blue text-2xl hover:text-yellow-mustard transition" onClick={toggleMenu}>Inicio</a>
-          <a href="#" className="text-deep-blue text-2xl hover:text-yellow-mustard transition" onClick={toggleMenu}>Servicios</a>
-          <a href="#" className="text-deep-blue text-2xl hover:text-yellow-mustard transition" onClick={toggleMenu}>Contacto</a>
+        <div className="fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-800 flex flex-col items-center justify-center space-y-6 z-20">
+          <a href="#" className="text-deep-blue dark:text-yellow-200 text-2xl hover:text-yellow-mustard dark:hover:text-yellow-500 transition" onClick={toggleMenu}>Inicio</a>
+          <a href="#" className="text-deep-blue dark:text-yellow-200 text-2xl hover:text-yellow-mustard dark:hover:text-yellow-500 transition" onClick={toggleMenu}>Servicios</a>
+          <a href="#" className="text-deep-blue dark:text-yellow-200 text-2xl hover:text-yellow-mustard dark:hover:text-yellow-500 transition" onClick={toggleMenu}>Contacto</a>
         </div>
       )}
 
       {/* Sección Hero Minimalista */}
-      <section className="flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url(https://chitaga.tech/images/muro-blanco.jpg)' }}>
-        <div className="text-center text-deep-blue max-w-lg">
-          <h1 className="text-7xl font-bold mb-4 text-emerald-green">Yamid Rodriguez</h1>
-          <p className="text-xl text-light-black mb-6">
-            Fullstack Developer Aspiring
+      <section
+        className="flex items-center justify-center h-screen bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${
+            isDarkMode
+              ? 'https://i.pinimg.com/1200x/69/fa/24/69fa248eb1e71e127806302fc92e4932.jpg'
+              : 'https://i.pinimg.com/564x/de/cb/1f/decb1fd5ecb570719e058d4666b485c8.jpg'
+          })`,
+        }}
+      >
+        <div className="text-center text-deep-blue dark:text-yellow-200 max-w-lg">
+          <h1 className="text-7xl font-bold mb-4 text-emerald-green dark:text-yellow-400">Yamid Rodriguez</h1>
+          <p className="text-xl text-light-black dark:text-gray-300 mb-6">
+            Web Designer / UI Developer
           </p>
         </div>
       </section>
@@ -59,25 +90,25 @@ const App = () => {
       {/* Sección de Servicios en Layout Asimétrico */}
       <section className="py-16 px-8 md:px-20 lg:px-40 flex flex-col md:flex-row items-center justify-between gap-16">
         <div className="flex-1">
-          <h2 className="text-4xl font-bold text-deep-blue mb-8 text-center md:text-left">Servicios</h2>
+          <h2 className="text-4xl font-bold text-deep-blue dark:text-yellow-200 mb-8 text-center md:text-left">Servicios</h2>
           <div className="flex flex-col gap-12">
             <div className="flex items-center">
-              <div className="bg-emerald-green w-12 h-1 mr-4"></div>
-              <h3 className="text-2xl font-semibold text-deep-blue">Lecturas de Tarot</h3>
+              <div className="bg-emerald-green dark:bg-yellow-400 w-12 h-1 mr-4"></div>
+              <h3 className="text-2xl font-semibold text-deep-blue dark:text-yellow-200">Lecturas de Tarot</h3>
             </div>
             <div className="flex items-center">
-              <div className="bg-emerald-green w-12 h-1 mr-4"></div>
-              <h3 className="text-2xl font-semibold text-deep-blue">Enseñanza de Programación</h3>
+              <div className="bg-emerald-green dark:bg-yellow-400 w-12 h-1 mr-4"></div>
+              <h3 className="text-2xl font-semibold text-deep-blue dark:text-yellow-200">Enseñanza de Programación</h3>
             </div>
             <div className="flex items-center">
-              <div className="bg-emerald-green w-12 h-1 mr-4"></div>
-              <h3 className="text-2xl font-semibold text-deep-blue">Fotografía</h3>
+              <div className="bg-emerald-green dark:bg-yellow-400 w-12 h-1 mr-4"></div>
+              <h3 className="text-2xl font-semibold text-deep-blue dark:text-yellow-200">Fotografía</h3>
             </div>
           </div>
         </div>
         <div className="flex-1 flex justify-center">
-          <div className="bg-light-gray p-10 rounded-lg shadow-lg max-w-sm">
-            <p className="text-base text-deep-blue/80">
+          <div className="bg-light-gray dark:bg-gray-800 p-10 rounded-lg shadow-lg max-w-sm">
+            <p className="text-base text-deep-blue/80 dark:text-gray-300">
               Cada servicio está diseñado para guiarte y brindarte una experiencia única, ya sea que desees explorar tu interior, aprender habilidades técnicas o capturar momentos especiales.
             </p>
           </div>
@@ -86,33 +117,33 @@ const App = () => {
 
       {/* Sección de Contacto Minimalista */}
       <section className="relative py-16 px-6 md:px-20 lg:px-40">
-        <div className="absolute inset-0 -z-10 bg-emerald-green opacity-10"></div>
-        <h2 className="text-4xl font-bold text-center text-deep-blue mb-8">Contáctame</h2>
+        <div className="absolute inset-0 -z-10 bg-emerald-green dark:bg-yellow-400 opacity-10"></div>
+        <h2 className="text-4xl font-bold text-center text-deep-blue dark:text-yellow-200 mb-8">Contáctame</h2>
         <div className="flex justify-center">
-          <form className="w-full max-w-md bg-white p-8 rounded-md shadow-md">
-            <label htmlFor="name" className="block font-medium mb-4 text-deep-blue">
+          <form className="w-full max-w-md bg-white dark:bg-gray-800 p-8 rounded-md shadow-md">
+            <label htmlFor="name" className="block font-medium mb-4 text-deep-blue dark:text-yellow-200">
               Nombre
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              className="w-full p-4 mb-6 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-green"
+              className="w-full p-4 mb-6 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-green dark:focus:ring-yellow-400 bg-white dark:bg-gray-700 text-deep-blue dark:text-gray-200"
               placeholder="Tu nombre completo"
             />
-            <label htmlFor="message" className="block font-medium mb-4 text-deep-blue">
+            <label htmlFor="message" className="block font-medium mb-4 text-deep-blue dark:text-yellow-200">
               Mensaje
             </label>
             <textarea
               id="message"
               name="message"
               rows="4"
-              className="w-full p-4 mb-6 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-green"
+              className="w-full p-4 mb-6 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-green dark:focus:ring-yellow-400 bg-white dark:bg-gray-700 text-deep-blue dark:text-gray-200"
               placeholder="Escribe tu mensaje aquí"
             ></textarea>
             <button
               type="submit"
-              className="w-full py-3 bg-yellow-mustard text-deep-blue font-bold rounded-md hover:bg-yellow-mustard/90 transition"
+              className="w-full py-3 bg-yellow-mustard dark:bg-yellow-500 text-deep-blue dark:text-gray-900 font-bold rounded-md hover:bg-yellow-mustard/90 dark:hover:bg-yellow-600 transition"
             >
               Enviar
             </button>
