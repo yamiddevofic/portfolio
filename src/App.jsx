@@ -15,7 +15,12 @@ const App = () => {
       <header className="fixed top-0 left-0 w-full flex items-center justify-between p-6 bg-transparent z-10">
         <div className="flex items-center space-x-2">
           <div className="p-2 rounded-full">
-            <img src="/yamid-rodriguez.png" className='w-1/5'></img>
+          <img 
+            src="/yamid-rodriguez.png" 
+            className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 object-contain" 
+            alt="Logo Yamid Rodriguez"
+          />
+
           </div>
         </div>
         <nav className="hidden md:flex items-center space-x-6">
@@ -44,9 +49,9 @@ const App = () => {
       {/* Sección Hero Minimalista */}
       <section className="flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url(https://chitaga.tech/images/muro-blanco.jpg)' }}>
         <div className="text-center text-deep-blue max-w-lg">
-          <h1 className="text-6xl font-bold mb-4 text-emerald-green">Yamid Rodriguez</h1>
-          <p className="text-lg text-light-gray mb-6">
-            Web Designer / UI Developer
+          <h1 className="text-7xl font-bold mb-4 text-emerald-green">Yamid Rodriguez</h1>
+          <p className="text-xl text-light-black mb-6">
+            Fullstack Developer Aspiring
           </p>
         </div>
       </section>
