@@ -235,7 +235,7 @@ const App = () => {
             </p>
           </div>
           <div className="order-1 md:order-2 flex justify-center">
-            <img src="https://chitaga.tech/images/dev.jpg" alt="Foto de Yamid Rodriguez" className="rounded-lg shadow-lg w-80 h-80 object-cover" />
+            <img src="https://chitaga.tech/images/dev.jpg" alt="Foto de Yamid Rodriguez" className="rounded-lg shadow-lg w-80 h-80 object-cover sm:hidden lg:block" />
           </div>
         </div>
       </section>
