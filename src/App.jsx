@@ -295,7 +295,7 @@ const App = () => {
       </section>
 
       {/* Sección Tecnologías */}
-      <section id="tecnologias" className="py-12 px-8 md:py-16 md:px-20 lg:px-32">
+      <section id="tecnologías" className="py-12 px-8 md:py-16 md:px-20 lg:px-32">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-8 font-raleway flex items-center justify-center">
           <FaCode className="mr-2" /> Tecnologías que Manejo
         </h2>
