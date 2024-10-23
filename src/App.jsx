@@ -23,6 +23,7 @@ import {
   FaGithub,
   FaDocker,
   FaReact,
+  FaServer,
   FaCss3Alt,
   FaMagic,
   FaLightbulb
@@ -35,7 +36,9 @@ import {
   SiTensorflow,
   SiPytorch,
   SiMysql,
-  SiKubernetes 
+  SiKubernetes,
+  SiNodedotjs,
+  SiMongodb
 } from 'react-icons/si';
 
 const SubmarcaCard = ({ title, description, image }) => (
@@ -169,6 +172,10 @@ const App = () => {
       icono: <FaJs className="text-4xl text-[#F7DF1E]" />
     },
     {
+      nombre: 'ReactJS',
+      icono: <FaReact className="text-4xl text-[#61DAFB]" />
+    },
+    {
       nombre: 'MySQL',
       icono: <SiMysql className="text-4xl text-[#4479A1]" />
     },
@@ -183,6 +190,18 @@ const App = () => {
   ];
   
   const tecnologiasEnAprendizaje = [
+    {
+      nombre: 'ExpressJS',
+      icono: <FaServer className="text-4xl text-[#444444]"/>
+    },
+    {
+      nombre: 'NodeJS',
+      icono: <SiNodedotjs className="text-4xl text-[#339933]" />
+    },
+    {
+      nombre: 'MongoDB',
+      icono: <SiMongodb className="text-4xl text-[#47A248]" />
+    },    
     {
       nombre: 'TailwindCSS',
       icono: <SiTailwindcss className="text-4xl text-[#06B6D4]" />
@@ -207,10 +226,6 @@ const App = () => {
       nombre: 'Kubernetes',
       icono: <SiKubernetes className="text-4xl text-[#326CE5]" />
     },
-    {
-      nombre: 'React',
-      icono: <FaReact className="text-4xl text-[#61DAFB]" />
-    }
   ];
   
 
@@ -347,19 +362,9 @@ const App = () => {
               icon: <FaMagic className="text-3xl text-[#1E3A8A] dark:text-[#F6C453] mb-4" />
             },
             {
-              title: 'Fotografía Artística',
-              description: 'Sesiones fotográficas para capturar momentos que transmitan emociones y cuenten una historia.',
-              icon: <FaCameraRetro className="text-3xl text-[#1E3A8A] dark:text-[#F6C453] mb-4" />
-            },
-            {
-              title: 'Enseñanza de Programación',
-              description: 'Clases y talleres para aprender a programar, desde conceptos básicos hasta tecnologías avanzadas.',
+              title: 'Enseñanza',
+              description: 'Clases y talleres para aprender a leer el Tarot, o a programar, de básico a avanzado.',
               icon: <FaChalkboardTeacher className="text-3xl text-[#1E3A8A] dark:text-[#F6C453] mb-4" />
-            },
-            {
-              title: 'Edición de Videos',
-              description: 'Edición profesional para videos que requieren transmitir un mensaje claro y emocional.',
-              icon: <FaMagic className="text-3xl text-[#1E3A8A] dark:text-[#F6C453] mb-4" />
             }
           ].map((service, index) => (
             <div key={index} className="bg-[#F0F4F8] dark:bg-[#1E293B] p-6 rounded-lg shadow-md flex flex-col justify-between h-full">
