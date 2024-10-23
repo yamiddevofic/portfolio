@@ -1,11 +1,42 @@
-import React, { useState, useEffect } from 'react'; 
-import './App.css'; // Aquí aplicarás TailwindCSS
+import React, { useState, useEffect } from 'react';
+import './App.css';
 import {
-  FaBars, FaTimes, FaSun, FaMoon, FaHome, FaUser,
-  FaConciergeBell, FaProjectDiagram, FaEnvelope,
-  FaLaptopCode, FaPaperPlane, FaCameraRetro, FaLightbulb,
-  FaCode, FaChalkboardTeacher, FaMagic
+  FaBars,
+  FaTimes,
+  FaSun,
+  FaMoon,
+  FaHome,
+  FaUser,
+  FaConciergeBell,
+  FaProjectDiagram,
+  FaEnvelope,
+  FaLaptopCode,
+  FaPaperPlane,
+  FaCameraRetro,
+  FaBrain,
+  FaCode,
+  FaChalkboardTeacher,
+  FaPython,
+  FaHtml5,
+  FaJs,
+  FaGitAlt,
+  FaGithub,
+  FaDocker,
+  FaReact,
+  FaCss3Alt,
+  FaMagic,
+  FaLightbulb
 } from 'react-icons/fa';
+
+import {
+  SiFlask,
+  SiDjango,
+  SiTailwindcss,
+  SiTensorflow,
+  SiPytorch,
+  SiMysql,
+  SiKubernetes 
+} from 'react-icons/si';
 
 const SubmarcaCard = ({ title, description, image }) => (
   <div className="relative group overflow-hidden rounded-lg shadow-md transition-transform transform hover:scale-105 bg-[#F0F4F8] dark:bg-[#1E293B]">
@@ -47,6 +78,13 @@ const ProyectoCard = ({ title, description, image, enlace }) => (
       </div>
     </div>
   </a>
+);
+
+const TecnologiaCard = ({ nombre, icono }) => (
+  <div className="flex flex-col items-center p-4 bg-white dark:bg-[#2C3E50] rounded-md shadow-md h-full">
+    {icono}
+    <p className="mt-2 text-[#1E3A8A] dark:text-[#F6C453] font-raleway">{nombre}</p>
+  </div>
 );
 
 const App = () => {
@@ -110,20 +148,71 @@ const App = () => {
     }
   ];
   const tecnologiasDominadas = [
-    'ReactJS',
-    'JavaScript',
-    'Python',
-    'MySQL',
-    'HTML5/CSS3'
+    {
+      nombre: 'Python',
+      icono: <FaPython className="text-4xl text-[#3776AB]" />
+    },
+    {
+      nombre: 'Flask',
+      icono: <SiFlask className="text-4xl text-[#000000]" />
+    },
+    {
+      nombre: 'HTML5',
+      icono: <FaHtml5 className="text-4xl text-[#E34F26]" />
+    },
+    {
+      nombre: 'CSS3',
+      icono: <FaCss3Alt className="text-4xl text-[#1572B6]" />
+    },
+    {
+      nombre: 'JavaScript',
+      icono: <FaJs className="text-4xl text-[#F7DF1E]" />
+    },
+    {
+      nombre: 'MySQL',
+      icono: <SiMysql className="text-4xl text-[#4479A1]" />
+    },
+    {
+      nombre: 'Git',
+      icono: <FaGitAlt className="text-4xl text-[#F05032]" />
+    },
+    {
+      nombre: 'GitHub',
+      icono: <FaGithub className="text-4xl text-[#181717]" />
+    }
   ];
-
+  
   const tecnologiasEnAprendizaje = [
-    'Docker',
-    'Kubernetes',
-    'Linux',
-    'MongoDB',
-    'TailwindCSS'
+    {
+      nombre: 'TailwindCSS',
+      icono: <SiTailwindcss className="text-4xl text-[#06B6D4]" />
+    },
+    {
+      nombre: 'Django',
+      icono: <SiDjango className="text-4xl text-[#092E20]" />
+    },
+    {
+      nombre: 'TensorFlow',
+      icono: <SiTensorflow className="text-4xl text-[#FF6F00]" />
+    },
+    {
+      nombre: 'PyTorch',
+      icono: <SiPytorch className="text-4xl text-[#EE4C2C]" />
+    },
+    {
+      nombre: 'Docker',
+      icono: <FaDocker className="text-4xl text-[#2496ED]" />
+    },
+    {
+      nombre: 'Kubernetes',
+      icono: <SiKubernetes className="text-4xl text-[#326CE5]" />
+    },
+    {
+      nombre: 'React',
+      icono: <FaReact className="text-4xl text-[#61DAFB]" />
+    }
   ];
+  
 
   useEffect(() => {
     if (isDarkMode) {
@@ -175,7 +264,7 @@ const App = () => {
           </div>
         </div>
         <nav className="hidden md:flex items-center space-x-12">
-          {['Inicio', 'Sobre Mí', 'Servicios', 'Submarcas', 'Tecnologías', 'Proyectos', 'Contacto'].map((section, index) => (
+          {['Inicio', 'Sobre Mí', 'Servicios', 'Submarcas','Proyectos','Tecnologías', 'Contacto'].map((section, index) => (
             <a key={index} href={`#${section.toLowerCase().replace(' ', '')}`} className="flex items-center text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-lg md:text-xl">
               {section}
             </a>
@@ -224,13 +313,13 @@ const App = () => {
         </h2>
         <div className="grid md:grid-cols-2 gap-12">
           <div className="order-2 md:order-1">
-            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] mb-6 font-libre-baskerville">
+            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] mb-6 font-libre-baskerville text-justify">
             Mi objetivo es ayudar a otros a transformar ideas en realidad digital, integrando habilidades técnicas con un enfoque intuitivo y humano. Me apasiona la tecnología, la innovación y la creatividad, siempre buscando el equilibrio entre lo técnico y lo personal en cada proyecto de desarrollo web personalizado.
             </p>
-            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville mb-6">
+            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville mb-6 text-justify">
             Además de ser desarrollador, disfruto compartir mi conocimiento y enseñar programación, con un fuerte interés en la filosofía, la psicología y el tarot. Me motiva guiar a otros en su camino de aprendizaje, conectando la tecnología con el crecimiento personal y explorando cómo cada herramienta puede enriquecer nuestras vidas.
             </p>
-            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville">
+            <p className="text-lg md:text-xl text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville text-justify">
             Lidero proyectos colaborativos con una actitud curiosa, abierta y enfocada en transformar ideas en experiencias significativas, siempre cultivando un ambiente de reflexión y aprendizaje continuo.
             </p>
           </div>
@@ -294,40 +383,44 @@ const App = () => {
         </div>
       </section>
 
+      {/* Sección Proyectos */}
+      <section id="proyectos" className="py-12 px-8 md:py-16 md:px-20 lg:px-32">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-8 font-raleway flex items-center justify-center">
+          <FaProjectDiagram className="mr-2" /> Proyectos
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+          {proyectos.map((project, index) => (
+            <ProyectoCard key={index} {...project} />
+          ))}
+        </div>
+      </section>
+      
       {/* Sección Tecnologías */}
       <section id="tecnologías" className="py-12 px-8 md:py-16 md:px-20 lg:px-32">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-8 font-raleway flex items-center justify-center">
           <FaCode className="mr-2" /> Tecnologías que Manejo
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-16">
-          <div className="bg-[#F0F4F8] dark:bg-[#1E293B] p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-4 font-raleway">Tecnologías Dominadas</h3>
-            <ul className="list-disc list-inside text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville space-y-3">
+          <div className="bg-[#F0F4F8] dark:bg-[#1E293B] p-8 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-6 font-raleway text-center">
+              Tecnologías Dominadas
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
               {tecnologiasDominadas.map((tech, index) => (
-                <li key={index} className="p-2 bg-white dark:bg-[#2C3E50] rounded-md shadow-md">{tech}</li>
+                <TecnologiaCard key={index} {...tech} />
               ))}
-            </ul>
+            </div>
           </div>
-          <div className="bg-[#F0F4F8] dark:bg-[#1E293B] p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-4 font-raleway">Tecnologías en Aprendizaje</h3>
-            <ul className="list-disc list-inside text-[#345B79] dark:text-[#D1D5DB] font-libre-baskerville space-y-3">
+          <div className="bg-[#F0F4F8] dark:bg-[#1E293B] p-8 rounded-lg shadow-lg">
+            <h3 className="text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-6 font-raleway text-center">
+              Tecnologías en Aprendizaje
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
               {tecnologiasEnAprendizaje.map((tech, index) => (
-                <li key={index} className="p-2 bg-white dark:bg-[#2C3E50] rounded-md shadow-md">{tech}</li>
+                <TecnologiaCard key={index} {...tech} />
               ))}
-            </ul>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Sección Proyectos */}
-      <section id="proyectos" className="py-12 px-8 md:py-16 md:px-20 lg:px-32">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-8 font-raleway flex items-center justify-center">
-          <FaProjectDiagram className="mr-2" /> Proyectos
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {proyectos.map((project, index) => (
-            <ProyectoCard key={index} {...project} />
-          ))}
         </div>
       </section>
 
