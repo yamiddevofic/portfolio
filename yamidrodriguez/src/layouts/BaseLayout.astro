@@ -1,0 +1,22 @@
+---
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yamid Rodriguez - Desarrollador Full Stack</title>
+    <!-- Enlaces a fuentes y estilos -->
+    <link rel="stylesheet" href="/styles/global.css" />
+    <!-- Meta etiquetas adicionales -->
+  </head>
+  <body class="font-raleway bg-gradient-to-b from-[#D8EAF5] to-[#E6F5EA] dark:from-[#0B0F1A] dark:to-[#151C27] min-h-screen text-gray-900 dark:text-gray-100">
+    <Header client:load />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
