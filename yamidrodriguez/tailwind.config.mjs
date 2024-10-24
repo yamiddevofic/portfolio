@@ -10,6 +10,9 @@ export default {
 				'emerald-green': '#2C7A7B',
 				'gray-light': '#D1D5DB',
 				'lime-green': '#A3E635',
+				'cyan-bright': '#00BCD4',
+				'light-gray': '#BDC3C7',
+				'dark-blue': '#34495E',
 			},
 			fontFamily: {
 				raleway: ['Raleway', 'sans-serif'],
