@@ -1,11 +1,30 @@
 ---
-import { FaPython, FaHtml5, FaCss3Alt, FaJs, FaReact, FaGitAlt, FaGithub, FaServer, FaDocker } from 'react-icons/fa';
-import { SiFlask, SiMysql, SiNodedotjs, SiMongodb, SiTailwindcss, SiDjango, SiTensorflow, SiPytorch, SiKubernetes } from 'react-icons/si';
-
-const { nombre, icono, color } = Astro.props;
+import {
+  FaPython,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaGitAlt,
+  FaGithub,
+  FaServer,
+  FaDocker,
+} from 'react-icons/fa';
+import {
+  SiFlask,
+  SiMysql,
+  SiNodedotjs,
+  SiMongodb,
+  SiTailwindcss,
+  SiDjango,
+  SiTensorflow,
+  SiPytorch,
+  SiKubernetes,
+} from 'react-icons/si';
+import type { IconType } from 'react-icons';
 
 // Crear un objeto que mapee los nombres de los íconos a los componentes
-const iconComponents = {
+const iconComponents: { [key: string]: IconType } = {
   FaPython,
   FaHtml5,
   FaCss3Alt,
@@ -26,13 +45,30 @@ const iconComponents = {
   SiKubernetes,
 };
 
+// Definir el tipo para los nombres de los íconos
+type IconName = keyof typeof iconComponents;
+
+// Definir la interfaz para las props
+interface Props {
+  nombre: string;
+  icono: IconName;
+  color: string;
+}
+
+// Desestructurar las props con tipado
+const { nombre, icono, color } = Astro.props as Props;
+
 // Obtener el componente de ícono correspondiente
 const IconComponent = iconComponents[icono];
+
+if (!IconComponent) {
+  console.warn(`El ícono "${icono}" no está definido en iconComponents.`);
+}
 ---
 
 <div class="flex flex-col items-center p-6 bg-[#e2e2e2] dark:bg-[#0F172A] rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full w-full max-w-xs">
-    {IconComponent && <IconComponent class="text-6xl" style={`color: ${color};`} />}
-    <p class="mt-4 text-[blue] dark:text-[#F6C453] font-bold text-xl font-raleway tracking-wide">
-        {nombre}
-    </p>
+  {IconComponent && <IconComponent className="text-6xl" style={{color: color}} />}
+  <p class="mt-4 text-[blue] dark:text-[#F6C453] font-bold text-xl font-raleway tracking-wide">
+    {nombre}
+  </p>
 </div>

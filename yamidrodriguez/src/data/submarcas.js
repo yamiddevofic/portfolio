@@ -4,7 +4,7 @@ const submarcas = [
       description:
         'Desarrollo de aplicaciones web y enseñanza de programación con tecnologías modernas como React, Vite y TailwindCSS.',
       image: 'https://yamidrodriguez.com/yamid-tech.png',
-      enlace: '/general'
+      enlace: '/yamidtech'
     },
     {
       title: 'Yamid Rodriguez | Photography',
