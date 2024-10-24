@@ -10,7 +10,7 @@ import tecnologiasEnAprendizaje from '../data/tecnologiasEnAprendizaje.js';
 import { FaUser, FaConciergeBell, FaProjectDiagram, FaCode, FaEnvelope, FaLightbulb } from 'react-icons/fa';
 
 // Función para calcular los años dados una fecha de nacimiento
-function calcularEdad(fechaNacimiento) {
+function calcularEdad(fechaNacimiento: string): number {
   const hoy = new Date();
   const fechaNac = new Date(fechaNacimiento);
   let edad = hoy.getFullYear() - fechaNac.getFullYear();
@@ -21,8 +21,7 @@ function calcularEdad(fechaNacimiento) {
   return edad;
 }
 
-const edadYamid = calcularEdad('2002-06-18');
-
+const edad = calcularEdad('2002-06-18')
 ---
 
 <BaseLayout>
@@ -60,7 +59,7 @@ const edadYamid = calcularEdad('2002-06-18');
       </div>
       <div class="order-2 md:order-1">
         <p class="text-base sm:text-lg md:text-xl text-[#1E3A8A] dark:text-[#F6C453] mb-4 sm:mb-6 font-libre-baskerville text-justify">
-          Mi nombre es Yamid Rodríguez, soy de Chitagá - Colombia, tengo {edadYamid} años, y me apasiona la tecnología, la filosofía, la psicología, y las cartas del Tarot. Soy un persona curiosa, resiliente, auténtica, y adaptable, que le gusta estar constantemente aprendiendo, y mejorando, eso fue lo que me llevó a estudiar análisis y desarrollo de software en el SENA en el 2022, iniciando así mi recorrido por el sector tecnológico.
+          Mi nombre es Yamid Rodríguez, soy de Chitagá - Colombia, tengo {edad} años, y me apasiona la tecnología, la filosofía, la psicología, y las cartas del Tarot. Soy un persona curiosa, resiliente, auténtica, y adaptable, que le gusta estar constantemente aprendiendo, y mejorando, eso fue lo que me llevó a estudiar análisis y desarrollo de software en el SENA en el 2022, iniciando así mi recorrido por el sector tecnológico.
         </p>
         <p class="text-base sm:text-lg md:text-xl text-[#2C7A7B] dark:text-[#D1D5DB] font-libre-baskerville mb-4 sm:mb-6 text-justify">
           Como analista y desarrollador de software mi objetivo es transformar tus ideas a realidad en el mundo digital, y brindarte herramientas que mejoren tu vida. Durante mi formación he aprendido las bases del desarrollo de software, y de la gestión de proyectos para trabajar en equipo, esto me ha permitido entender la estructura y funcionamiento de un sistema, programa y/o aplicación de manera integral, construir productos o servicios de software de acuerdo a los requerimientos del cliente, y colaborar con otros desarrolladores en proyectos en equipo.
