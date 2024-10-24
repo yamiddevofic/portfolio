@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  FaBars,
-  FaTimes,
-  FaSun,
-  FaMoon
-} from 'react-icons/fa';
+import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +10,13 @@ const Header = () => {
   // Inicializar isDarkMode en el cliente
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedMode = JSON.parse(localStorage.getItem('isDarkMode'));
-      if (savedMode !== null) {
-        setIsDarkMode(savedMode);
+      try {
+        const savedMode = JSON.parse(localStorage.getItem('isDarkMode'));
+        if (savedMode !== null) {
+          setIsDarkMode(savedMode);
+        }
+      } catch (e) {
+        console.error('Error al acceder al localStorage', e);
       }
     }
   }, []);
@@ -41,12 +40,13 @@ const Header = () => {
       const handleScroll = () => {
         const currentScroll = window.scrollY;
         setIsScrolled(currentScroll > 50);
+
         if (currentScroll > lastScrollTop) {
           setShowHeader(false);
         } else {
           setShowHeader(true);
         }
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        lastScrollTop = Math.max(0, currentScroll);
       };
 
       window.addEventListener('scroll', handleScroll);
@@ -88,17 +88,15 @@ const Header = () => {
         </div>
       </div>
       <nav className="hidden md:flex items-center space-x-8">
-        {['Inicio', 'Sobre Mí', 'Tecnologías', 'Contacto'].map(
-          (section, index) => (
-            <a
-              key={index}
-              href={`#${section.toLowerCase().replace('í', 'i').replace(' ', '')}`}
-              className="flex items-center text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-base md:text-lg"
-            >
-              {section}
-            </a>
-          )
-        )}
+        {['Inicio', 'Sobre Mí', 'Tecnologías', 'Contacto'].map((section, index) => (
+          <a
+            key={index}
+            href={`#${section.toLowerCase().replace('í', 'i').replace(' ', '')}`}
+            className="flex items-center text-[#1E3A8A] dark:text-[#F6C453] hover:text-[#345B79] dark:hover:text-[#F6C453]/80 transition font-raleway text-base md:text-lg"
+          >
+            {section}
+          </a>
+        ))}
       </nav>
       <div className="flex items-center space-x-6">
         <button

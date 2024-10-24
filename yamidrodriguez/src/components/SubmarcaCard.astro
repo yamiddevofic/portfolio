@@ -1,6 +1,11 @@
 ---
-import { useState } from 'react';
-const { title, description, image, enlace } = Astro.props;
+const { title, description, image, enlace } = Astro.props as {
+  title: string;
+  description: string;
+  image: string;
+  enlace: string;
+};
+
 ---
 
 <div class="relative group overflow-hidden rounded-lg shadow-md transition-transform transform hover:scale-105 bg-[#F0F4F8] dark:bg-[#1E293B] flex flex-col items-center h-full">
