@@ -15,13 +15,11 @@ const proyectos = [
       title: 'Curso de Tarot Asistido por IA (En desarrollo)',
       description: 'Programa educativo que combina el aprendizaje del tarot con el uso de inteligencia artificial, ayudando a los estudiantes a entender los arcanos de una manera interactiva y moderna.',
       image: 'https://chitaga.tech/images/tarot-ai.webp',
-      enlace: '#',
     },
     {
       title: 'Extensión de Chrome para Correos Personalizados (Por publicar)',
       description: 'Extensión de Chrome que permite insertar diferentes plantillas de correos HTML personalizados, ideal para capacitaciones, bienvenida de clientes y despedidas, facilitando la comunicación dentro de la empresa.',
       image: 'https://chitaga.tech/images/customized-email.webp',
-      enlace: '#',
     },
   ];
   

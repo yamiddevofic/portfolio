@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGA-KAT Docs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
+    <style>
+        /* Estilos para el modal */
+        #editModal {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50/50 min-h-screen font-['Inter']">
+    <div class="max-w-5xl mx-auto p-6 md:p-8">
+        <header class="mb-16 mt-8">
+            <div class="flex items-center gap-2 text-zinc-500 mb-1">
+                <div class="h-4 w-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                <span class="text-sm font-medium">Documentación técnica</span>
+            </div>
+            <h1 class="text-3xl font-semibold bg-gradient-to-r from-zinc-900 to-zinc-500 text-transparent bg-clip-text">
+                TRANSCHITAGA Docs
+            </h1>
+        </header>
+
+        <div class="mb-12 space-y-4">
+            <div class="relative">
+                <input
+                    type="text"
+                    placeholder="Buscar por título o código..."
+                    class="w-full p-4 bg-white rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all pl-12"
+                    id="searchInput"
+                >
+                <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+
+            <div class="flex gap-3 flex-wrap">
+                <select 
+                    id="typeFilter" 
+                    class="bg-white px-4 py-2 rounded-lg text-sm text-zinc-600 border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 hover:bg-zinc-50 transition-colors"
+                >
+                    <option value="">Todas las categorías</option>
+                    <!-- Opciones dinámicas de tipos -->
+                </select>
+                <select 
+                    id="statusFilter"
+                    class="bg-white px-4 py-2 rounded-lg text-sm text-zinc-600 border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 hover:bg-zinc-50 transition-colors"
+                >
+                    <option value="">Todos los estados</option>
+                    <!-- Opciones dinámicas de estados -->
+                </select>
+            </div>
+        </div>
+
+        <div id="manualsList" class="space-y-3">
+            <!-- Tarjetas de manuales generadas dinámicamente -->
+        </div>
+
+        <!-- Mensaje de no resultados -->
+        <div id="noResults" class="hidden text-center py-8 text-zinc-500">
+            No se encontraron manuales que coincidan con los criterios de búsqueda.
+        </div>
+
+        <div class="flex justify-center gap-2 mt-12">
+            <button class="p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-colors">1</button>
+            <button class="px-4 py-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">2</button>
+            <button class="p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Editar Manual</h2>
+            <form id="editForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Código</label>
+                    <input type="text" id="editCode" class="w-full p-2 border border-zinc-300 rounded" disabled>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Título</label>
+                    <input type="text" id="editTitle" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Versión</label>
+                    <input type="text" id="editVersion" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Fecha</label>
+                    <input type="date" id="editDate" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Tipo</label>
+                    <select id="editType" class="w-full p-2 border border-zinc-300 rounded" required>
+                        <option value="">Selecciona un tipo</option>
+                        <!-- Opciones dinámicas de tipos -->
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Estado</label>
+                    <select id="editStatus" class="w-full p-2 border border-zinc-300 rounded" required>
+                        <option value="">Selecciona un estado</option>
+                        <!-- Opciones dinámicas de estados -->
+                    </select>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" id="cancelEdit" class="px-4 py-2 bg-zinc-300 text-zinc-700 rounded">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Datos Iniciales
+        let manuals = [
+            {
+                code: "EGK-24-001",
+                title: "Sistema Hidráulico",
+                version: "2.1",
+                date: "15/03/24",
+                type: "Hidráulica",
+                status: "Activo"
+            },
+            {
+                code: "EGK-24-002",
+                title: "Panel de Control",
+                version: "1.0",
+                date: "20/02/24",
+                type: "Eléctrica", 
+                status: "En revisión"
+            },
+            {
+                code: "EGK-24-003",
+                title: "Componentes",
+                version: "3.2",
+                date: "05/01/24",
+                type: "Mecánica",
+                status: "Activo"
+            }
+        ];
+
+        // Extraer opciones únicas para los filtros
+        let types = [...new Set(manuals.map(m => m.type))];
+        let statuses = [...new Set(manuals.map(m => m.status))];
+
+        let filterTimeout;
+
+        // Elementos del DOM
+        const searchInput = document.getElementById('searchInput');
+        const typeFilter = document.getElementById('typeFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const manualsList = document.getElementById('manualsList');
+        const noResults = document.getElementById('noResults');
+
+        // Modal y formulario de edición
+        const editModal = document.getElementById('editModal');
+        const editForm = document.getElementById('editForm');
+        const editCode = document.getElementById('editCode');
+        const editTitle = document.getElementById('editTitle');
+        const editVersion = document.getElementById('editVersion');
+        const editDate = document.getElementById('editDate');
+        const editType = document.getElementById('editType');
+        const editStatus = document.getElementById('editStatus');
+        const cancelEdit = document.getElementById('cancelEdit');
+
+        let currentEditingCode = null;
+
+        // Función para renderizar los filtros
+        function renderFilters() {
+            // Renderizar tipos
+            typeFilter.innerHTML = `<option value="">Todas las categorías</option>` + types.map(type => `<option value="${type}">${type}</option>`).join('');
+
+            // Renderizar estados
+            statusFilter.innerHTML = `<option value="">Todos los estados</option>` + statuses.map(status => `<option value="${status}">${status}</option>`).join('');
+
+            // Renderizar opciones en el modal de edición
+            editType.innerHTML = `<option value="">Selecciona un tipo</option>` + types.map(type => `<option value="${type}">${type}</option>`).join('');
+            editStatus.innerHTML = `<option value="">Selecciona un estado</option>` + statuses.map(status => `<option value="${status}">${status}</option>`).join('');
+        }
+
+        // Función para renderizar la lista de manuales
+        function renderManuals() {
+            manualsList.innerHTML = manuals.map(manual => `
+                <div 
+                    class="group bg-white rounded-xl p-6 hover:shadow-lg hover:shadow-zinc-200/50 transition-all duration-300 border border-zinc-100 manual-card"
+                    data-title="${manual.title.toLowerCase()}"
+                    data-code="${manual.code.toLowerCase()}"
+                    data-type="${manual.type}"
+                    data-status="${manual.status}"
+                >
+                    <div class="flex items-center justify-between gap-6">
+                        <div class="flex items-center gap-6">
+                            <div class="bg-zinc-50 px-3 py-1.5 rounded-lg font-mono text-sm text-zinc-600">
+                                ${manual.code}
+                            </div>
+                            
+                            <div>
+                                <h2 class="text-lg font-medium text-zinc-900 group-hover:text-blue-600 transition-colors">
+                                    ${manual.title}
+                                </h2>
+                                <div class="flex items-center gap-4 mt-1 text-sm text-zinc-500">
+                                    <span>v${manual.version}</span>
+                                    <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
+                                    <span>${manual.date}</span>
+                                    <span class="w-1 h-1 rounded-full bg-zinc-300"></span>
+                                    <span>${manual.type}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-3 py-1 rounded-full text-sm ${
+                            manual.status === 'Activo' 
+                                ? 'bg-green-50 text-green-600' 
+                                : 'bg-amber-50 text-amber-600'
+                        }">
+                            ${manual.status}
+                        </div>
+
+                        <button 
+                            class="edit-button p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors"
+                            data-code="${manual.code}"
+                        >
+                            ✏️ Editar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Función principal de filtrado
+        function filterManuals() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedType = typeFilter.value;
+            const selectedStatus = statusFilter.value;
+            let visibleCount = 0;
+
+            // Obtener todas las tarjetas de manuales
+            const manualCards = document.querySelectorAll('.manual-card');
+
+            manualCards.forEach((card) => {
+                const element = card;
+                const title = element.dataset.title || '';
+                const code = element.dataset.code || '';
+                const type = element.dataset.type || '';
+                const status = element.dataset.status || '';
+
+                // Aplicar filtros
+                const matchesSearch = title.includes(searchTerm) || code.includes(searchTerm);
+                const matchesType = !selectedType || type === selectedType;
+                const matchesStatus = !selectedStatus || status === selectedStatus;
+
+                // Mostrar u ocultar la tarjeta
+                if (matchesSearch && matchesType && matchesStatus) {
+                    element.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+
+            // Mostrar/ocultar mensaje de no resultados
+            if (noResults) {
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        }
+
+        // Event listeners con debounce para mejor rendimiento
+        searchInput?.addEventListener('input', () => {
+            clearTimeout(filterTimeout);
+            filterTimeout = setTimeout(filterManuals, 300);
+        });
+
+        typeFilter?.addEventListener('change', filterManuals);
+        statusFilter?.addEventListener('change', filterManuals);
+
+        // Renderizar filtros y manuales al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFilters();
+            renderManuals();
+            filterManuals();
+        });
+
+        // Funcionalidad de Edición
+        manualsList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-button') || e.target.closest('.edit-button')) {
+                const button = e.target.classList.contains('edit-button') ? e.target : e.target.closest('.edit-button');
+                const code = button.getAttribute('data-code');
+                const manual = manuals.find(m => m.code === code);
+                if (manual) {
+                    currentEditingCode = code;
+                    editCode.value = manual.code;
+                    editTitle.value = manual.title;
+                    editVersion.value = manual.version;
+                    // Convertir la fecha al formato YYYY-MM-DD para el input de tipo date
+                    const dateParts = manual.date.split('/');
+                    editDate.value = `20${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}`;
+                    editType.value = manual.type;
+                    editStatus.value = manual.status;
+                    editModal.classList.remove('hidden');
+                }
+            }
+        });
+
+        // Cerrar el modal
+        cancelEdit.addEventListener('click', () => {
+            editModal.classList.add('hidden');
+            editForm.reset();
+            currentEditingCode = null;
+        });
+
+        // Manejar la sumisión del formulario de edición
+        editForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (currentEditingCode) {
+                const manualIndex = manuals.findIndex(m => m.code === currentEditingCode);
+                if (manualIndex !== -1) {
+                    // Actualizar los datos del manual
+                    manuals[manualIndex].title = editTitle.value;
+                    manuals[manualIndex].version = editVersion.value;
+                    // Convertir la fecha al formato DD/MM/YY
+                    const date = new Date(editDate.value);
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const year = String(date.getFullYear()).slice(-2);
+                    manuals[manualIndex].date = `${day}/${month}/${year}`;
+                    manuals[manualIndex].type = editType.value;
+                    manuals[manualIndex].status = editStatus.value;
+
+                    // Actualizar filtros si hay cambios en tipos o estados
+                    if (!types.includes(editType.value)) {
+                        types.push(editType.value);
+                        renderFilters();
+                    }
+                    if (!statuses.includes(editStatus.value)) {
+                        statuses.push(editStatus.value);
+                        renderFilters();
+                    }
+
+                    // Re-renderizar los manuales y filtros
+                    renderManuals();
+                    filterManuals();
+
+                    // Cerrar el modal y resetear el formulario
+                    editModal.classList.add('hidden');
+                    editForm.reset();
+                    currentEditingCode = null;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
