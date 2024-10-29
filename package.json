@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "node api/server.js",
+    "client": "npm run start --prefix client",
+    "build": "npm run build --prefix client"
+  },
   "dependencies": {
     "solid-js": "^1.9.3"
   }
