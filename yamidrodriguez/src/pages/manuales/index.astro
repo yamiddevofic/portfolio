@@ -1,0 +1,134 @@
+---
+import { onMount } from 'solid-js'; // Si usas Solid.js u otro framework
+// No es obligatorio usar frameworks, puedes trabajar con Vanilla JS/TS
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANSCHITAGÁ Docs</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/inter/3.19.3/inter.css" rel="stylesheet">
+    <style>
+        /* Estilos para el modal */
+        #editModal {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-zinc-50/50 min-h-screen font-['Inter']">
+    <div class="max-w-5xl mx-auto p-6 md:p-8">
+        <header class="mb-16 mt-8">
+            <div class="flex items-center gap-2 text-zinc-500 mb-1">
+                <div class="h-4 w-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500"></div>
+                <span class="text-sm font-medium">Documentación técnica</span>
+            </div>
+            <h1 class="text-3xl font-semibold bg-gradient-to-r from-zinc-900 to-zinc-500 text-transparent bg-clip-text">
+                TRANSCHITAGÁ Docs
+            </h1>
+        </header>
+
+        <div class="mb-12 space-y-4">
+            <div class="relative">
+                <input
+                    type="text"
+                    placeholder="Buscar por título o código..."
+                    class="w-full p-4 bg-white rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all pl-12"
+                    id="searchInput"
+                >
+                <svg class="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+
+            <div class="flex gap-3 flex-wrap">
+                <select 
+                    id="typeFilter" 
+                    class="bg-white px-4 py-2 rounded-lg text-sm text-zinc-600 border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 hover:bg-zinc-50 transition-colors"
+                >
+                    <option value="">Todas las categorías</option>
+                    <!-- Opciones dinámicas de tipos -->
+                </select>
+                <select 
+                    id="statusFilter"
+                    class="bg-white px-4 py-2 rounded-lg text-sm text-zinc-600 border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 hover:bg-zinc-50 transition-colors"
+                >
+                    <option value="">Todos los estados</option>
+                    <!-- Opciones dinámicas de estados -->
+                </select>
+            </div>
+        </div>
+
+        <div id="manualsList" class="space-y-3">
+            <!-- Tarjetas de manuales generadas dinámicamente -->
+        </div>
+
+        <!-- Mensaje de no resultados -->
+        <div id="noResults" class="hidden text-center py-8 text-zinc-500">
+            No se encontraron manuales que coincidan con los criterios de búsqueda.
+        </div>
+
+        <div class="flex justify-center gap-2 mt-12">
+            <button class="p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="px-4 py-2 rounded-lg text-white bg-blue-500 hover:bg-blue-600 transition-colors">1</button>
+            <button class="px-4 py-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">2</button>
+            <button class="p-2 rounded-lg text-zinc-500 hover:bg-zinc-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Editar Manual</h2>
+            <form id="editForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Código</label>
+                    <input type="text" id="editCode" class="w-full p-2 border border-zinc-300 rounded" disabled>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Título</label>
+                    <input type="text" id="editTitle" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Versión</label>
+                    <input type="text" id="editVersion" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Fecha</label>
+                    <input type="date" id="editDate" class="w-full p-2 border border-zinc-300 rounded" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Tipo</label>
+                    <select id="editType" class="w-full p-2 border border-zinc-300 rounded" required>
+                        <option value="">Selecciona un tipo</option>
+                        <!-- Opciones dinámicas de tipos -->
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-zinc-700">Estado</label>
+                    <select id="editStatus" class="w-full p-2 border border-zinc-300 rounded" required>
+                        <option value="">Selecciona un estado</option>
+                        <!-- Opciones dinámicas de estados -->
+                    </select>
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button type="button" id="cancelEdit" class="px-4 py-2 bg-zinc-300 text-zinc-700 rounded">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Compilado de TypeScript -->
+    <script type="module" src="/dist/scripts/script.js"></script>
+</body>
+</html>
