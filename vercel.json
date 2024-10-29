@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "builds": [
+      { "src": "api/server.js", "use": "@vercel/node" },
+      { "src": "yamidrodriguez/package.json", "use": "@vercel/static-build", "config": { "distDir": "yamidrodriguez/dist" } }
+    ],
+    "routes": [
+      { "src": "/api/(.*)", "dest": "api/server.js" },
+      { "src": "/(.*)", "dest": "/yamidrodriguez/dist/$1" }
+    ]
+  }
+  
