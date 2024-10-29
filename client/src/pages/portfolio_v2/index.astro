@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yamid Horacio Rodríguez - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-200">
+    <header class="container mx-auto px-6 py-12">
+        <nav class="flex justify-between items-center">
+            <h1 class="text-4xl font-bold text-gray-800 dark:text-white">Yamid Horacio Rodríguez</h1>
+            <div class="flex items-center space-x-6">
+                <button 
+                    id="theme-toggle" 
+                    class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+                    aria-label="Toggle dark mode"
+                >
+                    <svg 
+                        id="theme-toggle-light-icon" 
+                        class="w-5 h-5 text-yellow-500 hidden dark:inline" 
+                        fill="currentColor" 
+                        viewBox="0 0 20 20"
+                    >
+                        <path 
+                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        />
+                    </svg>
+                    <svg 
+                        id="theme-toggle-dark-icon" 
+                        class="w-5 h-5 text-gray-500 dark:hidden" 
+                        fill="currentColor" 
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                    </svg>
+                </button>
+                <a href="#contacto" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Contacto</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2">
+            <h2 class="text-5xl font-bold text-gray-800 dark:text-white mb-6">Desarrollador Full Stack</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                Breve descripción de tus habilidades principales y lo que te hace único como desarrollador.
+            </p>
+            <div class="flex flex-wrap gap-6">
+                <a href="/cv.pdf" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                    Descargar CV
+                </a>
+                <a href="#proyectos" class="border border-blue-600 text-blue-600 dark:text-blue-400 px-6 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition">
+                    Ver Proyectos
+                </a>
+            </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+            <img src="/api/placeholder/400/400" alt="Tu foto" class="rounded-full w-64 h-64 object-cover" />
+        </div>
+    </section>
+
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+
+        function updateThemeIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                themeToggleLightIcon?.classList.remove('hidden');
+                themeToggleDarkIcon?.classList.add('hidden');
+            } else {
+                themeToggleLightIcon?.classList.add('hidden');
+                themeToggleDarkIcon?.classList.remove('hidden');
+            }
+        }
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+                updateThemeIcons();
+            });
+        }
+
+        updateThemeIcons();
+    </script>
+</body>
+</html>

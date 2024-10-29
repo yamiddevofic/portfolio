@@ -1,0 +1,30 @@
+---
+import { useState } from 'react';
+const { title, description, image, enlace } = Astro.props;
+---
+
+<a href={enlace} target="_blank" rel="noopener noreferrer">
+  <div class="relative group overflow-hidden rounded-lg shadow-md transition-transform transform hover:scale-105 bg-[#F0F4F8] dark:bg-[#1E293B]">
+    <!-- Image Section -->
+    <img
+      src={image}
+      alt={title}
+      class="w-full h-48 object-cover transition-transform transform group-hover:scale-110"
+    />
+    <!-- Content Section -->
+    <div class="p-4">
+      <h3 class="text-xl font-bold text-[#1E3A8A] dark:text-[#F6C453] mb-1 font-raleway">
+        {title}
+      </h3>
+      <p class="text-sm text-[#6B7280] dark:text-[#D1D5DB] font-libre-baskerville">
+        {description}
+      </p>
+    </div>
+    <!-- Additional Info Section -->
+    <!-- <div class="flex items-center justify-between p-4">
+      <button class="bg-[#1E3A8A] hover:bg-[#345B79] text-white font-bold py-2 px-4 rounded-full transition-all">
+        Ver más
+      </button>
+    </div> -->
+  </div>
+</a>
