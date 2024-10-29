@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node api/server.js",
     "client": "npm run start --prefix client",
-    "build": "npm build --output public"
+    "build": "npm run build --output public"
   },
   "dependencies": {
     "solid-js": "^1.9.3"
