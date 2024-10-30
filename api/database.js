@@ -24,4 +24,26 @@ router.get('/data', async (req, res) => {
   }
 });
 
+// Endpoint para agregar una nueva idea a la base de datos
+router.post('/new_thought', async (req, res) => {
+  const { name, thought } = req.body;
+  if (!name || !thought) {
+    return res.status(400).send('Nombre e idea son requeridos');
+  }
+
+  try {
+    const [result] = await pool.query('INSERT INTO toughts (name, thought, date) VALUES (?, ?, ?)', [name, thought, new Date()]);
+    const newIdea = {
+      id: result.insertId,
+      name,
+      thought,
+      date: new Date()
+    };
+    res.status(201).json(newIdea);
+  } catch (err) {
+    console.error('Error al insertar la nueva idea: ', err);
+    res.status(500).send('Error al insertar la nueva idea');
+  }
+});
+
 module.exports = router;
