@@ -28,7 +28,7 @@ router.get('/data', async (req, res) => {
 });
 
 // Endpoint para agregar una nueva idea a la base de datos
-router.post('/data', async (req, res) => {
+router.post('/new_thoughts', async (req, res) => {
   const { name, thought } = req.body;
   if (!name || !thought) {
     return res.status(400).send('Nombre e idea son requeridos');
