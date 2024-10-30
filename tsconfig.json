@@ -12,6 +12,6 @@
       "moduleResolution": "node",
       "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "api/datos.js"],
   "exclude": ["node_modules"]
 }
