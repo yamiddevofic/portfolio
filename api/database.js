@@ -1,7 +1,15 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const databaseRouter = require('./database.js');
+
+// Importar el router para la base de datos
+let databaseRouter;
+try {
+  databaseRouter = require('./database.js');
+} catch (error) {
+  console.error('Error al importar el router de la base de datos:', error);
+  databaseRouter = express.Router(); // Crear un router vacío para evitar problemas de inicialización
+}
 
 const app = express();
 const server = http.createServer(app);
@@ -16,8 +24,10 @@ const io = new Server(server, {
 // Middleware para procesar datos JSON en el cuerpo de la solicitud
 app.use(express.json());
 
-// Usar el router de la base de datos
-app.use('/api', databaseRouter);
+// Usar el router de la base de datos si está disponible
+if (databaseRouter) {
+  app.use('/api', databaseRouter);
+}
 
 // Configurar WebSocket con HTTP Polling
 io.on('connection', (socket) => {
