@@ -35,7 +35,7 @@ const IdeaForm = () => {
     e.preventDefault();
     setSubmissionError(null);
     try {
-      const response = await fetch('/api/new_thought', {
+      const response = await fetch('/api/new_thoughts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
