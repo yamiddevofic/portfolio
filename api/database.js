@@ -1,52 +1,45 @@
-const mysql = require('mysql2/promise');
 const express = require('express');
-const router = express.Router();
+const http = require('http');
+const { Server } = require('socket.io');
+const databaseRouter = require('./database.js');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  },
+  transports: ['polling'],
+});
 
 // Middleware para procesar datos JSON en el cuerpo de la solicitud
-router.use(express.json());
+app.use(express.json());
 
-// Crear un pool de conexiones a MySQL
-const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+// Usar el router de la base de datos
+app.use('/api', databaseRouter);
+
+// Configurar WebSocket con HTTP Polling
+io.on('connection', (socket) => {
+  console.log('Un usuario se ha conectado');
+
+  // Enviar un mensaje de bienvenida al cliente conectado
+  socket.emit('message', 'Bienvenido al servidor WebSocket');
+
+  // Escuchar mensajes desde el cliente
+  socket.on('newIdea', (idea) => {
+    console.log('Nueva idea recibida:', idea);
+    // Emitir la nueva idea a todos los clientes conectados
+    io.emit('newIdeaBroadcast', idea);
+  });
+
+  // Manejar la desconexión
+  socket.on('disconnect', () => {
+    console.log('Un usuario se ha desconectado');
+  });
 });
 
-// Endpoint para obtener datos desde MySQL
-router.get('/data', async (req, res) => {
-  try {
-    const [results] = await pool.query('SELECT * FROM toughts');
-    res.json(results);
-  } catch (err) {
-    console.error('Error al realizar la consulta: ', err);
-    res.status(500).send('Error en la consulta');
-  }
-});
+// Exportar el handler para que Vercel pueda usarlo como función sin servidor
+module.exports = app;
 
-// Endpoint para agregar una nueva idea a la base de datos
-router.post('/new_thoughts', async (req, res) => {
-  const { name, thought } = req.body;
-  if (!name || !thought) {
-    return res.status(400).send('Nombre e idea son requeridos');
-  }
-
-  try {
-    const [result] = await pool.query('INSERT INTO toughts (name, thought, date) VALUES (?, ?, ?)', [name, thought, new Date()]);
-    const newIdea = {
-      id: result.insertId,
-      name,
-      thought,
-      date: new Date()
-    };
-    res.status(201).json(newIdea);
-  } catch (err) {
-    console.error('Error al insertar la nueva idea: ', err);
-    res.status(500).send('Error al insertar la nueva idea');
-  }
-});
-
-module.exports = router;
+// Nota: Para que funcione en Vercel, debes usar "vercel.json" para redirigir las funciones hacia el archivo donde esté tu servidor.
