@@ -6,26 +6,24 @@ import Layout from '../../Layouts/Layout.astro';
 const currentYear = new Date().getFullYear();
 
 const footerLinks = [
-  { href: '#', text: 'Reglas del grupo' },
-  { href: '#', text: 'Contacto' }
+  { href: '/reglas', text: 'Reglas del grupo' },
+  { href: '/contacto', text: 'Contacto' }
 ];
 ---
 
 <Layout 
-  title="Ideas para la Comunidad | Tarot Café y Música"
+  title="Ideas para la Comunidad | Yamid Rodriguez"
   description="Comparte ideas para mejorar nuestra comunidad de WhatsApp"
 >
   <div class="min-h-screen relative bg-gradient-to-b from-purple-50/50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
     <!-- Fondo decorativo -->
     <div class="fixed inset-0 pointer-events-none">
-      <!-- Gradiente radial superior -->
       <div 
         class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] rounded-full opacity-50 dark:opacity-30"
         style="background: radial-gradient(circle at center, rgba(147,51,234,0.03), transparent 70%)"
       >
       </div>
 
-      <!-- Patrón de puntos -->
       <div 
         class="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
         style="background-image: radial-gradient(circle at center, #9333ea 1px, transparent 1px); background-size: 24px 24px;"
@@ -51,7 +49,7 @@ const footerLinks = [
           </h1>
 
           <p class="text-gray-600 dark:text-gray-300 font-libre-baskerville text-lg leading-relaxed">
-            Un espacio para compartir ideas y hacer crecer juntos nuestra comunidad de WhatsApp TAROT, CAFÉ Y MÚSICA ☕✨🎵
+            Un espacio para compartir ideas y hacer crecer juntos nuestro grupo de WhatsApp Tarot, Café y Música 🎵✨☕
           </p>
         </div>
       </header>
@@ -87,28 +85,48 @@ const footerLinks = [
 </Layout>
 
 <script>
-  // Script para manejar la preferencia de tema
-  const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+  // Función para obtener el tema con manejo de tipos
+  function getThemePreference(): 'light' | 'dark' {
+    if (typeof localStorage !== 'undefined') {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'light' || storedTheme === 'dark') {
+        return storedTheme;
+      }
     }
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    
+    // Verificar preferencia del sistema
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-    return 'light';
-  })();
     
-  if (theme === 'light') {
-    document.documentElement.classList.remove('dark');
-  } else {
-    document.documentElement.classList.add('dark');
+    return 'light'; // valor por defecto
   }
 
-  window.localStorage.setItem('theme', theme);
+  // Aplicar el tema
+  function setTheme(theme: 'light' | 'dark') {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', theme);
+    }
+  }
+
+  // Inicializar tema
+  setTheme(getThemePreference());
+
+  // Opcional: Escuchar cambios en las preferencias del sistema
+  if (typeof window !== 'undefined') {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      setTheme(e.matches ? 'dark' : 'light');
+    });
+  }
 </script>
 
 <style>
-  /* Optimizaciones para el modo oscuro */
   :root {
     --shadow-color: rgba(147,51,234,0.08);
   }
