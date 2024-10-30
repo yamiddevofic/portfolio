@@ -2,6 +2,9 @@ const mysql = require('mysql2/promise');
 const express = require('express');
 const router = express.Router();
 
+// Middleware para procesar datos JSON en el cuerpo de la solicitud
+router.use(express.json());
+
 // Crear un pool de conexiones a MySQL
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -25,7 +28,7 @@ router.get('/data', async (req, res) => {
 });
 
 // Endpoint para agregar una nueva idea a la base de datos
-router.post('/new_thought', async (req, res) => {
+router.post('/data', async (req, res) => {
   const { name, thought } = req.body;
   if (!name || !thought) {
     return res.status(400).send('Nombre e idea son requeridos');
