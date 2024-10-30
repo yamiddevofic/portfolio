@@ -60,6 +60,7 @@ const IdeaForm = () => {
       setIdeas(prev => [newIdeaWithDate, ...(prev || [])]);
       setNewIdea({ name: '', thought: '' });
       setSubmitSuccess(true);
+      alert("¡Su idea ha sido registrada con éxito! Muchas gracias.")
     } catch (err) {
       setSubmitError('No se pudo guardar la idea, pero puedes intentarlo más tarde');
       console.error('Error submitting idea:', err);
