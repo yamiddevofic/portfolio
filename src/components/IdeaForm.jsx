@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './IdeaForm.css';
 
 const IdeaForm = () => {
   const [data, setData] = useState(null);
@@ -25,17 +26,32 @@ const IdeaForm = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Conectando a la base de datos...</div>;
+    return <div className="loading">Conectando a la base de datos...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="error">Error: {error}</div>;
   }
 
   return (
-    <div>
-      <h2>Datos desde la base de datos:</h2>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div className="idea-form">
+      <h2>Recoge Ideas de la Comunidad</h2>
+      <div className="data-container">
+        {data && data.length > 0 ? (
+          <ul>
+            {data.map((item) => (
+              <li key={item.id} className="data-item">
+                <div className="data-header">
+                  <strong>{item.name}</strong> - <em>{new Date(item.date).toLocaleDateString()}</em>
+                </div>
+                <p className="thought">{item.thought}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div>No hay ideas disponibles.</div>
+        )}
+      </div>
     </div>
   );
 };
