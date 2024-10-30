@@ -1,17 +1,123 @@
 ---
-import IdeaForm from '../../components/IdeaForm.jsx'; // Importar el componente React IdeaForm
+import IdeaForm from '../../components/IdeaForm.jsx';
+import ThemeToggle from '../../components/ThemeToggle.jsx';
+import Layout from '../../Layouts/Layout.astro';
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '#', text: 'Reglas del grupo' },
+  { href: '#', text: 'Contacto' }
+];
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recoge Ideas</title>
-  </head>
-  <body class="bg-gray-100">
-    <main class="container mx-auto p-4">
-      <h1 class="text-4xl font-bold text-center mb-6">Recoge Ideas de la Comunidad</h1>
-      <IdeaForm client:load /> <!-- Cargar el componente React en el navegador -->
-    </main>
-  </body>
-</html>
+<Layout 
+  title="Ideas para la Comunidad | Tarot Café y Música"
+  description="Comparte ideas para mejorar nuestra comunidad de WhatsApp"
+>
+  <div class="min-h-screen relative bg-gradient-to-b from-purple-50/50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+    <!-- Fondo decorativo -->
+    <div class="fixed inset-0 pointer-events-none">
+      <!-- Gradiente radial superior -->
+      <div 
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] rounded-full opacity-50 dark:opacity-30"
+        style="background: radial-gradient(circle at center, rgba(147,51,234,0.03), transparent 70%)"
+      >
+      </div>
+
+      <!-- Patrón de puntos -->
+      <div 
+        class="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+        style="background-image: radial-gradient(circle at center, #9333ea 1px, transparent 1px); background-size: 24px 24px;"
+      >
+      </div>
+    </div>
+
+    <div class="relative">
+      <!-- Theme Toggle -->
+      <ThemeToggle client:load />
+
+      <!-- Header -->
+      <header class="container mx-auto px-4 pt-16 pb-12 sm:pt-24 sm:pb-20">
+        <div class="max-w-2xl mx-auto text-center space-y-6">
+          <div class="inline-flex items-center justify-center">
+            <span class="px-4 py-1.5 rounded-full text-sm bg-white/80 dark:bg-gray-800/80 shadow-sm border border-purple-100/50 dark:border-purple-300/10 text-purple-600 dark:text-purple-300 font-medium backdrop-blur-sm">
+              Comunidad WhatsApp
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl font-bold font-raleway bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-900 dark:from-purple-300 dark:to-purple-100">
+            Ideas para nuestra comunidad
+          </h1>
+
+          <p class="text-gray-600 dark:text-gray-300 font-libre-baskerville text-lg leading-relaxed">
+            Un espacio para compartir ideas y hacer crecer juntos nuestra comunidad de WhatsApp TAROT, CAFÉ Y MÚSICA ☕✨🎵
+          </p>
+        </div>
+      </header>
+
+      <!-- Contenido Principal -->
+      <main class="container mx-auto px-4 pb-16 sm:pb-24">
+        <div class="max-w-2xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg ring-1 ring-purple-900/5 dark:ring-purple-300/10">
+          <IdeaForm client:load />
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="container mx-auto px-4 py-8 sm:py-12 mt-auto border-t border-purple-100/20 dark:border-purple-300/10">
+        <div class="max-w-2xl mx-auto text-center space-y-4">
+          <nav class="flex justify-center gap-8">
+            {footerLinks.map(link => (
+              <a 
+                href={link.href}
+                class="text-sm text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300 transition-colors"
+              >
+                {link.text}
+              </a>
+            ))}
+          </nav>
+
+          <p class="text-sm text-gray-500 dark:text-gray-400 font-libre-baskerville">
+            &copy; {currentYear} Yamid Rodriguez
+          </p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Script para manejar la preferencia de tema
+  const theme = (() => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  })();
+    
+  if (theme === 'light') {
+    document.documentElement.classList.remove('dark');
+  } else {
+    document.documentElement.classList.add('dark');
+  }
+
+  window.localStorage.setItem('theme', theme);
+</script>
+
+<style>
+  /* Optimizaciones para el modo oscuro */
+  :root {
+    --shadow-color: rgba(147,51,234,0.08);
+  }
+
+  :root.dark {
+    --shadow-color: rgba(0,0,0,0.3);
+  }
+
+  .shadow-lg {
+    --tw-shadow: 0 8px 20px -4px var(--shadow-color);
+  }
+</style>
