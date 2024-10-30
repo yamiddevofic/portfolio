@@ -1,55 +1,52 @@
+const mysql = require('mysql2/promise');
 const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-
-// Importar el router para la base de datos
-let databaseRouter;
-try {
-  databaseRouter = require('./database.js');
-} catch (error) {
-  console.error('Error al importar el router de la base de datos:', error);
-  databaseRouter = express.Router(); // Crear un router vacío para evitar problemas de inicialización
-}
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  },
-  transports: ['polling'],
-});
+const router = express.Router();
 
 // Middleware para procesar datos JSON en el cuerpo de la solicitud
-app.use(express.json());
+router.use(express.json());
 
-// Usar el router de la base de datos si está disponible
-if (databaseRouter) {
-  app.use('/api', databaseRouter);
-}
-
-// Configurar WebSocket con HTTP Polling
-io.on('connection', (socket) => {
-  console.log('Un usuario se ha conectado');
-
-  // Enviar un mensaje de bienvenida al cliente conectado
-  socket.emit('message', 'Bienvenido al servidor WebSocket');
-
-  // Escuchar mensajes desde el cliente
-  socket.on('newIdea', (idea) => {
-    console.log('Nueva idea recibida:', idea);
-    // Emitir la nueva idea a todos los clientes conectados
-    io.emit('newIdeaBroadcast', idea);
-  });
-
-  // Manejar la desconexión
-  socket.on('disconnect', () => {
-    console.log('Un usuario se ha desconectado');
-  });
+// Crear un pool de conexiones a MySQL
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-// Exportar el handler para que Vercel pueda usarlo como función sin servidor
-module.exports = app;
+// Endpoint para obtener datos desde MySQL
+router.get('/data', async (req, res) => {
+  try {
+    const [results] = await pool.query('SELECT * FROM toughts');
+    res.json(results);
+  } catch (err) {
+    console.error('Error al realizar la consulta: ', err);
+    res.status(500).send('Error en la consulta');
+  }
+});
 
-// Nota: Para que funcione en Vercel, debes usar "vercel.json" para redirigir las funciones hacia el archivo donde esté tu servidor.
+// Endpoint para agregar una nueva idea a la base de datos
+router.post('/new_thoughts', async (req, res) => {
+  const { name, thought } = req.body;
+  if (!name || !thought) {
+    return res.status(400).send('Nombre e idea son requeridos');
+  }
+
+  try {
+    const [result] = await pool.query('INSERT INTO toughts (name, thought, date) VALUES (?, ?, ?)', [name, thought, new Date()]);
+    const newIdea = {
+      id: result.insertId,
+      name,
+      thought,
+      date: new Date()
+    };
+    res.status(201).json(newIdea);
+  } catch (err) {
+    console.error('Error al insertar la nueva idea: ', err);
+    res.status(500).send('Error al insertar la nueva idea');
+  }
+});
+
+module.exports = router;
