@@ -1,11 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-
 import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-    // Enable React to support React JSX components.
     integrations: [react(), tailwind()],
+    output: 'static', // Esto asegurará que Astro genere una salida estática
+    build: {
+        outDir: 'dist' // Asegúrate de que la carpeta de salida sea 'dist'
+    }
 });

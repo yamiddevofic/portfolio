@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "start": "node api/server.js",
-    "client": "cd yamidrodriguez && un start --prefix client",
-    "build": "cd yamidrodriguez && run build --output public"
-  }
-}
