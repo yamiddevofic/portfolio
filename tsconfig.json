@@ -12,6 +12,6 @@
       "moduleResolution": "node",
       "resolveJsonModule": true
   },
-  "include": ["src", "api/server.cjs"],
+  "include": ["src", "api/server.js"],
   "exclude": ["node_modules"]
 }
