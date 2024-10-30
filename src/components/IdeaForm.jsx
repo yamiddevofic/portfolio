@@ -3,29 +3,33 @@ import React, { useEffect, useState } from 'react';
 const IdeaForm = () => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/')
-      .then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/data');
         if (!response.ok) {
           throw new Error('Error al conectar con la base de datos');
         }
-        return response.json();
-      })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  if (isLoading) {
+    return <div>Conectando a la base de datos...</div>;
+  }
 
   if (error) {
     return <div>Error: {error}</div>;
-  }
-
-  if (!data) {
-    return <div>Conectando a la base de datos...</div>;
   }
 
   return (
