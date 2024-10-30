@@ -16,7 +16,7 @@ const pool = mysql.createPool({
 // Endpoint para obtener datos desde MySQL
 router.get('/data', async (req, res) => {
   try {
-    const [results] = await pool.query('SELECT * FROM nombre_de_tu_tabla');
+    const [results] = await pool.query('SELECT * FROM toughts');
     res.json(results);
   } catch (err) {
     console.error('Error al realizar la consulta: ', err);
