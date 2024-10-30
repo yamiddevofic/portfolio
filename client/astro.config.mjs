@@ -5,9 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+    // Habilitar React y Tailwind en Astro
     integrations: [react(), tailwind()],
-    output: 'static', // Esto asegurará que Astro genere una salida estática
-    build: {
-        outDir: 'dist' // Asegúrate de que la carpeta de salida sea 'dist'
-    }
+    output: 'static' // Asegura que Astro genere una salida estática, que es ideal para despliegues en plataformas como Vercel
 });
