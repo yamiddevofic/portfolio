@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const IdeaForm = () => {
-  // Estados separados para diferentes partes de la funcionalidad
   const [ideas, setIdeas] = useState([]);
   const [isLoadingIdeas, setIsLoadingIdeas] = useState(true);
   const [loadError, setLoadError] = useState(null);
-  
   const [newIdea, setNewIdea] = useState({ name: '', thought: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Cargar ideas existentes
   useEffect(() => {
     const fetchIdeas = async () => {
       try {
@@ -50,7 +48,6 @@ const IdeaForm = () => {
 
       if (!response.ok) throw new Error('Error al enviar la idea');
 
-      // Incluso si la API falla, mostramos la idea localmente
       const newIdeaWithDate = {
         ...newIdea,
         id: Date.now(),
@@ -70,7 +67,7 @@ const IdeaForm = () => {
   };
 
   return (
-    <div className="space-y-12">
+    <div className="max-w-2xl mx-auto p-6 sm:p-8 bg-gradient-to-b from-purple-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-xl ring-1 ring-purple-900/10 dark:ring-purple-300/20 backdrop-blur-sm transition-all duration-300">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-6">
           <div>
@@ -86,7 +83,7 @@ const IdeaForm = () => {
               name="name"
               value={newIdea.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 focus:border-purple-500 dark:focus:border-purple-400 transition-all font-libre-baskerville text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 bg-gradient-to-r from-white via-purple-50 to-white dark:bg-gray-800/70 border border-gray-200 dark:border-gray-600 rounded-lg shadow-md focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 focus:border-purple-500 dark:focus:border-purple-400 transition-all font-libre-baskerville text-gray-900 dark:text-white"
               placeholder="Como te conocemos en el grupo"
               required
             />
@@ -105,7 +102,7 @@ const IdeaForm = () => {
               value={newIdea.thought}
               onChange={handleInputChange}
               rows="4"
-              className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 focus:border-purple-500 dark:focus:border-purple-400 transition-all font-libre-baskerville text-gray-900 dark:text-white"
+              className="w-full px-4 py-3 bg-gradient-to-r from-white via-purple-50 to-white dark:bg-gray-800/70 border border-gray-200 dark:border-gray-600 rounded-lg shadow-md focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 focus:border-purple-500 dark:focus:border-purple-400 transition-all font-libre-baskerville text-gray-900 dark:text-white"
               placeholder="¿Qué podríamos hacer para mejorar nuestra comunidad?"
               required
             />
@@ -115,13 +112,16 @@ const IdeaForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-6 py-3 bg-purple-600 dark:bg-purple-500 text-white rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed font-raleway"
+          className="relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white rounded-full group bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 shadow-lg hover:shadow-[0_0_20px_rgba(66,245,135,0.7)] transition duration-300 overflow-hidden"
         >
-          {isSubmitting ? 'Compartiendo...' : 'Compartir idea'}
+          <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 rounded-full blur-sm group-hover:opacity-100 group-hover:scale-105"></span>
+          <span className="relative">
+            {isSubmitting ? 'Compartiendo...' : 'Compartir idea'}
+          </span>
         </button>
       </form>
 
-      <div className="space-y-6">
+      <div className="space-y-6 mt-8">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white font-raleway">
           Ideas compartidas
         </h3>
@@ -130,7 +130,7 @@ const IdeaForm = () => {
           {ideas.map((idea) => (
             <div
               key={idea.id}
-              className="p-6 bg-white dark:bg-gray-700/50 border border-gray-100 dark:border-gray-600 rounded-lg shadow-sm"
+              className="p-6 bg-gradient-to-b from-white to-purple-50 dark:from-gray-800 dark:to-gray-700 border border-gray-100 dark:border-gray-600 rounded-lg shadow-lg transition-all"
             >
               <div className="flex justify-between items-baseline mb-4">
                 <h4 className="font-medium text-gray-900 dark:text-white font-raleway">

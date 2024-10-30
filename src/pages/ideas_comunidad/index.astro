@@ -2,6 +2,7 @@
 import IdeaForm from '../../components/IdeaForm.jsx';
 import ThemeToggle from '../../components/ThemeToggle.jsx';
 import Layout from '../../Layouts/Layout.astro';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const currentYear = new Date().getFullYear();
 
@@ -38,12 +39,16 @@ const footerLinks = [
       <!-- Header -->
       <header class="container mx-auto px-4 pt-16 pb-12 sm:pt-24 sm:pb-20">
         <div class="max-w-2xl mx-auto text-center space-y-6">
-          <div class="inline-flex items-center justify-center">
-            <a href="https://yamidtarot.online/grupo-whatsapp"><span class="px-4 py-1.5 rounded-full text-sm bg-white/80 dark:bg-gray-800/80 shadow-sm border border-purple-100/50 dark:border-purple-300/10 text-purple-600 dark:text-purple-300 font-medium backdrop-blur-sm">
-              Comunidad WhatsApp
-            </span></a>
+          <div class="flex items-center justify-center">
+            <a href="https://yamidtarot.online/grupo-whatsapp" class="whatsapp-button">
+              <span class="button-glow"></span>
+              <span class="button-content">
+                <FaWhatsapp className="icon-whatsapp" />
+                Comunidad WhatsApp
+              </span>
+            </a>
           </div>
-
+          
           <h1 class="text-3xl sm:text-4xl font-bold font-raleway bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-900 dark:from-purple-300 dark:to-purple-100">
             Ideas para nuestra comunidad
           </h1>
@@ -84,58 +89,53 @@ const footerLinks = [
   </div>
 </Layout>
 
-<script>
-  // Función para obtener el tema con manejo de tipos
-  function getThemePreference(): 'light' | 'dark' {
-    if (typeof localStorage !== 'undefined') {
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme === 'light' || storedTheme === 'dark') {
-        return storedTheme;
-      }
-    }
-    
-    // Verificar preferencia del sistema
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
-    return 'light'; // valor por defecto
-  }
-
-  // Aplicar el tema
-  function setTheme(theme: 'light' | 'dark') {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('theme', theme);
-    }
-  }
-
-  // Inicializar tema
-  setTheme(getThemePreference());
-
-  // Opcional: Escuchar cambios en las preferencias del sistema
-  if (typeof window !== 'undefined') {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      setTheme(e.matches ? 'dark' : 'light');
-    });
-  }
-</script>
-
 <style>
-  :root {
-    --shadow-color: rgba(147,51,234,0.08);
+  .whatsapp-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
+    box-shadow: 0 8px 20px -4px rgba(147, 51, 234, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
-  :root.dark {
-    --shadow-color: rgba(0,0,0,0.3);
+  .whatsapp-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(66, 245, 135, 0.7);
   }
 
-  .shadow-lg {
-    --tw-shadow: 0 8px 20px -4px var(--shadow-color);
+  .button-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
+    filter: blur(10px);
+    opacity: 0.5;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .whatsapp-button:hover .button-glow {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .button-content {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-whatsapp {
+    height: 1.5rem;
+    width: 1.5rem;
+    color: #ffffff;
   }
 </style>
