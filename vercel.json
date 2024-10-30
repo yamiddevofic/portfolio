@@ -1,12 +1,21 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "api/server.js", "use": "@vercel/node" },
-      { "src": "yamidrodriguez/package.json", "use": "@vercel/static-build", "config": { "distDir": "yamidrodriguez/dist" } }
-    ],
-    "routes": [
-      { "src": "/api/(.*)", "dest": "api/server.js" },
-      { "src": "/(.*)", "dest": "/yamidrodriguez/dist/$1" }
-    ]
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/old-path",
+      "destination": "/new-path",
+      "permanent": true
+    }
+  ],
+  "env": {
+    "DB_USER": "u493408939_yamidtarot",
+    "DB_NAME": "u493408939_yamidtarot",
+    "DB_PASSWORD": "Y18h06R_2022",
+    "DB_HOST": "157.173.209.254"
   }
-  
+}
