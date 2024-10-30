@@ -1,11 +1,7 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel';
 
-// https://astro.build/config
 export default defineConfig({
-    // Habilitar React y Tailwind en Astro
-    integrations: [react(), tailwind()],
-    output: 'static' // Asegura que Astro genere una salida estática, que es ideal para despliegues en plataformas como Vercel
+  output: 'server', // Importante para que pueda manejar APIs del lado del servidor
+  adapter: vercel(),
 });
