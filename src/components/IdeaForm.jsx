@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './IdeaForm.css';
 
 const IdeaForm = () => {
   const [data, setData] = useState(null);
@@ -26,30 +25,30 @@ const IdeaForm = () => {
   }, []);
 
   if (isLoading) {
-    return <div className="loading">Conectando a la base de datos...</div>;
+    return <div className="text-center text-gray-600 mt-4">Conectando a la base de datos...</div>;
   }
 
   if (error) {
-    return <div className="error">Error: {error}</div>;
+    return <div className="text-center text-red-500 mt-4">Error: {error}</div>;
   }
 
   return (
-    <div className="idea-form">
-      <h2>Recoge Ideas de la Comunidad</h2>
-      <div className="data-container">
+    <div className="p-6 max-w-4xl mx-auto bg-white rounded-xl shadow-md space-y-4">
+      <h2 className="text-2xl font-bold text-center">Recoge Ideas de la Comunidad</h2>
+      <div className="mt-6">
         {data && data.length > 0 ? (
-          <ul>
+          <ul className="space-y-4">
             {data.map((item) => (
-              <li key={item.id} className="data-item">
-                <div className="data-header">
-                  <strong>{item.name}</strong> - <em>{new Date(item.date).toLocaleDateString()}</em>
+              <li key={item.id} className="p-4 border rounded-lg bg-gray-100">
+                <div className="text-lg font-semibold">
+                  {item.name} - <span className="text-gray-500 italic">{new Date(item.date).toLocaleDateString()}</span>
                 </div>
-                <p className="thought">{item.thought}</p>
+                <p className="text-gray-700 mt-2">{item.thought}</p>
               </li>
             ))}
           </ul>
         ) : (
-          <div>No hay ideas disponibles.</div>
+          <div className="text-center text-gray-500">No hay ideas disponibles.</div>
         )}
       </div>
     </div>
