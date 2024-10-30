@@ -1,5 +1,5 @@
-import mysql from 'mysql2/promise';
-import express from 'express';
+const mysql = require('mysql2/promise');
+const express = require('express');
 const router = express.Router();
 
 // Crear un pool de conexiones a MySQL
@@ -24,4 +24,4 @@ router.get('/data', async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;

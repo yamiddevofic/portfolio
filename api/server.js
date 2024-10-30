@@ -1,9 +1,9 @@
-import express from 'express';
-import databaseRouter from './database.js';
+const express = require('express');
+const databaseRouter = require('./database.js');
 
 const app = express();
 
 // Usar el router de la base de datos
 app.use('/api', databaseRouter);
 
-export default app;
+module.exports = app;
