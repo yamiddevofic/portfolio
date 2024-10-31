@@ -3,12 +3,11 @@ interface Props {
   title: string;
   description?: string;
 }
-
+import ThemeToggle from '../components/ThemeToggle';
 const { title, description } = Astro.props;
 ---
-
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="scroll-smooth" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +40,58 @@ const { title, description } = Astro.props;
       :root {
         --font-raleway: 'Raleway', system-ui, sans-serif;
         --font-libre: 'Libre Baskerville', serif;
-      }
+        
+        /* Colores de la Marca General */
+        --color-general-deep-blue: #003366; /* Azul profundo */
+        --color-general-mustard-yellow: #FFDB58; /* Amarillo mostaza */
+        --color-general-emerald-green: #50C878; /* Verde esmeralda */
+        --color-general-light-gray: #D3D3D3; /* Gris claro */
+        --color-general-lime-green: #BFFF00; /* Verde lima suave */
+
+        /* Submarca Tech */
+        --color-tech-primary: #00FFFF; /* Cyan brillante */
+        --color-tech-secondary: #D3D3D3; /* Gris claro */
+        --color-tech-dark-blue: #001f3f; /* Azul oscuro */
+
+        /* Submarca Tarot */
+        --color-tarot-primary: #9333EA; /* Púrpura */
+        --color-tarot-secondary: #333333; /* Gris oscuro */
+        --color-tarot-accent: #FFDB58; /* Amarillo */
+
+        /* Submarca Photography */
+        --color-photography-primary: #001f3f; /* Azul oscuro */
+        --color-photography-accent: #ff6f61; /* Coral */
+        --color-photography-background: #98ff98; /* Verde menta */
+
+        /* Submarca Filosofía */
+        --color-philosophy-primary: #0ab9e6; /* Azul celeste */
+        --color-philosophy-secondary: #023047; /* Azul oscuro profundo */
+        --color-philosophy-accent: #8ecae6; /* Azul claro */
+        }
+        [data-theme='dark'] {
+          --color-general-deep-blue: #001a33; /* Azul profundo para modo oscuro */
+          --color-general-mustard-yellow: #FFCC00; /* Amarillo mostaza un poco más oscuro */
+          --color-general-emerald-green: #3b9d64; /* Verde esmeralda más oscuro */
+          --color-general-light-gray: #2c2c2c; /* Gris oscuro para fondo */
+          --color-general-lime-green: #a3ff00; /* Verde lima más suave */
+
+          --color-tech-primary: #008080; /* Cyan más oscuro */
+          --color-tech-secondary: #4d4d4d; /* Gris oscuro */
+          --color-tech-dark-blue: #001020; /* Azul muy oscuro */
+
+          --color-tarot-primary: #6b21a8; /* Púrpura más oscura */
+          --color-tarot-secondary: #1a1a1a; /* Gris muy oscuro */
+          --color-tarot-accent: #e6b800; /* Amarillo más tenue */
+
+          --color-photography-primary: #000c1a; /* Azul muy oscuro */
+          --color-photography-accent: #d45550; /* Coral más oscuro */
+          --color-photography-background: #80cc80; /* Verde menta más oscuro */
+
+          --color-philosophy-primary: #086f9e; /* Azul celeste más oscuro */
+          --color-philosophy-secondary: #011627; /* Azul oscuro muy profundo */
+          --color-philosophy-accent: #609cbf; /* Azul claro más oscuro */
+        }
+
       
       body {
         -webkit-font-smoothing: antialiased;
@@ -67,7 +117,7 @@ const { title, description } = Astro.props;
         text-decoration: none;
         color: #ffffff;
         border-radius: 9999px;
-        background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
+        background: linear-gradient(to right, var(--color-tarot-primary), #3B82F6, var(--color-tech-primary));
         box-shadow: 0 8px 20px -4px rgba(147, 51, 234, 0.5);
         transition: all 0.3s ease;
         animation: floating 3s ease-in-out infinite;
@@ -84,7 +134,7 @@ const { title, description } = Astro.props;
         position: absolute;
         inset: 0;
         border-radius: 9999px;
-        background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
+        background: linear-gradient(to right, var(--color-tarot-primary), #3B82F6, var(--color-tech-primary));
         filter: blur(10px);
         opacity: 0.5;
         transition: all 0.3s ease;
@@ -169,6 +219,7 @@ const { title, description } = Astro.props;
     </style>
   </head>
   <body>
+    <ThemeToggle client:load />
     <slot />
   </body>
 </html>

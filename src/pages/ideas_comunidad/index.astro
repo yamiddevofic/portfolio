@@ -16,71 +16,77 @@ const footerLinks = [
   title="Ideas para la Comunidad | TAROT, CAFÉ Y MÚSICA"
   description="Comparte ideas para mejorar nuestra comunidad de WhatsApp"
 >
-  <div class="min-h-screen relative bg-gradient-to-b from-purple-50/50 to-white dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
-    <!-- Fondo decorativo -->
-    <div class="fixed inset-0 pointer-events-none">
-      <div 
-        class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] rounded-full opacity-50 dark:opacity-30"
-        style="background: radial-gradient(circle at center, rgba(147,51,234,0.03), transparent 70%)"
-      >
+  <div class="min-h-screen bg-slate-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Fondo decorativo sutil -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full opacity-30 blur-3xl"
+        style="background: linear-gradient(135deg, rgba(147,51,234,0.05), rgba(59,130,246,0.05))">
       </div>
-
-      <div 
-        class="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
-        style="background-image: radial-gradient(circle at center, #9333ea 1px, transparent 1px); background-size: 24px 24px;"
-      >
+      <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full opacity-30 blur-3xl"
+        style="background: linear-gradient(225deg, rgba(147,51,234,0.05), rgba(59,130,246,0.05))">
       </div>
     </div>
 
     <div class="relative">
-      <!-- Theme Toggle -->
-      <ThemeToggle client:load />
+      <!-- Theme Toggle con posición fija -->
+      <div class="fixed top-4 right-4 z-50">
+        <ThemeToggle client:load />
+      </div>
 
-      <!-- Header -->
-      <header class="container mx-auto px-4 pt-16 pb-12 sm:pt-24 sm:pb-20">
-        <div class="max-w-2xl mx-auto text-center space-y-6">
-          <div class="flex items-center justify-center">
-            <a href="https://yamidtarot.online/grupo-whatsapp" class="whatsapp-button">
-              <span class="button-glow"></span>
-              <span class="button-content">
-                <FaWhatsapp className="icon-whatsapp" />
-                Comunidad WhatsApp
-              </span>
+      <!-- Header con diseño moderno -->
+      <header class="container mx-auto px-4 pt-20 pb-16">
+        <div class="max-w-3xl mx-auto">
+          <div class="flex flex-col items-center space-y-8">
+            <!-- Botón de WhatsApp mejorado -->
+            <a href="https://yamidtarot.online/grupo-whatsapp" 
+               class="group relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+              <FaWhatsapp className="w-5 h-5" />
+              <span class="font-medium">Unirse a la Comunidad</span>
             </a>
-          </div>
-          
-          <h1 class="text-3xl sm:text-4xl font-bold font-raleway bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-purple-900 dark:from-purple-300 dark:to-purple-100">
-            Ideas para nuestra comunidad
-          </h1>
+            
+            <!-- Título principal con estilo refinado -->
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white text-center leading-tight">
+              Ideas para nuestra 
+              <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">
+                comunidad
+              </span>
+            </h1>
 
-          <p class="text-gray-600 dark:text-gray-300 font-libre-baskerville text-lg leading-relaxed">
-            Un espacio para compartir ideas y hacer crecer juntos nuestro grupo de WhatsApp Tarot, Café y Música 🎵✨☕
-          </p>
+            <!-- Descripción elegante -->
+            <p class="text-lg text-gray-600 dark:text-gray-300 text-center max-w-2xl leading-relaxed">
+              Un espacio dedicado a compartir ideas y enriquecer nuestra comunidad de 
+              <span class="font-medium">Tarot, Café y Música</span> 🎴 ✨ ☕
+            </p>
+          </div>
         </div>
       </header>
 
-      <!-- Contenido Principal -->
-      <main class="container mx-auto px-4 pb-16 sm:pb-24">
-        <div class="max-w-2xl mx-auto bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 sm:p-8 shadow-lg ring-1 ring-purple-900/5 dark:ring-purple-300/10">
-          <IdeaForm client:load />
+      <!-- Contenido Principal con diseño moderno -->
+      <main class="container mx-auto px-4 pb-16">
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl dark:shadow-gray-800/20 backdrop-blur-lg">
+            <div class="p-6 sm:p-8">
+              <IdeaForm client:load />
+            </div>
+          </div>
         </div>
       </main>
 
-      <!-- Footer -->
-      <footer class="container mx-auto px-4 py-8 sm:py-12 mt-auto border-t border-purple-100/20 dark:border-purple-300/10">
-        <div class="max-w-2xl mx-auto text-center space-y-4">
-          <nav class="flex justify-center gap-8">
+      <!-- Footer moderno y minimalista -->
+      <footer class="container mx-auto px-4 py-8 mt-auto border-t border-gray-200 dark:border-gray-800">
+        <div class="max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <nav class="flex gap-6">
             {footerLinks.map(link => (
               <a 
                 href={link.href}
-                class="text-sm text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300 transition-colors"
+                class="text-sm text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 transition-colors"
               >
                 {link.text}
               </a>
             ))}
           </nav>
 
-          <p class="text-sm text-gray-500 dark:text-gray-400 font-libre-baskerville">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
             &copy; {currentYear} Yamid Rodriguez
           </p>
         </div>
@@ -90,52 +96,22 @@ const footerLinks = [
 </Layout>
 
 <style>
-  .whatsapp-button {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: #ffffff;
-    border-radius: 9999px;
-    background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
-    box-shadow: 0 8px 20px -4px rgba(147, 51, 234, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+  /* Animación sutil para el botón de WhatsApp */
+  @keyframes subtle-glow {
+    0%, 100% { box-shadow: 0 5px 15px rgba(16, 185, 129, 0.2); }
+    50% { box-shadow: 0 5px 25px rgba(16, 185, 129, 0.4); }
+  }
+  
+  /* Estilos adicionales específicos */
+  :global(.dark) {
+    color-scheme: dark;
   }
 
-  .whatsapp-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(66, 245, 135, 0.7);
-  }
-
-  .button-glow {
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    background: linear-gradient(to right, #34D399, #3B82F6, #9333EA);
-    filter: blur(10px);
-    opacity: 0.5;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .whatsapp-button:hover .button-glow {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  .button-content {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .icon-whatsapp {
-    height: 1.5rem;
-    width: 1.5rem;
-    color: #ffffff;
+  /* Mejora en la legibilidad del texto */
+  @supports (-webkit-background-clip: text) {
+    .gradient-text {
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
   }
 </style>
