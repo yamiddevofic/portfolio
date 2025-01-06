@@ -26,10 +26,10 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
           document.addEventListener('DOMContentLoaded', () => {
             const sun = document.getElementById('sun');
             const sky = document.getElementById('sky');
-            const duration = 5000; // Duración total de cada fase (en milisegundos)
+            const duration = 2000; // Duración total de cada fase (en milisegundos)
             const startY = 79; // Posición inicial del sol
-            const midY = 200; // Punto intermedio
-            const endY = 500; // Posición final del sol
+            const midY = 100; // Punto intermedio
+            const endY = 250; // Posición final del sol
             let start: DOMHighResTimeStamp | null = null;
             let isReturning = false; // Indica si el sol está regresando como luna
 
@@ -51,9 +51,7 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
 
                 // Cambiar el color del cielo
                 if (sky) {
-                  if (currentY >= 425) {
-                    sky.setAttribute('fill', '#000000'); // Color de noche
-                  } else if (currentY >= 250) {
+                  if (currentY >= 200) {
                     sky.setAttribute('fill', '#FFA500'); // Color de atardecer
                   }
                 }
@@ -61,19 +59,11 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
                 // Cuando la primera fase termina, inicia la segunda
                 if (progress === 1) {
                   isReturning = true; // Cambia a la fase de regreso
-                  start = null; // Reinicia el tiempo para la segunda fase
                 }
               } else {
                 // Segunda fase: El sol sube como luna
                 const easedProgress = easeOutCubic(progress);
                 currentY = endY - easedProgress * (endY - startY - 10); // Movimiento inverso
-
-                // Cambiar el color del cielo para reflejar el amanecer
-                if (sky) {
-                  if (currentY <= 220) {
-                    sky.setAttribute('fill', '#87CEEB'); // Color de día
-                  } 
-                }
 
               
 
