@@ -88,7 +88,7 @@ const Header = () => {
         </div>
       </div>
       <nav className="hidden md:flex items-center space-x-8">
-        {['Inicio', 'Sobre Mí', 'Submarcas', 'Proyectos', 'Tecnologías', 'Contacto'].map((section, index) => (
+        {['Inicio'].map((section, index) => (
           <a
             key={index}
             href={`#${section.toLowerCase().replace('í', 'i').replace(' ', '')}`}

@@ -1,129 +1,110 @@
----
-import BaseLayout from '../Layouts/BaseLayout.astro';
-import SubmarcaCard from '../components/SubmarcaCard.astro';
-import ProyectoCard from '../components/ProyectoCard.astro';
-import TecnologiaCard from '../components/TecnologiaCard.astro';
-import submarcas from '../data/submarcas.js';
-import proyectos from '../data/proyectos.js';
-import tecnologiasDominadas from '../data/tecnologiasDominadas.js';
-import tecnologiasEnAprendizaje from '../data/tecnologiasEnAprendizaje.js';
-import { FaUser, FaConciergeBell, FaProjectDiagram, FaCode, FaEnvelope, FaLightbulb } from 'react-icons/fa';
+--- 
+import BaseLayout from '../Layouts/BaseLayout.astro'; 
+--- 
+<BaseLayout> 
+  <section id="maintenance" class="flex items-center justify-center min-h-[100vh] px-4 md:px-8 lg:px-16 bg-gray-100 dark:bg-gray-900"> 
+    <div class="text-center w-full max-w-4xl mt-12 bg-white/95 dark:bg-[#1E293B]/90 p-8 md:p-8 lg:p-10 rounded-lg shadow-lg"> 
+      <!-- Icono SVG --> 
+      <div class="flex justify-center mb-6"> 
+        <svg id="Layer_1" enable-background="new 0 0 512.032 512.032" viewBox="0 0 512.032 512.032" xmlns="http://www.w3.org/2000/svg" width="200" height="200" style="border-radius: 50%;"> 
+          <!-- Fondo del cielo --> 
+          <rect id="sky" width="100%" height="100%" fill="#87CEEB" /> 
 
-// Función para calcular los años dados una fecha de nacimiento
-function calcularEdad(fechaNacimiento: string): number {
-  const hoy = new Date();
-  const fechaNac = new Date(fechaNacimiento);
-  let edad = hoy.getFullYear() - fechaNac.getFullYear();
-  const mes = hoy.getMonth() - fechaNac.getMonth();
-  if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
-    edad--;
-  }
-  return edad;
-}
+          <!-- Sol --> 
+          <circle id="sun" cx="256.016" cy="79" fill="#ffe470" r="79" /> 
 
-const edad = calcularEdad('2002-06-18')
----
+          <!-- Montañas --> 
+          <g id="mountains"> 
+            <path d="m269.562 302.925c-70.36-46.299-157.915-75.142-253.198-83.41l-16.297-1.414v116.753l184.671 44.383 104.691-63.239z" fill="#00cc71"/> 
+            <path d="m496.801 251.462c-130.584 1.427-236.427 34.063-323.577 99.774l-18.842 14.207 110.339 58.343 247.244-56.807v-115.683z" fill="#009985"/> 
+            <path d="m275.166 395.467c-71.551-48.073-163.462-79.105-258.802-87.379l-16.297-1.414v205.358h145.521l147.637-104.432z" fill="#c7eb4b"/> 
+            <path d="m496.801 340.036c-71.398.78-138.431 13.468-199.234 37.71-60.869 24.269-117.089 60.75-167.099 108.43l-27.12 25.856h408.617v-172.162z" fill="#a7d22a"/> 
+          </g> 
+        </svg> 
 
-<BaseLayout>
-  <!-- Sección Hero -->
-  <section id="inicio" class="flex items-center justify-center min-h-[100vh] px-4 md:px-8 lg:px-16 bg-cover bg-center bg-[url('https://yamidrodriguez.com/background-light.png')] dark:bg-[url('https://yamidrodriguez.com/background-dark.png')]">
-      <div class="text-center w-full max-w-4xl mt-12 bg-white/95 dark:bg-[#1E293B]/90 p-8 md:p-8 lg:p-10 rounded-lg shadow-lg">
-        <!-- Título Principal -->
-        <h1 class="text-3xl lg:text-5xl sm:text-4xl  font-extrabold mb-4 md:mb-5 lg:mb-7 text-[#1E3A8A] font-raleway leading-snug dark:text-white">
-          Innovación, Transformación y Sabiduría
-        </h1>
-        <!-- Subtítulo -->
-        <p class="text-lg sm:text-xl md:text-2xl text-[#2C7A7B] dark:text-[#F6C453] mb-4 md:mb-5 lg:mb-7 font-libre-baskerville">
-          ¡Bienvenid@ a mi sitio web!
-        </p>
-        <!-- Botones de Acción -->
-        <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-6">
-          <a href="#colabora" class="bg-[#1E3A8A] hover:bg-[#345B79] text-white font-bold py-3 px-6 rounded-full text-base sm:text-lg md:text-xl transition-transform transform hover:scale-105 shadow-md">
-            Unete a nuestra comunidad
-          </a>
-          <a href="#proyectos" class="bg-[#F6C453] hover:bg-[#D1A85C] text-[#2C7A7B] dark:text-black font-bold py-3 px-6 rounded-full text-base sm:text-lg md:text-xl transition-transform transform hover:scale-105 shadow-md">
-            Explora Proyectos
-          </a>
-        </div>
-      </div>
-  </section>
+        <script> 
+          document.addEventListener('DOMContentLoaded', () => {
+          const sun = document.getElementById('sun');
+          const sky = document.getElementById('sky');
+          const duration = 5000; // Duración total de cada fase (en milisegundos)
+          const startY = 79; // Posición inicial del sol
+          const midY = 200; // Punto intermedio
+          const endY = 500; // Posición final del sol
+          let start = null;
+          let isReturning = false; // Indica si el sol está regresando como luna
 
-  <!-- Sección Sobre Mí -->
-  <section id="sobremi" class="py-8 px-6 sm:py-12 sm:px-10 md:py-16 md:px-20 lg:px-32">
-    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-6 sm:mb-8 font-raleway flex items-center justify-center">
-      <FaUser className="mr-2" /> Sobre Mí
-    </h2>
-    <div class="grid md:grid-cols-1 gap-8 md:gap-12 items-center">
-      <div class="grid grid-cols-3 items-center justify-center">
-        <img src="https://chitaga.tech/images/dev.jpg" class="w-80 sm:w-100 rounded-full" style={{gridColumn: 2}}></img>
-      </div>
-      <div class="order-2 md:order-1">
-        <p class="text-base sm:text-lg md:text-xl text-[#1E3A8A] dark:text-[#F6C453] mb-4 sm:mb-6 font-libre-baskerville text-justify">
-          Mi nombre es Yamid Rodríguez, soy de Chitagá - Colombia, tengo {edad} años, y me apasiona la tecnología, la filosofía, la psicología, y las cartas del Tarot. Soy un persona curiosa, resiliente, auténtica, y adaptable, que le gusta estar constantemente aprendiendo, y mejorando, eso fue lo que me llevó a estudiar análisis y desarrollo de software en el SENA en el 2022, iniciando así mi recorrido por el sector tecnológico.
-        </p>
-        <p class="text-base sm:text-lg md:text-xl text-[#2C7A7B] dark:text-[#D1D5DB] font-libre-baskerville mb-4 sm:mb-6 text-justify">
-          Como analista y desarrollador de software mi objetivo es transformar tus ideas a realidad en el mundo digital, y brindarte herramientas que mejoren tu vida. Durante mi formación he aprendido las bases del desarrollo de software, y de la gestión de proyectos para trabajar en equipo, esto me ha permitido entender la estructura y funcionamiento de un sistema, programa y/o aplicación de manera integral, construir productos o servicios de software de acuerdo a los requerimientos del cliente, y colaborar con otros desarrolladores en proyectos en equipo.
-        </p>
-        <p class="text-base sm:text-lg md:text-xl text-[#2C7A7B] dark:text-[#E5E7EB] font-libre-baskerville text-justify">
-          Actualmente me sigo preparando como desarrollador de software, mi meta es especializarme más en programación web, machine learning e inteligencia artifical, así como mejorar mi comunicación en inglés. Por otro lado, vengo desarrollando diferentes proyectos, mi objetivo es TERMINARLOS e implementarlos, y que estos recursos reporten beneficios tanto económicos, como profesionales, sociales, y en distintos sentidos para todos.
-        </p>
-      </div>
-    </div>
-  </section>
+          function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 1); // Easing para suavizar el final
+          }
 
-  <!-- Sección Submarcas -->
-  <section id="submarcas" class="py-8 px-6 sm:py-12 sm:px-10 md:py-16 md:px-20 lg:px-32">
-    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-6 sm:mb-8 font-raleway flex items-center justify-center">
-      <FaProjectDiagram className="mr-2" /> Submarcas Destacadas
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-      {submarcas.map((item) => (
-        <SubmarcaCard {...item} />
-      ))}
-    </div>
-  </section>
+          function animate(timestamp) {
+            if (!start) start = timestamp;
+            const elapsed = timestamp - start;
+            const progress = Math.min(elapsed / duration, 1); // Progreso global (0 a 1)
+            console.log("progress: ", progress)
+            let currentY;
+            if (!isReturning) {
+              // Primera fase: El sol baja
+              const easedProgress = easeOutCubic(progress);
+              currentY = startY + easedProgress * (endY - startY);
 
-  <!-- Sección Proyectos -->
-  <section id="proyectos" class="py-8 px-6 sm:py-12 sm:px-10 md:py-16 md:px-20 lg:px-32">
-    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-6 sm:mb-8 font-raleway flex items-center justify-center">
-      <FaProjectDiagram className="mr-2" /> Proyectos
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
-      {proyectos.map((project) => (
-        <ProyectoCard {...project} />
-      ))}
-    </div>
-  </section>
+              // Cambiar el color del cielo
+              if (currentY >= 425) {
+                sky.setAttribute('fill', '#000000'); // Color de noche
+              } else if (currentY >= 300) {
+                sky.setAttribute('fill', '#FFA500'); // Color de atardecer
+              }
 
-  <!-- Sección Tecnologías -->
-  <!--
-    <section id="tecnologias" class="py-8 px-6 sm:py-12 sm:px-10 md:py-16 md:px-20 lg:px-32">
-    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#1E3A8A] dark:text-[#F6C453] mb-6 sm:mb-8 font-raleway flex items-center justify-center">
-      <FaCode class="mr-2" /> Tecnologías que Manejo
-    </h2>
-    
-    <div class="w-full bg-[#F8FAFC] dark:bg-[#1E293B] p-8 rounded-lg shadow-lg mb-10">
-      <h3 class="text-lg sm:text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-4 sm:mb-6 font-raleway text-center">
-        Tecnologías Dominadas
-      </h3>
-      <div class="flex flex-wrap justify-center gap-4">
-        {tecnologiasDominadas.map((tech) => (
-          <TecnologiaCard {...tech} />
-        ))}
-      </div>
-    </div>
+              // Cuando la primera fase termina, inicia la segunda
+              if (progress === 1) {
+                isReturning = true; // Cambia a la fase de regreso
+                start = null; // Reinicia el tiempo para la segunda fase
+              }
+            } else {
+              // Segunda fase: El sol sube como luna
+              const easedProgress = easeOutCubic(progress);
+              currentY = endY - easedProgress * (endY - startY -10); // Movimiento inverso
 
-    <div class="w-full bg-[#F0F4F8] dark:bg-[#2C3E50] p-8 rounded-lg shadow-lg">
-      <h3 class="text-lg sm:text-xl font-semibold text-[#1E3A8A] dark:text-[#F6C453] mb-4 sm:mb-6 font-raleway text-center">
-        Tecnologías en Aprendizaje
-      </h3>
-      <div class="flex flex-wrap justify-center gap-4">
-        {tecnologiasEnAprendizaje.map((tech) => (
-          <TecnologiaCard {...tech} />
-        ))}
-      </div>
-    </div>
-  </section>
-  -->
+              // Cambiar el color del cielo para reflejar el amanecer
+              if (currentY <= 200) {
+                sky.setAttribute('fill', '#FFA500'); // Color de amanecer
+              } else if (currentY <= 200) {
+                sky.setAttribute('fill', '#87CEEB'); // Color de día
+              }
 
+              // Cambiar el color del sol a luna durante el ascenso
+              if (progress > 0.5) {
+                sky.setAttribute("fill", "#87CEEB")
+              }
+
+              // Cuando la segunda fase termina, detener la animación
+              if (progress === 1) {
+                console.log('Animación completada.');
+                return; // Detener la animación aquí
+              }
+            }
+
+            // Actualizar la posición del sol/luna
+            sun.setAttribute('cy', currentY);
+
+            // Continuar la animación
+            requestAnimationFrame(animate);
+          }
+
+          // Iniciar la animación
+          requestAnimationFrame(animate);
+        });
+
+        </script> 
+      </div> 
+
+      <!-- Mensaje Principal --> 
+      <h1 class="text-3xl lg:text-5xl font-extrabold mb-4 text-gray-800 dark:text-gray-100"> 
+        ¡Estamos mejorando la experiencia! 
+      </h1> 
+      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-6"> 
+        Actualmente estamos trabajando para ofrecerte un mejor servicio. Por favor, vuelve pronto para descubrir lo nuevo que tenemos para ti. 
+      </p> 
+    </div> 
+  </section> 
 </BaseLayout>
