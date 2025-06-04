@@ -1,0 +1,95 @@
+# Instalar Mermaid
+npm install mermaid
+
+# Después en tu componente Astro:
+# src/components/YamidEcosystem.astro
+
+---
+---
+
+<div id="mermaid-diagram" class="mermaid-container">
+  <!-- El diagrama se renderizará aquí -->
+</div>
+
+<script>
+  import mermaid from 'mermaid';
+  
+  const diagramDefinition = `
+    graph TB
+        YR[Yamid Rodriguez<br/>Estado: Privada]
+        MP[Marca Personal<br/>Estado: Pública]
+        
+        DEV[Desarrollo<br/>Creatividad • Visión • Holística]
+        TAR[Tarot<br/>Intuición • Símbolos • Posibilidades]
+        FIL[Filosofía<br/>Reflexiones • Argumentos • Valores]
+        PSI[Psicología<br/>Vivencias • Principios • Encarnación]
+        FOT[Fotografía<br/>Inspiración • Sentimientos • Perdurabilidad]
+        
+        YR --> |Atributos| AT[Capacidad Analítica<br/>Creatividad • Intuición<br/>Comunicación • Espiritualidad]
+        YR --> |Roles| RY[Observador Consciente<br/>Integrador • Sabio<br/>Analítico • Intuitivo]
+        
+        YR -.->|Interacción| MP
+        MP --> |Roles| RM[Integradora • Unificadora<br/>Mediadora • Educadora]
+        
+        MP -.->|Gestiona| DEV
+        MP -.->|Gestiona| TAR
+        MP -.->|Gestiona| FIL
+        MP -.->|Gestiona| PSI
+        MP -.->|Gestiona| FOT
+        
+        DEV <-->|Intercambio| TAR
+        DEV <-->|Intercambio| FIL
+        DEV <-->|Intercambio| PSI
+        DEV <-->|Intercambio| FOT
+        
+        TAR <-->|Intercambio| FIL
+        TAR <-->|Intercambio| PSI
+        TAR <-->|Intercambio| FOT
+        
+        FIL <-->|Intercambio| PSI
+        FIL <-->|Intercambio| FOT
+        
+        PSI <-->|Intercambio| FOT
+        
+        classDef private fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+        classDef public fill:#f3e5f5,stroke:#4a148c,stroke-width:3px
+        classDef area fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+        classDef attribute fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+        classDef role fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+        
+        class YR private
+        class MP public
+        class DEV,TAR,FIL,PSI,FOT area
+        class AT attribute
+        class RY,RM role
+  `;
+  
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default'
+  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const diagramElement = document.getElementById('mermaid-diagram');
+    if (diagramElement) {
+      mermaid.render('mermaid-graph', diagramDefinition)
+        .then(result => {
+          diagramElement.innerHTML = result.svg;
+        })
+        .catch(error => {
+          console.error('Error rendering Mermaid diagram:', error);
+        });
+    }
+  });
+</script>
+
+<style>
+  .mermaid-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+</style>

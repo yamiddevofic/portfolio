@@ -1,0 +1,222 @@
+{
+  "yamidRodriguez": {
+    "estado": "privada",
+    "atributos": [
+      "anecdotas",
+      "argumentos",
+      "capacidad analitica",
+      "capacidad de sintesis",
+      "comunicacion",
+      "creatividad",
+      "curiosidad",
+      "emocion",
+      "encarnación",
+      "energia subconsciente e inconsciente",
+      "escucha",
+      "espiritualidad",
+      "estetica",
+      "habilidad simbolica",
+      "holística",
+      "ideas",
+      "introspeccion",
+      "intuicion",
+      "lógico",
+      "método",
+      "observación",
+      "palabra",
+      "pensamiento analógico",
+      "percepcion",
+      "preguntas",
+      "principios",
+      "proposito",
+      "quietud",
+      "reflexiones",
+      "sensibilidad estetica",
+      "sentido",
+      "subjetividad",
+      "valores",
+      "vision",
+      "visión de contexto",
+      "vivencias"
+    ],
+    "interacciones": {
+      "marcaPersonal": {
+        "rolDesempenado": [
+          "observador consciente",
+          "integrador",
+          "sabio",
+          "observador",
+          "analitico",
+          "humano",
+          "valor_etico",
+          "inteligencia",
+          "original",
+          "unico",
+          "intuitivo",
+          "proposito",
+          "razonable",
+          "bondadoso",
+          "pensante",
+          "intelectual",
+          "presente",
+          "transparente",
+          "talentoso",
+          "creativo",
+          "nerd"
+        ]
+      }
+    }
+  },
+  "marcaPersonal": {
+    "estado": "publica",
+    "interacciones": {
+      "areas": {
+        "rolDesempenado": [
+          "integradora",
+          "unificadora",
+          "mediadora",
+          "comercial",
+          "colaboradora",
+          "cooperadora",
+          "compartida",
+          "discernida",
+          "divulgadora",
+          "educadora",
+          "comunicadora"
+        ]
+      }
+    }
+  },
+  "areas": {
+    "interacciones": {
+      "marcaPersonal": {
+        "rolDesempenado": [
+          "conocimiento",
+          "información",
+          "soportes",
+          "apoyo",
+          "aprendizaje",
+          "guia",
+          "entendimiento",
+          "entrenamiento",
+          "capacitación",
+          "investigación",
+          "estructura",
+          "inspiración",
+          "metodo",
+          "comunidad",
+          "técnicas",
+          "teoría",
+          "enfoque"
+        ]
+      }
+    },
+    "ecosistemaDeAreas": {
+      "desarrollo": {
+        "contribucionesClave": ["creatividad", "visión", "holística", "estética", "intuición", "sentido", "propósito"],
+        "relaciones": {
+          "tarot": {
+            "aporteA": ["estructuración de arquetipos", "interfaces simbólicas", "sistemas de lectura digital"],
+            "recibeDe": ["intuición", "lectura simbólica", "posibilidades narrativas"]
+          },
+          "filosofia": {
+            "aporteA": ["modelos lógicos", "sistemas de pensamiento", "prototipos racionales"],
+            "recibeDe": ["preguntas fundamentales", "estructuras de sentido", "visión crítica"]
+          },
+          "psicologia": {
+            "aporteA": ["experiencias interactivas", "modelado de comportamiento", "UX basada en emociones"],
+            "recibeDe": ["procesos mentales", "mapas de emociones", "teorías de la mente"]
+          },
+          "fotografia": {
+            "aporteA": ["automatización de edición", "sistemas interactivos", "apps creativas"],
+            "recibeDe": ["estética visual", "composición emocional", "narrativa visual"]
+          }
+        }
+      },
+      "tarot": {
+        "contribucionesClave": ["opciones", "posibilidades", "conocimiento simbólico", "guía", "conexión con lo inconsciente", "intuición"],
+        "relaciones": {
+          "desarrollo": {
+            "aporteA": ["lenguaje simbólico", "interfaces intuitivas", "experiencias mágicas"],
+            "recibeDe": ["estructura lógica", "prototipado digital", "interacción tecnológica"]
+          },
+          "filosofia": {
+            "aporteA": ["sabiduría arquetípica", "mapas del alma", "conexión con lo eterno"],
+            "recibeDe": ["cosmovisiones", "preguntas esenciales", "visión crítica"]
+          },
+          "psicologia": {
+            "aporteA": ["lectura emocional", "diálogo con el inconsciente", "proceso terapéutico"],
+            "recibeDe": ["teorías de la personalidad", "marcos de análisis mental", "valores y principios"]
+          },
+          "fotografia": {
+            "aporteA": ["arquetipos visuales", "composición simbólica"],
+            "recibeDe": ["estética narrativa", "color emocional", "tiempo detenido"]
+          }
+        }
+      },
+      "filosofia": {
+        "contribucionesClave": ["preguntas", "reflexiones", "argumentos", "valores", "principios", "vivencias", "anécdota", "encarnación de ideas"],
+        "relaciones": {
+          "desarrollo": {
+            "aporteA": ["crítica a sistemas", "fundamentación de ideas", "coherencia ética"],
+            "recibeDe": ["soluciones aplicadas", "herramientas de modelado", "estructuras prácticas"]
+          },
+          "tarot": {
+            "aporteA": ["estructura metafísica", "lenguaje simbólico profundo"],
+            "recibeDe": ["acceso intuitivo a verdades", "arquetipos como ideas vivas"]
+          },
+          "psicologia": {
+            "aporteA": ["ética existencial", "reflexión sobre la mente", "crítica de paradigmas"],
+            "recibeDe": ["casos reales", "teorías psicológicas", "comprobación empírica"]
+          },
+          "fotografia": {
+            "aporteA": ["crítica estética", "teoría de la imagen", "interpretación visual"],
+            "recibeDe": ["inspiración sensible", "experiencia directa", "intimidad visual"]
+          }
+        }
+      },
+      "psicologia": {
+        "contribucionesClave": ["preguntas", "reflexiones", "argumentos", "valores", "principios", "vivencias", "anécdota", "encarnación de ideas"],
+        "relaciones": {
+          "desarrollo": {
+            "aporteA": ["modelos de usuario", "diseño centrado en la persona", "teoría de emociones"],
+            "recibeDe": ["simulaciones", "experimentos", "datos estructurados"]
+          },
+          "tarot": {
+            "aporteA": ["análisis de símbolos desde el inconsciente", "puentes terapéuticos"],
+            "recibeDe": ["intuición profunda", "arquetipos vivos", "conexión con lo no verbal"]
+          },
+          "filosofia": {
+            "aporteA": ["humanismo psicológico", "visión crítica del alma"],
+            "recibeDe": ["principios éticos", "teorías de la conciencia"]
+          },
+          "fotografia": {
+            "aporteA": ["expresión emocional visual", "documentación del yo"],
+            "recibeDe": ["representación estética de estados mentales"]
+          }
+        }
+      },
+      "fotografia": {
+        "contribucionesClave": ["perdurabilidad", "inspiración", "transmisión de sentimientos o mensajes"],
+        "relaciones": {
+          "desarrollo": {
+            "aporteA": ["riqueza visual", "valor emocional en productos"],
+            "recibeDe": ["automatización", "interactividad", "algoritmos de mejora"]
+          },
+          "tarot": {
+            "aporteA": ["iconografía mística", "lectura visual arquetípica"],
+            "recibeDe": ["estructura simbólica", "ritualidad"]
+          },
+          "filosofia": {
+            "aporteA": ["pensamiento visual", "teoría estética"],
+            "recibeDe": ["marcos interpretativos", "contexto histórico"]
+          },
+          "psicologia": {
+            "aporteA": ["captura de la emoción", "terapia visual"],
+            "recibeDe": ["guía emocional", "narrativa del yo"]
+          }
+        }
+      }
+    }
+  }
+}

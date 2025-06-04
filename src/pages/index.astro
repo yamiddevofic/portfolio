@@ -1,103 +1,470 @@
---- 
-import BaseLayout from '../Layouts/BaseLayout.astro'; 
---- 
-<BaseLayout> 
-  <section id="maintenance" class="flex items-center justify-center min-h-[100vh]  px-8 py-10 md:px-12 lg:px-22 bg-gray-100 dark:bg-gray-900 overflow-auto"> 
-    <div class="text-center w-full max-w-4xl m-5 mt-20 bg-white/95 dark:bg-[#1E293B]/90 p-8 md:p-10 lg:p-12 rounded-lg shadow-lg"> 
-      <!-- Icono SVG --> 
-      <div class="flex justify-center mb-6"> 
-        <svg id="Layer_1" enable-background="new 0 0 512.032 512.032" viewBox="0 0 512.032 512.032" xmlns="http://www.w3.org/2000/svg" width="200" height="200" style="border-radius: 50%;"> 
-          <!-- Fondo del cielo --> 
-          <rect id="sky" width="100%" height="100%" fill="#87CEEB" /> 
+---
+import BaseLayout from '../Layouts/BaseLayout.astro';
+---
 
-          <!-- Sol --> 
-          <circle id="sun" cx="256.016" cy="79" fill="#ffe470" r="79" /> 
+<BaseLayout title="Yamid Rodriguez">
+  <div class="diagram-wrapper">
+    <!-- Controles de Zoom -->
+    <div class="zoom-controls">
+      <button id="zoomIn" class="zoom-btn" title="Acercar">+</button>
+      <button id="zoomOut" class="zoom-btn" title="Alejar">−</button>
+      <button id="resetZoom" class="zoom-btn reset" title="Restablecer">⌂</button>
+      <span class="zoom-level" id="zoomLevel">100%</span>
+    </div>
+    
+    <div id="mermaid-container" class="mermaid-container">
+      <div id="mermaid-diagram" class="mermaid-content"></div>
+    </div>
+  </div>
 
-          <!-- Montañas --> 
-          <g id="mountains"> 
-            <path d="m269.562 302.925c-70.36-46.299-157.915-75.142-253.198-83.41l-16.297-1.414v116.753l184.671 44.383 104.691-63.239z" fill="#00cc71"/> 
-            <path d="m496.801 251.462c-130.584 1.427-236.427 34.063-323.577 99.774l-18.842 14.207 110.339 58.343 247.244-56.807v-115.683z" fill="#009985"/> 
-            <path d="m275.166 395.467c-71.551-48.073-163.462-79.105-258.802-87.379l-16.297-1.414v205.358h145.521l147.637-104.432z" fill="#c7eb4b"/> 
-            <path d="m496.801 340.036c-71.398.78-138.431 13.468-199.234 37.71-60.869 24.269-117.089 60.75-167.099 108.43l-27.12 25.856h408.617v-172.162z" fill="#a7d22a"/> 
-          </g> 
-        </svg> 
+  <script>
+    import mermaid from 'mermaid';
 
-        <script> 
-          document.addEventListener('DOMContentLoaded', () => {
-            const sun = document.getElementById('sun');
-            const sky = document.getElementById('sky');
-            const duration = 2000; // Duración total de cada fase (en milisegundos)
-            const startY = 79; // Posición inicial del sol
-            const midY = 100; // Punto intermedio
-            const endY = 250; // Posición final del sol
-            let start: DOMHighResTimeStamp | null = null;
-            let isReturning = false; // Indica si el sol está regresando como luna
+    const diagramDefinition = `
+      %%{init: {
+        'theme': 'base',
+        'themeVariables': {
+          'primaryColor': '#6b46c1',
+          'secondaryColor': '#805ad5',
+          'tertiaryColor': '#ecc94b',
+          'lineColor': '#2d3748',
+          'background': '#f7fafc',
+          'edgeLabelBackground': '#ffffff',
+          'nodeBorderRadius': '8',
+          'fontFamily': 'Arial, sans-serif',
+          'clusterBkg': '#faf5ff',
+          'clusterBorder': '#6b46c1'
+        },
+        'flowchart': {
+          'zoom': true,
+          'pan': true
+        }
+      }}%%
 
-            function easeOutCubic(t: number): number {
-              return 1 - Math.pow(1 - t, 1); // Easing para suavizar el final
+      graph TD;
+
+    %% Entidad Central - Yamid Rodriguez (Privada)
+    subgraph sg_YR ["🧠 YAMID RODRIGUEZ - Esencia Privada"]
+        direction TB
+        YR["<b>YAMID RODRIGUEZ</b><br/>🎯 Persona Integral"]
+        
+        subgraph YR_Attributes ["🌟 Atributos Nucleares"]
+            direction TB
+            YR_Mental["<b>🧠 MENTAL</b><br/>• Capacidad analítica<br/>• Capacidad de síntesis<br/>• Lógico • Método<br/>• Visión de contexto<br/>• Observación • Percepción"]
+            YR_Creative["<b>🎨 CREATIVO</b><br/>• Creatividad • Estética<br/>• Habilidad simbólica<br/>• Sensibilidad estética<br/>• Pensamiento analógico<br/>• Ideas • Originalidad"]
+            YR_Spiritual["<b>🔮 ESPIRITUAL</b><br/>• Espiritualidad • Intuición<br/>• Energía subconsciente<br/>• Holística • Quietud<br/>• Propósito • Sentido"]
+            YR_Human["<b>👤 HUMANO</b><br/>• Comunicación • Escucha<br/>• Emoción • Vivencias<br/>• Valores • Principios<br/>• Anécdotas • Encarnación"]
+            YR_Reflective["<b>🤔 REFLEXIVO</b><br/>• Argumentos • Preguntas<br/>• Reflexiones • Introspección<br/>• Subjetividad • Curiosidad<br/>• Palabra • Transparencia"]
+        end
+        
+        YR --- YR_Attributes
+    end
+
+    %% Marca Personal (Pública)
+    subgraph sg_MP ["🌟 MARCA PERSONAL - Interface Pública"]
+        direction TB
+        MP["<b>MARCA PERSONAL</b><br/>💼 Proyección al Mundo"]
+        
+        subgraph MP_Roles ["🎭 Roles Desempeñados"]
+            direction LR
+            MP_Observer["<b>👁️ OBSERVADOR</b><br/>• Observador consciente<br/>• Analítico • Presente"]
+            MP_Integrator["<b>🔗 INTEGRADOR</b><br/>• Integrador • Unificador<br/>• Mediador • Sabio"]
+            MP_Communicator["<b>📢 COMUNICADOR</b><br/>• Comunicador • Educador<br/>• Divulgador • Compartido"]
+            MP_Collaborator["<b>🤝 COLABORADOR</b><br/>• Colaborador • Cooperador<br/>• Comercial • Discernido"]
+        end
+        
+        subgraph MP_Qualities ["✨ Cualidades Proyectadas"]
+            direction LR
+            MP_Intellectual["<b>🎓 INTELECTUAL</b><br/>• Inteligencia • Pensante<br/>• Razonable • Nerd"]
+            MP_Creative_Q["<b>🎨 CREATIVO</b><br/>• Creativo • Talentoso<br/>• Único • Original"]
+            MP_Ethical["<b>⚖️ ÉTICO</b><br/>• Valor ético • Bondadoso<br/>• Intuitivo • Propósito"]
+        end
+        
+        MP --- MP_Roles
+        MP --- MP_Qualities
+    end
+
+    %% Ecosistema de Áreas
+    subgraph sg_EcosistemaCompleto ["🌐 ECOSISTEMA DE CONOCIMIENTO"]
+        direction TB
+        
+        subgraph sg_Desarrollo ["💻 DESARROLLO DE SOFTWARE"]
+            direction TB
+            Des["<b>🚀 DESARROLLO</b><br/>Soluciones Tecnológicas"]
+            Des_Contrib["<b>🎯 Contribuciones Clave:</b><br/>• Creatividad en soluciones<br/>• Visión sistémica holística<br/>• Sentido estético en UX<br/>• Intuición tecnológica<br/>• Propósito en productos"]
+            Des --- Des_Contrib
+        end
+
+        subgraph sg_Tarot ["🔮 TAROT & SIMBOLISMO"]
+            direction TB
+            Tar["<b>🌙 TAROT</b><br/>Sabiduría Arquetípica"]
+            Tar_Contrib["<b>🎴 Contribuciones Clave:</b><br/>• Apertura de opciones<br/>• Exploración de posibilidades<br/>• Conocimiento simbólico<br/>• Guía intuitiva<br/>• Conexión inconsciente"]
+            Tar --- Tar_Contrib
+        end
+
+        subgraph sg_Filosofia ["🏛️ FILOSOFÍA & REFLEXIÓN"]
+            direction TB
+            Fil["<b>📚 FILOSOFÍA</b><br/>Pensamiento Crítico"]
+            Fil_Contrib["<b>🤔 Contribuciones Clave:</b><br/>• Preguntas fundamentales<br/>• Reflexiones críticas<br/>• Argumentación sólida<br/>• Definición de valores<br/>• Encarnación de ideas"]
+            Fil --- Fil_Contrib
+        end
+
+        subgraph sg_Psicologia ["🧠 PSICOLOGÍA HUMANA"]
+            direction TB
+            Psi["<b>💭 PSICOLOGÍA</b><br/>Comprensión Humana"]
+            Psi_Contrib["<b>🔍 Contribuciones Clave:</b><br/>• Comprensión profunda<br/>• Análisis comportamental<br/>• Exploración emocional<br/>• Desarrollo personal<br/>• Procesos terapéuticos"]
+            Psi --- Psi_Contrib
+        end
+
+        subgraph sg_Fotografia ["📸 ARTE FOTOGRÁFICO"]
+            direction TB
+            Fot["<b>📷 FOTOGRAFÍA</b><br/>Expresión Visual"]
+            Fot_Contrib["<b>🎨 Contribuciones Clave:</b><br/>• Captura de momentos<br/>• Perdurabilidad visual<br/>• Inspiración estética<br/>• Transmisión emocional<br/>• Narrativa visual"]
+            Fot --- Fot_Contrib
+        end
+    end
+
+    %% Conexiones Principales
+    YR -.->|"<b>🔄 TRANSFORMACIÓN CONSCIENTE</b><br/>Observador → Integrador → Sabio<br/>Analítico → Humano → Creativo<br/>"| MP;
+    
+    MP ==>|"<b>⚡ SINERGIA ACTIVA</b><br/>Integra • Unifica • Media<br/>Educa • Colabora • Comunica<br/>Comercializa • Divulga"| sg_EcosistemaCompleto;
+    
+    sg_EcosistemaCompleto ==>|"<b>🔄 RETROALIMENTACIÓN</b><br/>Conocimiento • Estructura • Inspiración<br/>Métodos • Comunidad • Teoría<br/>Enfoque • Entrenamiento • Guía"| MP;
+
+    %% Interrelaciones Detalladas entre Áreas
+    
+    %% DESARROLLO ↔ TAROT
+    Des -.->|"<b>💻→🔮 ESTRUCTURACIÓN</b><br/>• Arquetipos digitales<br/>• Sistemas de lectura<br/>• Interfaces simbólicas"| Tar;
+    Tar -.->|"<b>🔮→💻 INTUICIÓN</b><br/>• Lenguaje simbólico<br/>• Experiencias mágicas<br/>• Narrativas interactivas"| Des;
+
+    %% DESARROLLO ↔ FILOSOFÍA
+    Des -.->|"<b>💻→🏛️ MODELADO</b><br/>• Sistemas de pensamiento<br/>• Prototipos racionales<br/>• Modelos lógicos"| Fil;
+    Fil -.->|"<b>🏛️→💻 FUNDAMENTACIÓN</b><br/>• Crítica de sistemas<br/>• Coherencia ética<br/>• Visión estructural"| Des;
+
+    %% DESARROLLO ↔ PSICOLOGÍA
+    Des -.->|"<b>💻→🧠 MODELADO UX</b><br/>• Experiencias interactivas<br/>• Comportamiento digital<br/>• Emociones en interfaces"| Psi;
+    Psi -.->|"<b>🧠→💻 DISEÑO HUMANO</b><br/>• Modelos de usuario<br/>• Teorías de emoción<br/>• Centrado en la persona"| Des;
+
+    %% DESARROLLO ↔ FOTOGRAFÍA
+    Des -.->|"<b>💻→📸 AUTOMATIZACIÓN</b><br/>• Apps creativas<br/>• Edición automática<br/>• Sistemas interactivos"| Fot;
+    Fot -.->|"<b>📸→💻 ESTÉTICA</b><br/>• Riqueza visual<br/>• Valor emocional<br/>• Narrativa en productos"| Des;
+
+    %% TAROT ↔ FILOSOFÍA
+    Tar -.->|"<b>🔮→🏛️ SABIDURÍA</b><br/>• Arquetipos como ideas<br/>• Mapas del alma<br/>• Conexión con lo eterno"| Fil;
+    Fil -.->|"<b>🏛️→🔮 ESTRUCTURA</b><br/>• Marco metafísico<br/>• Lenguaje simbólico<br/>• Cosmovisiones profundas"| Tar;
+
+    %% TAROT ↔ PSICOLOGÍA
+    Tar -.->|"<b>🔮→🧠 INCONSCIENTE</b><br/>• Lectura emocional<br/>• Diálogo interior<br/>• Proceso terapéutico"| Psi;
+    Psi -.->|"<b>🧠→🔮 ANÁLISIS</b><br/>• Símbolos del inconsciente<br/>• Puentes terapéuticos<br/>• Teorías de personalidad"| Tar;
+
+    %% TAROT ↔ FOTOGRAFÍA
+    Tar -.->|"<b>🔮→📸 ARQUETIPOS</b><br/>• Composición simbólica<br/>• Iconografía mística<br/>• Lectura visual"| Fot;
+    Fot -.->|"<b>📸→🔮 NARRATIVA</b><br/>• Estética arquetípica<br/>• Color emocional<br/>• Tiempo ritualizado"| Tar;
+
+    %% FILOSOFÍA ↔ PSICOLOGÍA
+    Fil -.->|"<b>🏛️→🧠 ÉTICA</b><br/>• Reflexión mental<br/>• Crítica de paradigmas<br/>• Existencial humanista"| Psi;
+    Psi -.->|"<b>🧠→🏛️ EMPIRISMO</b><br/>• Casos reales<br/>• Comprobación vivencial<br/>• Teorías aplicadas"| Fil;
+
+    %% FILOSOFÍA ↔ FOTOGRAFÍA
+    Fil -.->|"<b>🏛️→📸 TEORÍA</b><br/>• Crítica estética<br/>• Teoría de la imagen<br/>• Interpretación visual"| Fot;
+    Fot -.->|"<b>📸→🏛️ EXPERIENCIA</b><br/>• Inspiración sensible<br/>• Pensamiento visual<br/>• Intimidad reflexiva"| Fil;
+
+    %% PSICOLOGÍA ↔ FOTOGRAFÍA
+    Psi -.->|"<b>🧠→📸 EXPRESIÓN</b><br/>• Documentación del yo<br/>• Estados mentales<br/>• Terapia visual"| Fot;
+    Fot -.->|"<b>📸→🧠 CAPTURA</b><br/>• Emoción visual<br/>• Representación estética<br/>• Narrativa personal"| Psi;
+
+    %% Estilos Visuales Mejorados
+    style sg_YR fill:#667eea,color:#fff,stroke:#4a5568,stroke-width:4px
+    style sg_MP fill:#f093fb,color:#fff,stroke:#4a5568,stroke-width:4px
+    style sg_EcosistemaCompleto fill:#4facfe,color:#fff,stroke:#2d3748,stroke-width:4px
+    
+    style YR fill:#e2e8f0,stroke:#4a5568,stroke-width:3px,color:#2d3748
+    style MP fill:#fed7d7,stroke:#e53e3e,stroke-width:3px,color:#742a2a
+    
+    style YR_Attributes fill:#f7fafc,stroke:#718096,stroke-width:2px
+    style MP_Roles fill:#fef5e7,stroke:#d69e2e,stroke-width:2px
+    style MP_Qualities fill:#e6fffa,stroke:#319795,stroke-width:2px
+    
+    style sg_Desarrollo fill:#a8edea,stroke:#319795,stroke-width:3px,color:#234e52
+    style sg_Tarot fill:#d299c2,stroke:#805ad5,stroke-width:3px,color:#44337a
+    style sg_Filosofia fill:#89f7fe,stroke:#3182ce,stroke-width:3px,color:#2a4365
+    style sg_Psicologia fill:#fa709a,stroke:#e53e3e,stroke-width:3px,color:#742a2a
+    style sg_Fotografia fill:#ffd89b,stroke:#d69e2e,stroke-width:3px,color:#744210
+    
+    style Des fill:#f0fff4,stroke:#38a169,stroke-width:2px,color:#22543d
+    style Tar fill:#faf5ff,stroke:#805ad5,stroke-width:2px,color:#44337a
+    style Fil fill:#e6fffa,stroke:#319795,stroke-width:2px,color:#234e52
+    style Psi fill:#fff5f5,stroke:#e53e3e,stroke-width:2px,color:#742a2a
+    style Fot fill:#fffbeb,stroke:#d69e2e,stroke-width:2px,color:#744210
+    `;
+
+    // Variables de zoom y pan
+    let currentZoom = 1;
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let translateX = 0;
+    let translateY = 0;
+    let diagramElement;
+
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'loose'
+    });
+
+    function updateZoomLevel() {
+      document.getElementById('zoomLevel').textContent = Math.round(currentZoom * 100) + '%';
+    }
+
+    function applyTransform() {
+      if (diagramElement) {
+        diagramElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+      }
+    }
+
+    function zoomIn() {
+      currentZoom = Math.min(currentZoom * 1.2, 8);
+      applyTransform();
+      updateZoomLevel();
+    }
+
+    function zoomOut() {
+      currentZoom = Math.max(currentZoom / 1.2, 0.1);
+      applyTransform();
+      updateZoomLevel();
+    }
+
+    function resetZoom() {
+      currentZoom = 1;
+      translateX = 0;
+      translateY = 0;
+      applyTransform();
+      updateZoomLevel();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      mermaid.render('graphDiv', diagramDefinition).then(({ svg }) => {
+        const container = document.getElementById('mermaid-diagram');
+        container.innerHTML = svg;
+        
+        diagramElement = container.querySelector('svg');
+        diagramElement.style.transformOrigin = 'center center';
+        diagramElement.style.transition = 'transform 0.2s ease';
+
+        // Event listeners para controles
+        document.getElementById('zoomIn').addEventListener('click', zoomIn);
+        document.getElementById('zoomOut').addEventListener('click', zoomOut);
+        document.getElementById('resetZoom').addEventListener('click', resetZoom);
+
+        // Zoom con rueda del mouse
+        const mermaidContainer = document.getElementById('mermaid-container');
+        mermaidContainer.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const rect = mermaidContainer.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+          
+          const prevZoom = currentZoom;
+          
+          if (e.deltaY < 0) {
+            currentZoom = Math.min(currentZoom * 1.1, 8);
+          } else {
+            currentZoom = Math.max(currentZoom / 1.1, 0.1);
+          }
+          
+          // Ajustar la posición para hacer zoom hacia el cursor
+          const zoomFactor = currentZoom / prevZoom;
+          translateX = mouseX - (mouseX - translateX) * zoomFactor;
+          translateY = mouseY - (mouseY - translateY) * zoomFactor;
+          
+          applyTransform();
+          updateZoomLevel();
+        });
+
+        // Pan con arrastrar
+        mermaidContainer.addEventListener('mousedown', (e) => {
+          if (e.button === 0) { // Solo botón izquierdo
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            mermaidContainer.style.cursor = 'grabbing';
+            e.preventDefault();
+          }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (isDragging) {
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            applyTransform();
+          }
+        });
+
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+          document.getElementById('mermaid-container').style.cursor = 'grab';
+        });
+
+        // Zoom con teclado
+        document.addEventListener('keydown', (e) => {
+          if (e.ctrlKey || e.metaKey) {
+            if (e.key === '+' || e.key === '=') {
+              e.preventDefault();
+              zoomIn();
+            } else if (e.key === '-') {
+              e.preventDefault();
+              zoomOut();
+            } else if (e.key === '0') {
+              e.preventDefault();
+              resetZoom();
             }
+          }
+        });
 
-            function animate(timestamp: DOMHighResTimeStamp) {
-              if (!start) start = timestamp;
-              const elapsed = timestamp - start;
-              const progress = Math.min(elapsed / duration, 1); // Progreso global (0 a 1)
-              console.log("progress: ", progress);
-              let currentY: number;
+        updateZoomLevel();
+      });
+    });
+  </script>
 
-              if (!isReturning) {
-                // Primera fase: El sol baja
-                const easedProgress = easeOutCubic(progress);
-                currentY = startY + easedProgress * (endY - startY);
+  <style>
+    .diagram-wrapper {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      background: linear-gradient(135deg, rgba(104,16,241,0.05) 0%, rgba(124,77,255,0.05) 100%);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
 
-                // Cambiar el color del cielo
-                if (sky) {
-                  if (currentY >= 200) {
-                    sky.setAttribute('fill', '#FFA500'); // Color de atardecer
-                  }
-                }
+    .zoom-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+    }
 
-                // Cuando la primera fase termina, inicia la segunda
-                if (progress === 1) {
-                  isReturning = true; // Cambia a la fase de regreso
-                }
-              } else {
-                // Segunda fase: El sol sube como luna
-                const easedProgress = easeOutCubic(progress);
-                currentY = endY - easedProgress * (endY - startY - 10); // Movimiento inverso
+    .zoom-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 8px;
+      background: #6b46c1;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
 
-              
+    .zoom-btn:hover {
+      background: #553c9a;
+      transform: scale(1.05);
+    }
 
-                // Cuando la segunda fase termina, detener la animación
-                if (progress === 1) {
-                  console.log('Animación completada.');
-                  return; // Detener la animación aquí
-                }
-              }
+    .zoom-btn:active {
+      transform: scale(0.95);
+    }
 
-              // Actualizar la posición del sol/luna
-              if (sun) {
-                sun.setAttribute('cy', currentY.toString());
-              }
+    .zoom-btn.reset {
+      background: #059669;
+      font-size: 16px;
+    }
 
-              // Continuar la animación
-              requestAnimationFrame(animate);
-            }
+    .zoom-btn.reset:hover {
+      background: #047857;
+    }
 
-            // Iniciar la animación
-            requestAnimationFrame(animate);
-          });
+    .zoom-level {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #374151;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      min-width: 50px;
+      justify-content: center;
+    }
 
+    .mermaid-container {
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      cursor: grab;
+      overflow: hidden;
+      position: relative;
+    }
 
-        </script> 
-      </div> 
+    .mermaid-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-      <!-- Mensaje Principal --> 
-      <h1 class="text-3xl lg:text-5xl font-extrabold mb-4 text-gray-800 dark:text-gray-100"> 
-        ¡Estamos mejorando la experiencia! 
-      </h1> 
-      <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-6"> 
-        Actualmente estamos trabajando para ofrecerte un mejor servicio. Por favor, vuelve pronto para descubrir lo nuevo que tenemos para ti. 
-      </p> 
-    </div> 
-  </section> 
+    .mermaid-content svg {
+      max-width: none !important;
+      max-height: none !important;
+      cursor: inherit;
+    }
+
+    .mermaid-container:active {
+      cursor: grabbing;
+    }
+
+    /* Información de controles */
+    .diagram-wrapper::after {
+      content: "💡 Usa Ctrl + rueda del mouse para zoom, arrastra para mover, o usa los controles";
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .zoom-controls {
+        top: 10px;
+        right: 10px;
+        gap: 4px;
+        padding: 6px;
+      }
+      
+      .zoom-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+      }
+      
+      .zoom-level {
+        padding: 0 8px;
+        font-size: 12px;
+        min-width: 45px;
+      }
+      
+      .diagram-wrapper::after {
+        display: none;
+      }
+    }
+  </style>
 </BaseLayout>

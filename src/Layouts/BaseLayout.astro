@@ -1,6 +1,6 @@
 ---
 import Header from '../components/Header.jsx';
-import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.jsx';
 ---
 
 <html lang="es">
@@ -12,9 +12,9 @@ import Footer from '../components/Footer.astro';
     <link rel="stylesheet" href="/styles/global.css" />
     <!-- Meta etiquetas adicionales -->
   </head>
-  <body class="font-raleway bg-gradient-to-b from-[#D8EAF5] to-[#E6F5EA] dark:from-[#0B0F1A] dark:to-[#151C27] min-h-screen text-gray-900 dark:text-gray-100">
+  <body class="font-raleway bg-gradient-to-b from-[#D8EAF5] to-[#E6F5EA] dark:from-[#0B0F1A] dark:to-[#151C27] min-h-screen text-gray-900 dark:text-gray-100 h-[100vh]">
     <Header client:load />
-    <main>
+    <main class="min-h-screen flex flex-col justify-between p-[4rem_1rem_1rem_1rem]">
       <slot />
     </main>
     <Footer />
