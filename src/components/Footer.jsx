@@ -283,9 +283,12 @@ const Footer = () => {
           style={{ borderColor: '#306677' }}
         >
           <div className="flex items-center space-x-1 text-sm" style={{ color: '#69998c' }}>
-            <span>© 2024 Tu Empresa. Hecho con</span>
+            <span>© 2025 Tu Empresa. Hecho con</span>
             <Heart size={14} className="text-red-400 animate-pulse" />
-            <span>por nuestro equipo</span>
+            <span>por Yamid Dev</span>
+          </div>
+          <div className="flex items-center space-x-1 text-sm" style={{ color: '#69998c' }}>
+            <span>Powered by Claude AI & Astro</span>
           </div>
           
           <div className="flex items-center space-x-6">
