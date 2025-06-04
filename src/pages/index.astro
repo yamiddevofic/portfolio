@@ -28,6 +28,11 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       translateX: number;
       translateY: number;
       diagramElement: SVGElement | null;
+      // Touch specific properties
+      isPinching: boolean;
+      initialDistance: number;
+      initialZoom: number;
+      touches: Touch[];
     }
 
     const diagramDefinition: string = `
@@ -216,7 +221,12 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       startY: 0,
       translateX: 0,
       translateY: 0,
-      diagramElement: null
+      diagramElement: null,
+      // Touch specific properties
+      isPinching: false,
+      initialDistance: 0,
+      initialZoom: 1,
+      touches: []
     };
 
     const updateZoomLevel = (): void => {
@@ -253,6 +263,22 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       updateZoomLevel();
     };
 
+    // Función para calcular la distancia entre dos puntos touch
+    const getDistance = (touch1: Touch, touch2: Touch): number => {
+      const dx = touch1.clientX - touch2.clientX;
+      const dy = touch1.clientY - touch2.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    };
+
+    // Función para obtener el centro entre dos puntos touch
+    const getCenter = (touch1: Touch, touch2: Touch): { x: number, y: number } => {
+      return {
+        x: (touch1.clientX + touch2.clientX) / 2,
+        y: (touch1.clientY + touch2.clientY) / 2
+      };
+    };
+
+    // Eventos de mouse (desktop)
     const handleWheelZoom = (e: WheelEvent): void => {
       e.preventDefault();
       const mermaidContainer = document.getElementById('mermaid-container');
@@ -308,6 +334,75 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       }
     };
 
+    // Eventos táctiles (móvil)
+    const handleTouchStart = (e: TouchEvent): void => {
+      e.preventDefault();
+      zoomState.touches = Array.from(e.touches);
+
+      if (e.touches.length === 1) {
+        // Un dedo - pan
+        zoomState.isDragging = true;
+        zoomState.startX = e.touches[0].clientX - zoomState.translateX;
+        zoomState.startY = e.touches[0].clientY - zoomState.translateY;
+      } else if (e.touches.length === 2) {
+        // Dos dedos - pinch zoom
+        zoomState.isDragging = false;
+        zoomState.isPinching = true;
+        zoomState.initialDistance = getDistance(e.touches[0], e.touches[1]);
+        zoomState.initialZoom = zoomState.currentZoom;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent): void => {
+      e.preventDefault();
+
+      if (e.touches.length === 1 && zoomState.isDragging && !zoomState.isPinching) {
+        // Pan con un dedo
+        zoomState.translateX = e.touches[0].clientX - zoomState.startX;
+        zoomState.translateY = e.touches[0].clientY - zoomState.startY;
+        applyTransform();
+      } else if (e.touches.length === 2 && zoomState.isPinching) {
+        // Pinch zoom con dos dedos
+        const currentDistance = getDistance(e.touches[0], e.touches[1]);
+        const scale = currentDistance / zoomState.initialDistance;
+        
+        const newZoom = Math.max(0.1, Math.min(8, zoomState.initialZoom * scale));
+        
+        // Obtener el centro del pinch
+        const mermaidContainer = document.getElementById('mermaid-container');
+        if (mermaidContainer) {
+          const rect = mermaidContainer.getBoundingClientRect();
+          const center = getCenter(e.touches[0], e.touches[1]);
+          const centerX = center.x - rect.left;
+          const centerY = center.y - rect.top;
+          
+          // Calcular nueva posición manteniendo el centro del pinch
+          const zoomFactor = newZoom / zoomState.currentZoom;
+          zoomState.translateX = centerX - (centerX - zoomState.translateX) * zoomFactor;
+          zoomState.translateY = centerY - (centerY - zoomState.translateY) * zoomFactor;
+        }
+        
+        zoomState.currentZoom = newZoom;
+        applyTransform();
+        updateZoomLevel();
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent): void => {
+      e.preventDefault();
+      
+      if (e.touches.length < 2) {
+        zoomState.isPinching = false;
+      }
+      
+      if (e.touches.length === 0) {
+        zoomState.isDragging = false;
+        zoomState.isPinching = false;
+      }
+      
+      zoomState.touches = Array.from(e.touches);
+    };
+
     const handleKeyboardZoom = (e: KeyboardEvent): void => {
       if (e.ctrlKey || e.metaKey) {
         if (e.key === '+' || e.key === '=') {
@@ -344,7 +439,7 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
         if (svgElement) {
           zoomState.diagramElement = svgElement;
           svgElement.style.transformOrigin = 'center center';
-          svgElement.style.transition = 'transform 0.2s ease';
+          svgElement.style.transition = 'transform 0.1s ease';
         }
 
         // Event listeners para controles
@@ -357,17 +452,20 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
         if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
         if (resetZoomBtn) resetZoomBtn.addEventListener('click', resetZoom);
 
-        // Zoom con rueda del mouse
         if (mermaidContainer) {
-          mermaidContainer.addEventListener('wheel', handleWheelZoom);
+          // Eventos de mouse (desktop)
+          mermaidContainer.addEventListener('wheel', handleWheelZoom, { passive: false });
           mermaidContainer.addEventListener('mousedown', handleMouseDown);
+          
+          // Eventos táctiles (móvil)
+          mermaidContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+          mermaidContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+          mermaidContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
         }
 
-        // Pan con arrastrar
+        // Eventos globales
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
-
-        // Zoom con teclado
         document.addEventListener('keydown', handleKeyboardZoom);
 
         updateZoomLevel();
@@ -418,6 +516,13 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       align-items: center;
       justify-content: center;
       transition: all 0.2s ease;
+      /* Mejorar interacción táctil */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .zoom-btn:hover {
@@ -459,6 +564,14 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       cursor: grab;
       overflow: hidden;
       position: relative;
+      /* Configuración táctil */
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .mermaid-content {
@@ -473,6 +586,13 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       max-width: none !important;
       max-height: none !important;
       cursor: inherit;
+      /* Prevenir selección en móvil */
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .mermaid-container:active {
@@ -496,6 +616,10 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
 
     /* Responsive */
     @media (max-width: 768px) {
+      .diagram-wrapper {
+        height: 85vh;
+      }
+      
       .zoom-controls {
         top: 10px;
         right: 10px;
@@ -504,9 +628,12 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
       }
       
       .zoom-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        /* Mejorar área táctil */
+        min-width: 44px;
+        min-height: 44px;
       }
       
       .zoom-level {
@@ -515,8 +642,55 @@ import BaseLayout from '../Layouts/BaseLayout.astro';
         min-width: 45px;
       }
       
+      .mermaid-container {
+        padding: 16px;
+      }
+      
+      /* Mensaje específico para móvil */
       .diagram-wrapper::after {
-        display: none;
+        content: "📱 Arrastra con 1 dedo para mover, pellizca con 2 dedos para zoom";
+        bottom: 10px;
+        left: 10px;
+        font-size: 11px;
+        padding: 6px 10px;
+        max-width: calc(100% - 20px);
+        text-align: center;
+      }
+    }
+
+    /* Estilos adicionales para mejor experiencia móvil */
+    @media (max-width: 480px) {
+      .zoom-controls {
+        top: 5px;
+        right: 5px;
+        padding: 4px;
+        gap: 2px;
+      }
+      
+      .zoom-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        min-width: 40px;
+        min-height: 40px;
+      }
+      
+      .zoom-level {
+        font-size: 11px;
+        padding: 0 6px;
+        min-width: 40px;
+      }
+      
+      .mermaid-container {
+        padding: 12px;
+      }
+    }
+
+    /* Prevenir zoom del navegador en móvil */
+    @media (max-width: 768px) {
+      .diagram-wrapper {
+        -ms-touch-action: none;
+        touch-action: none;
       }
     }
   </style>
