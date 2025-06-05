@@ -39,14 +39,14 @@ const Header = () => {
                 backgroundImage: 'linear-gradient(135deg, #c49b24, #ffd700)'
               }}
             >
-              LOGO
+              <a href="/">YAMID RODRIGUEZ</a>
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <a 
-              href="#inicio" 
+              href="/" 
               className="text-white hover:text-yellow-400 transition-colors duration-200 font-medium relative group"
               style={{ color: '#72aba0' }}
             >
@@ -154,7 +154,7 @@ const Header = () => {
             style={{ backgroundColor: '#122f3a' }}
           >
             <a 
-              href="#inicio" 
+              href="/" 
               className="block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-opacity-20"
               style={{ color: '#69998c' }}
               onClick={() => setIsMenuOpen(false)}

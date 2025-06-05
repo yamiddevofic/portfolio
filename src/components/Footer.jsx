@@ -42,14 +42,13 @@ const Footer = () => {
                 backgroundImage: 'linear-gradient(135deg, #c49b24, #ffd700)'
               }}
             >
-              LOGO
+              YAMID RODRIGUEZ
             </div>
             <p 
               className="text-sm leading-relaxed"
               style={{ color: '#72aba0' }}
             >
-              Transformamos ideas en experiencias digitales excepcionales. 
-              Creamos soluciones innovadoras que impulsan tu negocio hacia el futuro.
+              Fusiono tecnología, creatividad y consciencia para dar vida a experiencias digitales con alma.
             </p>
             <div className="flex space-x-4 pt-2">
               {[

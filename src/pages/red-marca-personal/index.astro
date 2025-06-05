@@ -1,0 +1,841 @@
+---
+import BaseLayout from '../../Layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Yamid Rodriguez">
+  <div class="diagram-wrapper">
+    <!-- Controles de Zoom y Descarga -->
+    <div class="zoom-controls">
+      <button id="zoomIn" class="zoom-btn" title="Acercar">+</button>
+      <button id="zoomOut" class="zoom-btn" title="Alejar">−</button>
+      <button id="resetZoom" class="zoom-btn reset" title="Restablecer">⌂</button>
+      <span class="zoom-level" id="zoomLevel">100%</span>
+      <button id="downloadSVG" class="zoom-btn download" title="Descargar SVG">SVG</button>
+      <button id="downloadPNG" class="zoom-btn download" title="Descargar PNG">PNG</button>
+    </div>
+    
+    <div id="mermaid-container" class="mermaid-container">
+      <div id="mermaid-diagram" class="mermaid-content"></div>
+    </div>
+  </div>
+
+  <script>
+    import mermaid from 'mermaid';
+
+    interface ZoomState {
+      currentZoom: number;
+      isDragging: boolean;
+      startX: number;
+      startY: number;
+      translateX: number;
+      translateY: number;
+      diagramElement: SVGSVGElement | null;
+      isPinching: boolean;
+      initialDistance: number;
+      initialZoom: number;
+      touches: Touch[];
+    }
+
+    const diagramDefinition: string = `
+      %%{init: {
+        'theme': 'base',
+        'themeVariables': {
+          'primaryColor': '#377082',
+          'secondaryColor': '#8f6915',
+          'tertiaryColor': '#c6a029',
+          'lineColor': '#67a9ad',
+          'background': '#122629',
+          'textColor': '#f0f0f0',
+          'edgeLabelBackground': '#122629',
+          'nodeBorderRadius': '8',
+          'fontFamily': 'Arial, sans-serif',
+          'clusterBkg': '#204f5e',
+          'clusterBorder': '#67a9ad' // <-- CORRECCIÓN: Coma eliminada
+        },
+        'flowchart': {
+          'zoom': true,
+          'pan': true // <-- CORRECCIÓN: Coma eliminada
+        }
+      }}%%
+
+      graph TD;
+
+    %% Entidad Central - Yamid Rodriguez (Privada)
+    subgraph sg_YR ["🧠 YAMID RODRIGUEZ - Esencia Privada"]
+        direction TB
+        YR["<b>YAMID RODRIGUEZ</b><br/>🎯 Persona Integral"]
+        
+        subgraph YR_Attributes ["🌟 Atributos Nucleares"]
+            direction TB
+            YR_Mental["<b>🧠 MENTAL</b><br/>• Capacidad analítica<br/>• Capacidad de síntesis<br/>• Lógico • Método<br/>• Visión de contexto<br/>• Observación • Percepción"]
+            YR_Creative["<b>🎨 CREATIVO</b><br/>• Creatividad • Estética<br/>• Habilidad simbólica<br/>• Sensibilidad estética<br/>• Pensamiento analógico<br/>• Ideas • Originalidad"]
+            YR_Spiritual["<b>🔮 ESPIRITUAL</b><br/>• Espiritualidad • Intuición<br/>• Energía subconsciente<br/>• Holística • Quietud<br/>• Propósito • Sentido"]
+            YR_Human["<b>👤 HUMANO</b><br/>• Comunicación • Escucha<br/>• Emoción • Vivencias<br/>• Valores • Principios<br/>• Anécdotas • Encarnación"]
+            YR_Reflective["<b>🤔 REFLEXIVO</b><br/>• Argumentos • Preguntas<br/>• Reflexiones • Introspección<br/>• Subjetividad • Curiosidad<br/>• Palabra • Transparencia"]
+        end
+        
+        YR --- YR_Attributes
+    end
+
+    %% Marca Personal (Pública)
+    subgraph sg_MP ["🌟 MARCA PERSONAL - Interface Pública"]
+        direction TB
+        MP["<b>MARCA PERSONAL</b><br/>💼 Proyección al Mundo"]
+        
+        subgraph MP_Roles ["🎭 Roles Desempeñados"]
+            direction LR
+            MP_Observer["<b>👁️ OBSERVADOR</b><br/>• Observador consciente<br/>• Analítico • Presente"]
+            MP_Integrator["<b>🔗 INTEGRADOR</b><br/>• Integrador • Unificador<br/>• Mediador • Sabio"]
+            MP_Communicator["<b>📢 COMUNICADOR</b><br/>• Comunicador • Educador<br/>• Divulgador • Compartido"]
+            MP_Collaborator["<b>🤝 COLABORADOR</b><br/>• Colaborador • Cooperador<br/>• Comercial • Discernido"]
+        end
+        
+        subgraph MP_Qualities ["✨ Cualidades Proyectadas"]
+            direction LR
+            MP_Intellectual["<b>🎓 INTELECTUAL</b><br/>• Inteligencia • Pensante<br/>• Razonable • Nerd"]
+            MP_Creative_Q["<b>🎨 CREATIVO</b><br/>• Creativo • Talentoso<br/>• Único • Original"]
+            MP_Ethical["<b>⚖️ ÉTICO</b><br/>• Valor ético • Bondadoso<br/>• Intuitivo • Propósito"]
+        end
+        
+        MP --- MP_Roles
+        MP --- MP_Qualities
+    end
+
+    %% Ecosistema de Áreas
+    subgraph sg_EcosistemaCompleto ["🌐 ECOSISTEMA DE CONOCIMIENTO"]
+        direction TB
+        
+        subgraph sg_Desarrollo ["💻 DESARROLLO DE SOFTWARE"]
+            direction TB
+            Des["<b>🚀 DESARROLLO</b><br/>Soluciones Tecnológicas"]
+            Des_Contrib["<b>🎯 Contribuciones Clave:</b><br/>• Creatividad en soluciones<br/>• Visión sistémica holística<br/>• Sentido estético en UX<br/>• Intuición tecnológica<br/>• Propósito en productos"]
+            Des --- Des_Contrib
+        end
+
+        subgraph sg_Tarot ["🔮 TAROT & SIMBOLISMO"]
+            direction TB
+            Tar["<b>🌙 TAROT</b><br/>Sabiduría Arquetípica"]
+            Tar_Contrib["<b>🎴 Contribuciones Clave:</b><br/>• Apertura de opciones<br/>• Exploración de posibilidades<br/>• Conocimiento simbólico<br/>• Guía intuitiva<br/>• Conexión inconsciente"]
+            Tar --- Tar_Contrib
+        end
+
+        subgraph sg_Filosofia ["🏛️ FILOSOFÍA & REFLEXIÓN"]
+            direction TB
+            Fil["<b>📚 FILOSOFÍA</b><br/>Pensamiento Crítico"]
+            Fil_Contrib["<b>🤔 Contribuciones Clave:</b><br/>• Preguntas fundamentales<br/>• Reflexiones críticas<br/>• Argumentación sólida<br/>• Definición de valores<br/>• Encarnación de ideas"]
+            Fil --- Fil_Contrib
+        end
+
+        subgraph sg_Psicologia ["🧠 PSICOLOGÍA HUMANA"]
+            direction TB
+            Psi["<b>💭 PSICOLOGÍA</b><br/>Comprensión Humana"]
+            Psi_Contrib["<b>🔍 Contribuciones Clave:</b><br/>• Comprensión profunda<br/>• Análisis comportamental<br/>• Exploración emocional<br/>• Desarrollo personal<br/>• Procesos terapéuticos"]
+            Psi --- Psi_Contrib
+        end
+
+        subgraph sg_Fotografia ["📸 ARTE FOTOGRÁFICO"]
+            direction TB
+            Fot["<b>📷 FOTOGRAFÍA</b><br/>Expresión Visual"]
+            Fot_Contrib["<b>🎨 Contribuciones Clave:</b><br/>• Captura de momentos<br/>• Perdurabilidad visual<br/>• Inspiración estética<br/>• Transmisión emocional<br/>• Narrativa visual"]
+            Fot --- Fot_Contrib
+        end
+    end
+
+    %% Conexiones Principales
+    YR -.->|"<b>🔄 TRANSFORMACIÓN CONSCIENTE</b><br/>Observador → Integrador → Sabio<br/>Analítico → Humano → Creativo<br/>"| MP;
+    
+    MP ==>|"<b>⚡ SINERGIA ACTIVA</b><br/>Integra • Unifica • Media<br/>Educa • Colabora • Comunica<br/>Comercializa • Divulga"| sg_EcosistemaCompleto;
+    
+    sg_EcosistemaCompleto ==>|"<b>🔄 RETROALIMENTACIÓN</b><br/>Conocimiento • Estructura • Inspiración<br/>Métodos • Comunidad • Teoría<br/>Enfoque • Entrenamiento • Guía"| MP;
+
+    %% Interrelaciones Detalladas entre Áreas
+    Des -.->|"<b>💻→🔮 ESTRUCTURACIÓN</b><br/>• Arquetipos digitales<br/>• Sistemas de lectura<br/>• Interfaces simbólicas"| Tar;
+    Tar -.->|"<b>🔮→💻 INTUICIÓN</b><br/>• Lenguaje simbólico<br/>• Experiencias mágicas<br/>• Narrativas interactivas"| Des;
+    Des -.->|"<b>💻→🏛️ MODELADO</b><br/>• Sistemas de pensamiento<br/>• Prototipos racionales<br/>• Modelos lógicos"| Fil;
+    Fil -.->|"<b>🏛️→💻 FUNDAMENTACIÓN</b><br/>• Crítica de sistemas<br/>• Coherencia ética<br/>• Visión estructural"| Des;
+    Des -.->|"<b>💻→🧠 MODELADO UX</b><br/>• Experiencias interactivas<br/>• Comportamiento digital<br/>• Emociones en interfaces"| Psi;
+    Psi -.->|"<b>🧠→💻 DISEÑO HUMANO</b><br/>• Modelos de usuario<br/>• Teorías de emoción<br/>• Centrado en la persona"| Des;
+    Des -.->|"<b>💻→📸 AUTOMATIZACIÓN</b><br/>• Apps creativas<br/>• Edición automática<br/>• Sistemas interactivos"| Fot;
+    Fot -.->|"<b>📸→💻 ESTÉTICA</b><br/>• Riqueza visual<br/>• Valor emocional<br/>• Narrativa en productos"| Des;
+    Tar -.->|"<b>🔮→🏛️ SABIDURÍA</b><br/>• Arquetipos como ideas<br/>• Mapas del alma<br/>• Conexión con lo eterno"| Fil;
+    Fil -.->|"<b>🏛️→🔮 ESTRUCTURA</b><br/>• Marco metafísico<br/>• Lenguaje simbólico<br/>• Cosmovisiones profundas"| Tar;
+    Tar -.->|"<b>🔮→🧠 INCONSCIENTE</b><br/>• Lectura emocional<br/>• Diálogo interior<br/>• Proceso terapéutico"| Psi;
+    Psi -.->|"<b>🧠→🔮 ANÁLISIS</b><br/>• Símbolos del inconsciente<br/>• Puentes terapéuticos<br/>• Teorías de personalidad"| Tar;
+    Tar -.->|"<b>🔮→📸 ARQUETIPOS</b><br/>• Composición simbólica<br/>• Iconografía mística<br/>• Lectura visual"| Fot;
+    Fot -.->|"<b>📸→🔮 NARRATIVA</b><br/>• Estética arquetípica<br/>• Color emocional<br/>• Tiempo ritualizado"| Tar;
+    Fil -.->|"<b>🏛️→🧠 ÉTICA</b><br/>• Reflexión mental<br/>• Crítica de paradigmas<br/>• Existencial humanista"| Psi;
+    Psi -.->|"<b>🧠→🏛️ EMPIRISMO</b><br/>• Casos reales<br/>• Comprobación vivencial<br/>• Teorías aplicadas"| Fil;
+    Fil -.->|"<b>🏛️→📸 TEORÍA</b><br/>• Crítica estética<br/>• Teoría de la imagen<br/>• Interpretación visual"| Fot;
+    Fot -.->|"<b>📸→🏛️ EXPERIENCIA</b><br/>• Inspiración sensible<br/>• Pensamiento visual<br/>• Intimidad reflexiva"| Fil;
+    Psi -.->|"<b>🧠→📸 EXPRESIÓN</b><br/>• Documentación del yo<br/>• Estados mentales<br/>• Terapia visual"| Fot;
+    Fot -.->|"<b>📸→🧠 CAPTURA</b><br/>• Emoción visual<br/>• Representación estética<br/>• Narrativa personal"| Psi;
+
+    %% Estilos Visuales con nueva paleta
+    %% Colores: #c6a029 (Dorado), #377082 (Teal Oscuro), #67a9ad (Teal Claro), #122629 (Muy Oscuro), 
+    %%          #7ba67e (Verde Apagado), #8f6915 (Bronce), #36675f (Verde Azulado Oscuro), #204f5e (Azul Petróleo)
+
+    %% Subgrafos Principales
+    style sg_YR fill:#204f5e,color:#c6a029,stroke:#67a9ad,stroke-width:4px
+    style sg_MP fill:#36675f,color:#c6a029,stroke:#7ba67e,stroke-width:4px
+    style sg_EcosistemaCompleto fill:#377082,color:#fff,stroke:#8f6915,stroke-width:4px
+    
+    %% Nodos Principales
+    style YR fill:#c6a029,stroke:#8f6915,stroke-width:3px,color:#122629
+    style MP fill:#7ba67e,stroke:#36675f,stroke-width:3px,color:#122629
+    
+    %% Subgrafos Internos (Atributos, Roles, Cualidades)
+    style YR_Attributes fill:#67a9ad,stroke:#377082,stroke-width:2px,color:#122629
+    style MP_Roles fill:#8f6915,stroke:#c6a029,stroke-width:2px,color:#fff
+    style MP_Qualities fill:#c6a029,stroke:#8f6915,stroke-width:2px,color:#122629
+    
+    %% Subgrafos de Áreas de Conocimiento
+    style sg_Desarrollo fill:#377082,stroke:#67a9ad,stroke-width:3px,color:#fff
+    style sg_Tarot fill:#8f6915,stroke:#c6a029,stroke-width:3px,color:#fff
+    style sg_Filosofia fill:#7ba67e,stroke:#36675f,stroke-width:3px,color:#fff
+    style sg_Psicologia fill:#204f5e,stroke:#377082,stroke-width:3px,color:#fff
+    style sg_Fotografia fill:#c6a029,stroke:#8f6915,stroke-width:3px,color:#122629
+    
+    %% Nodos dentro de Áreas de Conocimiento (hijos directos)
+    style Des fill:#67a9ad,stroke:#377082,stroke-width:2px,color:#122629
+    style Tar fill:#c6a029,stroke:#8f6915,stroke-width:2px,color:#122629
+    style Fil fill:#A7C8AE,stroke:#7ba67e,stroke-width:2px,color:#122629
+    %% Para Fil, #A7C8AE es un verde más claro que #7ba67e. Alternativa: fill:#67a9ad <-- CORRECCIÓN: Comentario movido a nueva línea
+    style Psi fill:#67a9ad,stroke:#204f5e,stroke-width:2px,color:#122629
+    style Fot fill:#8f6915,stroke:#c6a029,stroke-width:2px,color:#fff
+
+    %% Estilo para nodos de contribuciones (todos iguales para consistencia)
+    classDef contribNode fill:#122629,stroke:#67a9ad,color:#f0f0f0,font-size:11px,font-style:italic
+    class Des_Contrib,Tar_Contrib,Fil_Contrib,Psi_Contrib,Fot_Contrib contribNode
+
+    %% Estilo para nodos dentro de YR_Attributes y MP_Roles/Qualities (todos iguales en sus grupos)
+    classDef yrAttribNode fill:#122629,stroke:#67a9ad,color:#f0f0f0,font-size:11px
+    class YR_Mental,YR_Creative,YR_Spiritual,YR_Human,YR_Reflective yrAttribNode
+    
+    classDef mpRoleNode fill:#122629,stroke:#c6a029,color:#f0f0f0,font-size:11px
+    class MP_Observer,MP_Integrator,MP_Communicator,MP_Collaborator mpRoleNode
+
+    classDef mpQualityNode fill:#122629,stroke:#8f6915,color:#f0f0f0,font-size:11px
+    class MP_Intellectual,MP_Creative_Q,MP_Ethical mpQualityNode
+    `;
+
+    // Estado del zoom y pan
+    const zoomState: ZoomState = {
+      currentZoom: 1,
+      isDragging: false,
+      startX: 0,
+      startY: 0,
+      translateX: 0,
+      translateY: 0,
+      diagramElement: null,
+      isPinching: false,
+      initialDistance: 0,
+      initialZoom: 1,
+      touches: []
+    };
+
+    const updateZoomLevel = (): void => {
+      const zoomLevelElement = document.getElementById('zoomLevel');
+      if (zoomLevelElement) {
+        zoomLevelElement.textContent = Math.round(zoomState.currentZoom * 100) + '%';
+      }
+    };
+
+    const applyTransform = (): void => {
+      if (zoomState.diagramElement) {
+        zoomState.diagramElement.style.transform = 
+          `translate(${zoomState.translateX}px, ${zoomState.translateY}px) scale(${zoomState.currentZoom})`;
+      }
+    };
+
+    const zoomIn = (): void => {
+      zoomState.currentZoom = Math.min(zoomState.currentZoom * 1.2, 8);
+      applyTransform();
+      updateZoomLevel();
+    };
+
+    const zoomOut = (): void => {
+      zoomState.currentZoom = Math.max(zoomState.currentZoom / 1.2, 0.1);
+      applyTransform();
+      updateZoomLevel();
+    };
+
+    const resetZoom = (): void => {
+      zoomState.currentZoom = 1;
+      zoomState.translateX = 0;
+      zoomState.translateY = 0;
+      applyTransform();
+      updateZoomLevel();
+    };
+
+    const getDistance = (touch1: Touch, touch2: Touch): number => {
+      const dx = touch1.clientX - touch2.clientX;
+      const dy = touch1.clientY - touch2.clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    };
+
+    const getCenter = (touch1: Touch, touch2: Touch): { x: number, y: number } => {
+      return {
+        x: (touch1.clientX + touch2.clientX) / 2,
+        y: (touch1.clientY + touch2.clientY) / 2
+      };
+    };
+
+    const handleWheelZoom = (e: WheelEvent): void => {
+      e.preventDefault();
+      const mermaidContainer = document.getElementById('mermaid-container');
+      if (!mermaidContainer) return;
+
+      const rect = mermaidContainer.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      const prevZoom = zoomState.currentZoom;
+      
+      if (e.deltaY < 0) {
+        zoomState.currentZoom = Math.min(zoomState.currentZoom * 1.1, 8);
+      } else {
+        zoomState.currentZoom = Math.max(zoomState.currentZoom / 1.1, 0.1);
+      }
+      
+      const zoomFactor = zoomState.currentZoom / prevZoom;
+      zoomState.translateX = mouseX - (mouseX - zoomState.translateX) * zoomFactor;
+      zoomState.translateY = mouseY - (mouseY - zoomState.translateY) * zoomFactor;
+      
+      applyTransform();
+      updateZoomLevel();
+    };
+
+    const handleMouseDown = (e: MouseEvent): void => {
+      if (e.button === 0) { 
+        zoomState.isDragging = true;
+        zoomState.startX = e.clientX - zoomState.translateX;
+        zoomState.startY = e.clientY - zoomState.translateY;
+        const mermaidContainer = document.getElementById('mermaid-container');
+        if (mermaidContainer) {
+          mermaidContainer.style.cursor = 'grabbing';
+        }
+        e.preventDefault();
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent): void => {
+      if (zoomState.isDragging) {
+        zoomState.translateX = e.clientX - zoomState.startX;
+        zoomState.translateY = e.clientY - zoomState.startY;
+        applyTransform();
+      }
+    };
+
+    const handleMouseUp = (): void => {
+      zoomState.isDragging = false;
+      const mermaidContainer = document.getElementById('mermaid-container');
+      if (mermaidContainer) {
+        mermaidContainer.style.cursor = 'grab';
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent): void => {
+      e.preventDefault();
+      zoomState.touches = Array.from(e.touches);
+
+      if (e.touches.length === 1) {
+        zoomState.isDragging = true;
+        zoomState.startX = e.touches[0].clientX - zoomState.translateX;
+        zoomState.startY = e.touches[0].clientY - zoomState.translateY;
+      } else if (e.touches.length === 2) {
+        zoomState.isDragging = false;
+        zoomState.isPinching = true;
+        zoomState.initialDistance = getDistance(e.touches[0], e.touches[1]);
+        zoomState.initialZoom = zoomState.currentZoom;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent): void => {
+      e.preventDefault();
+
+      if (e.touches.length === 1 && zoomState.isDragging && !zoomState.isPinching) {
+        zoomState.translateX = e.touches[0].clientX - zoomState.startX;
+        zoomState.translateY = e.touches[0].clientY - zoomState.startY;
+        applyTransform();
+      } else if (e.touches.length === 2 && zoomState.isPinching) {
+        const currentDistance = getDistance(e.touches[0], e.touches[1]);
+        const scale = currentDistance / zoomState.initialDistance;
+        
+        const newZoom = Math.max(0.1, Math.min(8, zoomState.initialZoom * scale));
+        
+        const mermaidContainer = document.getElementById('mermaid-container');
+        if (mermaidContainer) {
+          const rect = mermaidContainer.getBoundingClientRect();
+          const center = getCenter(e.touches[0], e.touches[1]);
+          const centerX = center.x - rect.left;
+          const centerY = center.y - rect.top;
+          
+          const zoomFactor = newZoom / zoomState.currentZoom;
+          zoomState.translateX = centerX - (centerX - zoomState.translateX) * zoomFactor;
+          zoomState.translateY = centerY - (centerY - zoomState.translateY) * zoomFactor;
+        }
+        
+        zoomState.currentZoom = newZoom;
+        applyTransform();
+        updateZoomLevel();
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent): void => {
+      e.preventDefault();
+      
+      if (e.touches.length < 2) {
+        zoomState.isPinching = false;
+      }
+      
+      if (e.touches.length === 0) {
+        zoomState.isDragging = false;
+        zoomState.isPinching = false;
+      }
+      
+      zoomState.touches = Array.from(e.touches);
+    };
+
+    const handleKeyboardZoom = (e: KeyboardEvent): void => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === '+' || e.key === '=') {
+          e.preventDefault();
+          zoomIn();
+        } else if (e.key === '-') {
+          e.preventDefault();
+          zoomOut();
+        } else if (e.key === '0') {
+          e.preventDefault();
+          resetZoom();
+        }
+      }
+    };
+
+    const downloadSVG = () => {
+      if (!zoomState.diagramElement) {
+        console.error("Diagram element not found for SVG download.");
+        alert("Error: No se pudo encontrar el diagrama para descargar como SVG.");
+        return;
+      }
+      const svgData = zoomState.diagramElement.outerHTML;
+      const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mapa_yamid_rodriguez.svg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    };
+
+    const downloadPNG = async () => {
+      if (!zoomState.diagramElement) {
+        console.error("Diagram element not found for PNG download.");
+        alert("Error: No se pudo encontrar el diagrama para descargar como PNG.");
+        return;
+      }
+
+      const svgElement = zoomState.diagramElement; 
+      const svgData = new XMLSerializer().serializeToString(svgElement);
+      
+      const img = new Image();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      if (!ctx) {
+        alert("Error: No se pudo obtener el contexto del canvas para la descarga PNG.");
+        return;
+      }
+      
+      let url: string = ''; 
+
+      img.onload = () => {
+        const viewBox = svgElement.getAttribute('viewBox');
+        let svgWidth, svgHeight;
+
+        if (viewBox) {
+            const parts = viewBox.split(' ');
+            svgWidth = parseFloat(parts[2]);
+            svgHeight = parseFloat(parts[3]);
+        } else {
+            const bbox = svgElement.getBBox(); 
+            svgWidth = bbox.width || parseFloat(svgElement.getAttribute('width') || '800');
+            svgHeight = bbox.height || parseFloat(svgElement.getAttribute('height') || '600');
+        }
+
+        const scaleFactor = 2; 
+        canvas.width = svgWidth * scaleFactor;
+        canvas.height = svgHeight * scaleFactor;
+        
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        const pngUrl = canvas.toDataURL('image/png');
+        const a = document.createElement('a');
+        a.href = pngUrl;
+        a.download = 'mapa_yamid_rodriguez.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        if (url) URL.revokeObjectURL(url); 
+      };
+
+      img.onerror = (e) => {
+        console.error("Error loading SVG into image for PNG conversion:", e);
+        alert("Error al cargar el SVG para convertir a PNG. Revisa la consola.");
+        if (url) URL.revokeObjectURL(url); 
+      };
+      
+      const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+      url = URL.createObjectURL(svgBlob); 
+      img.src = url; 
+    };
+
+    const initializeDiagram = async (): Promise<void> => {
+      try {
+        mermaid.initialize({
+          startOnLoad: true, // Aunque renderizamos manualmente, es buena práctica
+          securityLevel: 'loose' // Necesario para HTML en nodos y `init` complejo
+        });
+
+        const { svg } = await mermaid.render('graphDiv', diagramDefinition); // graphDiv es un ID temporal
+        const container = document.getElementById('mermaid-diagram');
+        
+        if (!container) {
+          console.error('Mermaid diagram container (mermaid-diagram) not found');
+          return;
+        }
+
+        container.innerHTML = svg;
+        
+        const svgElement = container.querySelector('svg') as SVGSVGElement; 
+        if (svgElement) {
+          zoomState.diagramElement = svgElement;
+          // Calcular el centro basado en viewBox si está disponible, sino en BBox
+          let centerX, centerY;
+          const viewBox = svgElement.getAttribute('viewBox');
+          if (viewBox) {
+            const parts = viewBox.split(' ').map(Number);
+            centerX = parts[0] + parts[2] / 2;
+            centerY = parts[1] + parts[3] / 2;
+          } else {
+            const bbox = svgElement.getBBox();
+            centerX = bbox.x + bbox.width / 2;
+            centerY = bbox.y + bbox.height / 2;
+          }
+          svgElement.style.transformOrigin = `${centerX}px ${centerY}px`;
+          svgElement.style.transition = 'transform 0.1s ease-out'; 
+        } else {
+          console.error("SVG element not found inside mermaid-diagram after render.");
+        }
+
+        const zoomInBtn = document.getElementById('zoomIn');
+        const zoomOutBtn = document.getElementById('zoomOut');
+        const resetZoomBtn = document.getElementById('resetZoom');
+        const downloadSVGBtn = document.getElementById('downloadSVG'); 
+        const downloadPNGBtn = document.getElementById('downloadPNG'); 
+        const mermaidContainer = document.getElementById('mermaid-container');
+
+        if (zoomInBtn) zoomInBtn.addEventListener('click', zoomIn);
+        if (zoomOutBtn) zoomOutBtn.addEventListener('click', zoomOut);
+        if (resetZoomBtn) resetZoomBtn.addEventListener('click', resetZoom);
+        if (downloadSVGBtn) downloadSVGBtn.addEventListener('click', downloadSVG); 
+        if (downloadPNGBtn) downloadPNGBtn.addEventListener('click', downloadPNG); 
+
+        if (mermaidContainer) {
+          mermaidContainer.addEventListener('wheel', handleWheelZoom, { passive: false });
+          mermaidContainer.addEventListener('mousedown', handleMouseDown);
+          
+          mermaidContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+          mermaidContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+          mermaidContainer.addEventListener('touchend', handleTouchEnd, { passive: false });
+        }
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+        document.addEventListener('keydown', handleKeyboardZoom);
+
+        updateZoomLevel();
+        // No llamamos a applyTransform() aquí inicialmente si queremos que comience centrado sin transformaciones previas.
+        // La posición inicial la maneja el propio SVG.
+        // Si necesitas un zoom/posición inicial específica, configúralo en zoomState y luego llama a applyTransform().
+      } catch (error) {
+        console.error('Error initializing or rendering diagram:', error);
+        const container = document.getElementById('mermaid-diagram');
+        if (container) {
+            // Mostrar el error de Mermaid directamente en el contenedor si es posible
+            // El objeto error de Mermaid a veces tiene una propiedad 'str' con el mensaje
+            let errorMessage = 'Error al renderizar el diagrama.';
+            if (error && typeof error === 'object' && 'message' in error) {
+              errorMessage += `\n${error.message}`;
+            }
+            // Si Mermaid incluye el SVG con el error, ya se habrá insertado.
+            // Si no, podemos poner un mensaje de texto.
+            if (!container.querySelector('svg.parser-error')) { // Evitar duplicar mensaje si Mermaid ya lo puso
+                container.innerHTML = `<pre style="color: red; white-space: pre-wrap;">${errorMessage}</pre>`;
+            }
+        }
+        // También puedes usar un alert si es un error crítico para el usuario
+        // alert(`Error al inicializar el diagrama: ${error.message || error}`);
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', initializeDiagram);
+  </script>
+
+  <style>
+    /* ESTILOS CSS PERMANECEN IGUAL QUE EN LA RESPUESTA ANTERIOR */
+    .diagram-wrapper {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      background: linear-gradient(135deg, rgba(18,38,41,0.1) 0%, rgba(32,79,94,0.1) 100%); 
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      overflow: hidden; 
+    }
+
+    .zoom-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 8px;
+      background: rgba(18, 38, 41, 0.8); 
+      padding: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(5px);
+    }
+
+    .zoom-btn {
+      height: 36px;
+      padding: 0 8px; 
+      border: 1px solid #67a9ad; 
+      border-radius: 8px;
+      background: #377082; 
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 36px; 
+    }
+    
+    .zoom-btn.download {
+      background: #8f6915; 
+      border-color: #c6a029; 
+      font-size: 13px; 
+      width: auto; 
+      min-width: 40px;
+    }
+    .zoom-btn.download:hover {
+      background: #c6a029; 
+      border-color: #8f6915; 
+    }
+
+    .zoom-btn:hover {
+      background: #67a9ad; 
+      color: #122629; 
+      transform: scale(1.05);
+    }
+
+    .zoom-btn:active {
+      transform: scale(0.95);
+    }
+
+    .zoom-btn.reset {
+      background: #7ba67e; 
+      border-color: #36675f; 
+      font-size: 16px;
+      padding: 0; 
+    }
+
+    .zoom-btn.reset:hover {
+      background: #36675f; 
+      border-color: #7ba67e; 
+      color: white;
+    }
+
+    .zoom-level {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #c6a029; 
+      background: rgba(18, 38, 41, 0.7); 
+      border: 1px solid #377082; 
+      border-radius: 8px;
+      min-width: 50px;
+      justify-content: center;
+      height: 36px;
+    }
+
+    .mermaid-container {
+      width: 100%;
+      height: 100%;
+      padding: 24px; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      cursor: grab;
+      overflow: hidden; 
+      position: relative; 
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .mermaid-content {
+      width: 100%; 
+      height: 100%; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mermaid-content svg {
+      max-width: none !important; 
+      max-height: none !important; 
+      cursor: inherit;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .mermaid-content svg rect[id^="flowchart-background"] {
+        fill: var(--mermaid-main-bkg, #122629); 
+    }
+
+
+    .mermaid-container:active {
+      cursor: grabbing;
+    }
+
+    .diagram-wrapper::after {
+      content: "💡 Ctrl+Rueda: Zoom. Arrastra: Mover. O usa los controles.";
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(18, 38, 41, 0.8); 
+      color: #c6a029; 
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 5; 
+      border: 1px solid #377082; 
+    }
+
+    @media (max-width: 768px) {
+      .diagram-wrapper {
+        height: 85vh;
+      }
+      
+      .zoom-controls {
+        top: 10px;
+        right: 10px;
+        gap: 4px;
+        padding: 6px;
+        max-width: calc(100% - 20px); 
+      }
+      
+      .zoom-btn {
+        height: 40px;
+        font-size: 18px;
+        min-width: 44px; 
+        min-height: 44px; 
+        padding: 0 6px;
+      }
+      .zoom-btn.download {
+        font-size: 12px;
+        width: auto;
+        min-width: 44px;
+      }
+       .zoom-btn.reset {
+        padding: 0;
+      }
+      
+      .zoom-level {
+        padding: 0 8px;
+        font-size: 12px;
+        min-width: 45px;
+        height: 40px; 
+      }
+      
+      .mermaid-container {
+        padding: 16px;
+      }
+      
+      .diagram-wrapper::after {
+        content: "📱 Arrastra (1 dedo): Mover. Pellizca (2 dedos): Zoom.";
+        bottom: 10px;
+        left: 10px;
+        font-size: 11px;
+        padding: 6px 10px;
+        max-width: calc(100% - 20px);
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .zoom-controls {
+        top: 5px;
+        right: 5px;
+        padding: 4px;
+        gap: 2px;
+      }
+      
+      .zoom-btn {
+        height: 36px;
+        font-size: 16px;
+        min-width: 40px;
+        min-height: 40px;
+         padding: 0 4px;
+      }
+      .zoom-btn.download {
+        font-size: 11px;
+        width: auto;
+        min-width: 40px;
+      }
+      .zoom-btn.reset {
+        padding: 0;
+      }
+      
+      .zoom-level {
+        font-size: 11px;
+        padding: 0 6px;
+        min-width: 40px;
+        height: 36px;
+      }
+      
+      .mermaid-container {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .diagram-wrapper {
+        -ms-touch-action: none;
+        touch-action: none;
+      }
+    }
+  </style>
+</BaseLayout>
