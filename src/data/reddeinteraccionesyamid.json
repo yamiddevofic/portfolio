@@ -1,221 +1,106 @@
 {
-  "yamidRodriguez": {
-    "estado": "privada",
-    "atributos": [
-      "anecdotas",
-      "argumentos",
-      "capacidad analitica",
-      "capacidad de sintesis",
-      "comunicacion",
-      "creatividad",
-      "curiosidad",
-      "emocion",
-      "encarnación",
-      "energia subconsciente e inconsciente",
-      "escucha",
-      "espiritualidad",
-      "estetica",
-      "habilidad simbolica",
-      "holística",
-      "ideas",
-      "introspeccion",
-      "intuicion",
-      "lógico",
-      "método",
-      "observación",
-      "palabra",
-      "pensamiento analógico",
-      "percepcion",
-      "preguntas",
-      "principios",
-      "proposito",
-      "quietud",
-      "reflexiones",
-      "sensibilidad estetica",
-      "sentido",
-      "subjetividad",
-      "valores",
-      "vision",
-      "visión de contexto",
-      "vivencias"
-    ],
-    "interacciones": {
+  "sistemaOperativoYamid": {
+    "version": "3.0_Bipolar",
+    "descripcion": "La arquitectura completa que gobierna el proceso de creación consciente, desde el impulso del 'Yo' hasta el impacto del 'Resultado'.",
+    "componentesPrincipales": {
+      "yo": {
+        "estado": "privado",
+        "descripcion": "El núcleo del sistema. La fuente de energía, valores, vulnerabilidad y el impulso inicial que pone en marcha todo el proceso.",
+        "atributosClave": {
+          "esenciales": ["valores", "principios", "propósito", "vivencias"],
+          "intuitivos": ["intuición", "percepción", "sensibilidad estética", "energía subconsciente"],
+          "analiticos": ["curiosidad", "capacidad de síntesis", "pensamiento analógico", "preguntas"]
+        },
+        "interacciones": {
+          "flecha1_hacia_marcaPersonal": {
+            "proposito": "Inversión de Energía",
+            "descripcion": "Aporta la energía, valores y autenticidad que sirven como combustible para la marca.",
+            "palabrasClave": ["autenticidad", "impulso", "vulnerabilidad"]
+          },
+          "flecha2_desde_marcaPersonal": {
+            "proposito": "Retorno y Sostenibilidad",
+            "descripcion": "Recibe confianza, propósito y energía del éxito de la marca, nutriendo y protegiendo al 'Yo'.",
+            "palabrasClave": ["confianza", "propósito", "refuerzo"]
+          }
+        }
+      },
       "marcaPersonal": {
-        "rolDesempenado": [
-          "observador consciente",
-          "integrador",
-          "sabio",
-          "observador",
-          "analitico",
-          "humano",
-          "valor_etico",
-          "inteligencia",
-          "original",
-          "unico",
-          "intuitivo",
-          "proposito",
-          "razonable",
-          "bondadoso",
-          "pensante",
-          "intelectual",
-          "presente",
-          "transparente",
-          "talentoso",
-          "creativo",
-          "nerd"
+        "estado": "publico",
+        "descripcion": "La interfaz pública y profesional. La promesa, reputación y narrativa que traduce el sistema interno para el mundo exterior.",
+        "interacciones": {
+          "flecha3_hacia_praxis": {
+            "proposito": "Activación de la Misión",
+            "descripcion": "Toma la energía del 'Yo' y la convierte en una directiva clara, activando el motor de la 'Praxis'.",
+            "palabrasClave": ["misión", "foco", "directiva", "intermediaria", "mediadora"]
+          },
+          "flecha4_desde_praxis": {
+            "proposito": "Construcción de Reputación",
+            "descripcion": "Se fortalece con la evidencia de los 'Resultados' generados por la 'Praxis', construyendo credibilidad.",
+            "palabrasClave": ["evidencia", "portfolio", "reputación", "experiencia", "credibilidad", "conocimiento", "aprendizaje", "retroalimentación", "teoria", "tecnicas","metodos","habilidades", "competencias"]
+          }
+        }
+      },
+      "praxis": {
+        "estado": "proceso_privado",
+        "descripcion": "El motor de creación y aprendizaje donde la intención se convierte en realidad a través de la danza de sus dos ejes.",
+        "componentes": {
+          "ejeRojo_Proposito": {
+            "descripcion": "El 'Porqué'. La fuente de ideación, significado y comprensión humana.",
+            "color": "blue",
+            "areas": ["Filosofía", "Psicología"]
+          },
+          "ejeAzul_Artesania": {
+            "color": "red",
+            "descripcion": "El 'Cómo'. El taller de manifestación técnica y estética.",
+            "areas": ["Dev", "Arte"]
+          }
+        },
+        "interaccionesInternas": {
+          "nucleoDeTraduccion_a_b": {
+            "proposito": "Traducción Directiva (Rojo → Azul)",
+            "descripcion": "El Eje del Propósito informa y da órdenes directas al Eje de la Artesanía.",
+            "flujos": {
+              "b1_b2_filo_a_artesania": "La Filosofía dicta los principios éticos y temáticos del proyecto.",
+              "a1_a2_psico_a_artesania": "La Psicología dicta los requisitos empáticos y de usabilidad."
+            }
+          },
+          "bucleDeRetroalimentacion_c_d_e_f": {
+            "proposito": "Auditoría y Refinamiento (Azul ↔ Rojo)",
+            "descripcion": "La Artesanía es supervisada por el Propósito para asegurar la calidad y coherencia.",
+            "camarasDeSupervision": {
+              "camaraDelProposito_c_d": {
+                "descripcion": "Audita la integridad y el significado.",
+                "lazo_c1_d2": "Filosofía ↔ Dev: Control de Calidad Ético.",
+                "lazo_d1_c2": "Filosofía ↔ Arte: Control de Calidad de Significado."
+              },
+              "camaraDeLaHumanidad_e_f": {
+                "descripcion": "Audita la experiencia humana.",
+                "lazo_f1_f2": "Psicología ↔ Dev: Control de Calidad Conductual.",
+                "lazo_e1_f2": "Psicología ↔ Arte: Control de Calidad Afectivo."
+              }
+            }
+          }
+        },
+        "interaccionesExternas": {
+          "flecha5_hacia_resultado": {
+            "proposito": "Entrega",
+            "descripcion": "El producto refinado del proceso se empaqueta y se manifiesta en el mundo."
+          },
+          "flecha6_desde_resultado": {
+            "proposito": "Aprendizaje del Mundo Real",
+            "descripcion": "El feedback de los usuarios y el mercado regresa para iniciar un nuevo ciclo."
+          }
+        }
+      },
+      "resultado": {
+        "estado": "publico",
+        "descripcion": "La manifestación tangible del trabajo de la Praxis. El producto, servicio u obra entregada.",
+        "ejemplos": [
+          "Una aplicación de software con alma",
+          "Una serie fotográfica con un propósito filosófico",
+          "Un ensayo que une tecnología y psicología",
+          "Una metodología de consultoría holística"
         ]
-      }
-    }
-  },
-  "marcaPersonal": {
-    "estado": "publica",
-    "interacciones": {
-      "areas": {
-        "rolDesempenado": [
-          "integradora",
-          "unificadora",
-          "mediadora",
-          "comercial",
-          "colaboradora",
-          "cooperadora",
-          "compartida",
-          "discernida",
-          "divulgadora",
-          "educadora",
-          "comunicadora"
-        ]
-      }
-    }
-  },
-  "areas": {
-    "interacciones": {
-      "marcaPersonal": {
-        "rolDesempenado": [
-          "conocimiento",
-          "información",
-          "soportes",
-          "apoyo",
-          "aprendizaje",
-          "guia",
-          "entendimiento",
-          "entrenamiento",
-          "capacitación",
-          "investigación",
-          "estructura",
-          "inspiración",
-          "metodo",
-          "comunidad",
-          "técnicas",
-          "teoría",
-          "enfoque"
-        ]
-      }
-    },
-    "ecosistemaDeAreas": {
-      "desarrollo": {
-        "contribucionesClave": ["creatividad", "visión", "holística", "estética", "intuición", "sentido", "propósito"],
-        "relaciones": {
-          "tarot": {
-            "aporteA": ["estructuración de arquetipos", "interfaces simbólicas", "sistemas de lectura digital"],
-            "recibeDe": ["intuición", "lectura simbólica", "posibilidades narrativas"]
-          },
-          "filosofia": {
-            "aporteA": ["modelos lógicos", "sistemas de pensamiento", "prototipos racionales"],
-            "recibeDe": ["preguntas fundamentales", "estructuras de sentido", "visión crítica"]
-          },
-          "psicologia": {
-            "aporteA": ["experiencias interactivas", "modelado de comportamiento", "UX basada en emociones"],
-            "recibeDe": ["procesos mentales", "mapas de emociones", "teorías de la mente"]
-          },
-          "fotografia": {
-            "aporteA": ["automatización de edición", "sistemas interactivos", "apps creativas"],
-            "recibeDe": ["estética visual", "composición emocional", "narrativa visual"]
-          }
-        }
-      },
-      "tarot": {
-        "contribucionesClave": ["opciones", "posibilidades", "conocimiento simbólico", "guía", "conexión con lo inconsciente", "intuición"],
-        "relaciones": {
-          "desarrollo": {
-            "aporteA": ["lenguaje simbólico", "interfaces intuitivas", "experiencias mágicas"],
-            "recibeDe": ["estructura lógica", "prototipado digital", "interacción tecnológica"]
-          },
-          "filosofia": {
-            "aporteA": ["sabiduría arquetípica", "mapas del alma", "conexión con lo eterno"],
-            "recibeDe": ["cosmovisiones", "preguntas esenciales", "visión crítica"]
-          },
-          "psicologia": {
-            "aporteA": ["lectura emocional", "diálogo con el inconsciente", "proceso terapéutico"],
-            "recibeDe": ["teorías de la personalidad", "marcos de análisis mental", "valores y principios"]
-          },
-          "fotografia": {
-            "aporteA": ["arquetipos visuales", "composición simbólica"],
-            "recibeDe": ["estética narrativa", "color emocional", "tiempo detenido"]
-          }
-        }
-      },
-      "filosofia": {
-        "contribucionesClave": ["preguntas", "reflexiones", "argumentos", "valores", "principios", "vivencias", "anécdota", "encarnación de ideas"],
-        "relaciones": {
-          "desarrollo": {
-            "aporteA": ["crítica a sistemas", "fundamentación de ideas", "coherencia ética"],
-            "recibeDe": ["soluciones aplicadas", "herramientas de modelado", "estructuras prácticas"]
-          },
-          "tarot": {
-            "aporteA": ["estructura metafísica", "lenguaje simbólico profundo"],
-            "recibeDe": ["acceso intuitivo a verdades", "arquetipos como ideas vivas"]
-          },
-          "psicologia": {
-            "aporteA": ["ética existencial", "reflexión sobre la mente", "crítica de paradigmas"],
-            "recibeDe": ["casos reales", "teorías psicológicas", "comprobación empírica"]
-          },
-          "fotografia": {
-            "aporteA": ["crítica estética", "teoría de la imagen", "interpretación visual"],
-            "recibeDe": ["inspiración sensible", "experiencia directa", "intimidad visual"]
-          }
-        }
-      },
-      "psicologia": {
-        "contribucionesClave": ["preguntas", "reflexiones", "argumentos", "valores", "principios", "vivencias", "anécdota", "encarnación de ideas"],
-        "relaciones": {
-          "desarrollo": {
-            "aporteA": ["modelos de usuario", "diseño centrado en la persona", "teoría de emociones"],
-            "recibeDe": ["simulaciones", "experimentos", "datos estructurados"]
-          },
-          "tarot": {
-            "aporteA": ["análisis de símbolos desde el inconsciente", "puentes terapéuticos"],
-            "recibeDe": ["intuición profunda", "arquetipos vivos", "conexión con lo no verbal"]
-          },
-          "filosofia": {
-            "aporteA": ["humanismo psicológico", "visión crítica del alma"],
-            "recibeDe": ["principios éticos", "teorías de la conciencia"]
-          },
-          "fotografia": {
-            "aporteA": ["expresión emocional visual", "documentación del yo"],
-            "recibeDe": ["representación estética de estados mentales"]
-          }
-        }
-      },
-      "fotografia": {
-        "contribucionesClave": ["perdurabilidad", "inspiración", "transmisión de sentimientos o mensajes"],
-        "relaciones": {
-          "desarrollo": {
-            "aporteA": ["riqueza visual", "valor emocional en productos"],
-            "recibeDe": ["automatización", "interactividad", "algoritmos de mejora"]
-          },
-          "tarot": {
-            "aporteA": ["iconografía mística", "lectura visual arquetípica"],
-            "recibeDe": ["estructura simbólica", "ritualidad"]
-          },
-          "filosofia": {
-            "aporteA": ["pensamiento visual", "teoría estética"],
-            "recibeDe": ["marcos interpretativos", "contexto histórico"]
-          },
-          "psicologia": {
-            "aporteA": ["captura de la emoción", "terapia visual"],
-            "recibeDe": ["guía emocional", "narrativa del yo"]
-          }
-        }
       }
     }
   }
