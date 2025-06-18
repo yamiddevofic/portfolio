@@ -75,7 +75,7 @@
               },
               "camaraDeLaHumanidad_e_f": {
                 "descripcion": "Audita la experiencia humana.",
-                "lazo_f1_f2": "Psicología ↔ Dev: Control de Calidad Conductual.",
+                "lazo_f1_e2": "Psicología ↔ Dev: Control de Calidad Conductual.",
                 "lazo_e1_f2": "Psicología ↔ Arte: Control de Calidad Afectivo."
               }
             }
